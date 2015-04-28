@@ -24,6 +24,9 @@ set(parser_src
 set(data_gen_src
     main.cpp
 
+    data.cpp
+    data.h
+
     grammar.yy
     lexer.ll
     ${parser_src}

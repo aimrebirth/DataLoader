@@ -11,8 +11,9 @@
 
 void yyerror(const std::string &msg);
 
-Tables db;
-vector<Column> columns;
+Database db;
+Columns columns;
+int col_id = 0;
 ForeignKeys fks;
 %}
 
@@ -50,12 +51,14 @@ table:
     STRING STRING quoted_string L_BRACKET vars R_BRACKET SEMICOLON
     {
         Table t;
+        t.name = $3;
         t.columns = columns;
         t.fks = fks;
-        db[$3] = t;
+        db.tables[$3] = t;
 
         columns.clear();
         fks.clear();
+        col_id = 0;
     }
     ;
 
@@ -66,6 +69,7 @@ vars: var
 var: quoted_string STRING not_null
     {
         Column column;
+        column.id = col_id++;
         column.name = $1;
         if ($2 == string("INTEGER"))
             column.type = ColumnType::Integer;
@@ -77,7 +81,7 @@ var: quoted_string STRING not_null
             column.type = ColumnType::Blob;
         else
             assert(false);
-        columns.push_back(column);
+        columns[$1] = column;
     }
     | PRIMARY STRING L_BRACKET primary_keys R_BRACKET
     | FOREIGN STRING bracket_quoted_string STRING quoted_string bracket_quoted_string /* FK */
