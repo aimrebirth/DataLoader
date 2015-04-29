@@ -71,7 +71,7 @@ string Column::printVar() const
     string s;
     if (fk)
     {
-        s += "IdPtr<" + getTableName(fk->table_name) + "> " + toVarName(removeId(name));
+        s += "IdPtr<" + getTableName(fk->table_name) + "> " + printVarName();
     }
     else
     {
@@ -87,7 +87,7 @@ string Column::printVar() const
             s += TextType;
             break;
         }
-        s += " " + name;
+        s += " " + printVarName();
         if (type == ColumnType::Integer || type == ColumnType::Real)
         {
             s += " = ";
@@ -101,6 +101,20 @@ string Column::printVar() const
                 break;
             }
         }
+    }
+    return s;
+}
+
+string Column::printVarName() const
+{
+    string s;
+    if (fk)
+    {
+        s += toVarName(removeId(name));
+    }
+    else
+    {
+        s += name;
     }
     return s;
 }
@@ -125,6 +139,32 @@ string Column::printLoad() const
             break;
         case ColumnType::Text:
             s += "cols[" + to_string(id) + "]";
+            break;
+        }
+    }
+    return s;
+}
+
+string Column::printSet() const
+{
+    string s;
+    if (fk)
+    {
+        s += toVarName(removeId(name)) + ".id = std::stoi(text.string())";
+    }
+    else
+    {
+        s += name + " = ";
+        switch (type)
+        {
+        case ColumnType::Integer:
+            s += "std::stoi(text.string())";
+            break;
+        case ColumnType::Real:
+            s += "std::stof(text.string())";
+            break;
+        case ColumnType::Text:
+            s += "text.string()";
             break;
         }
     }
@@ -176,7 +216,7 @@ string Table::print(const Tables &tables)
         s += space + "max\n";
         s += "};\n\n";
     }
-    s += "struct " + name + "\n";
+    s += "struct " + name + " : public IObject\n";
     s += "{\n";
     for (auto &col : cols)
         s += space + col.printVar() + ";\n";
@@ -198,6 +238,56 @@ string Table::print(const Tables &tables)
         s += "\n";
         s += space + "CVector<Ptr<" + getTableName(iter1n->second) + ">> " + toVarName(iter1n->second) + "s" + ";\n";
     }
+    s += "\n";
+
+    s += space + "virtual EObjectType getType() const\n";
+    s += space + "{\n";
+    s += space + space + "return EObjectType::" + name + ";\n";
+    s += space + "}\n";
+
+    s += space + "virtual Text getVariableString(int columnId) const\n";
+    s += space + "{\n";
+    {
+        string space = ::space + ::space;
+        s += space + "switch (columnId)\n";
+        s += space + "{\n";
+        auto cols = mapToSet(columns);
+        for (auto &col : cols)
+        {
+            s += space + "case " + to_string(col.id) + ":\n";
+            if (col.type == ColumnType::Real)
+            {
+                s += space + ::space + "{ std::stringstream ss; ss << " + col.printVarName() + "; return ss.str(); }\n";
+                continue;
+            }
+            s += space + ::space + "return to_string(" + col.printVarName() + ");\n";
+        }
+        s += space + "default:\n";
+        s += space + ::space + "return \"\";\n";
+        s += space + "}\n";
+        s += space + "return \"\";\n";
+    }
+    s += space + "}\n";
+
+    s += space + "virtual void setVariableString(int columnId, Text text)\n";
+    s += space + "{\n";
+    {
+        string space = ::space + ::space;
+        s += space + "switch (columnId)\n";
+        s += space + "{\n";
+        auto cols = mapToSet(columns);
+        for (auto &col : cols)
+        {
+            s += space + "case " + to_string(col.id) + ":\n";
+            s += space + ::space + col.printSet() + ";\n";
+            s += space + ::space + "break;\n";
+        }
+        s += space + "default:\n";
+        s += space + ::space + "break;\n";
+        s += space + "}\n";
+    }
+    s += space + "}\n";
+
     if (name == String)
     {
         s += "\n";
@@ -242,7 +332,7 @@ string Table::printLoad()
             string var = toVarName(name);
             s += space + "Ptr<" + name + "> " + var + " = std::make_shared<" + name + ">();" + "\n";
             for (auto &col : cols)
-                s += space + var + "->" + col.printLoad() + ";\n";
+                s += space + "if (cols[" + to_string(col.id) + "]) " + var + "->" + col.printLoad() + ";\n";
             s += "\n";
             s += space + "Storage *storage = (Storage *)o;" + "\n";
             name = toVarName(this->name);
@@ -388,7 +478,7 @@ string Table::printSave()
         s += space + "if (" + toVarName(name) + ".empty())" + "\n";
         s += space + ::space + "return;\n";
         s += space + "std::string query;" + "\n";
-        s += space + "query += \"insert or replace into " + name + " values\"" + ";\n";
+        s += space + "query += \"insert or replace into " + name + " values\\n\"" + ";\n";
         s += space + "for (auto &" + toVarName(getTableName(name)) + " : " + toVarName(name) + ")" + "\n";
         s += space + "{\n";
         {
@@ -398,14 +488,21 @@ string Table::printSave()
             for (auto &col : cols)
                 s += space + "query += \"'\" + " + col.printSave(toVarName(getTableName(name)) + (hasIdField() ? ".second" : "")) + " + \"',\";\n";
             s += space + "query.resize(query.size() - 1);\n";
-            s += space + "query += \"),\";\n";
+            s += space + "query += \"),\\n\";\n";
         }
         s += space + "}\n";
-        s += space + "query.resize(query.size() - 1);\n";
+        s += space + "query.resize(query.size() - 2);\n";
         s += space + "query += \";\";\n";
         s += space + "db->execute(query.c_str(), 0, 0);\n";
     }
     s += space + "}\n";
+    return s;
+}
+
+string Table::printUsing()
+{
+    string s;
+    s += "using detail::" + getTableName(this->name) + ";\n";
     return s;
 }
 
@@ -425,9 +522,22 @@ string Database::printTypes()
 {
     string s;
     s += "/* DO NOT EDIT! This is an autogenerated file. */\n\n";
+    s += "enum class EObjectType : EnumType\n";
+    s += "{\n";
+    for (auto &table : tables)
+        s += space + getTableName(table.first) + ",\n";
+    s += "};\n\n";
     for (auto &table : tables)
         s += table.second.printForward();
     s += "\n";
+    s += "struct IObject\n";
+    s += "{\n";
+    s += space + "virtual ~IObject(){}\n";
+    s += "\n";
+    s += space + "virtual EObjectType getType() const = 0;\n";
+    s += space + "virtual Text getVariableString(int columnId) const = 0;\n";
+    s += space + "virtual void setVariableString(int columnId, Text text) = 0;\n";
+    s += "};\n\n";
     for (auto &table : tables)
         s += table.second.print(tables);
     return s;
@@ -492,5 +602,48 @@ string Database::printStorageImpl()
         s += space + space + "_save" + table.name + "();\n";
     s += space + "}\n";
     s += "};\n\n";
+    return s;
+}
+
+string Database::printTypesUsing()
+{
+    string s;
+    s += "/* DO NOT EDIT! This is an autogenerated file. */\n\n";
+    for (auto &table : tables)
+        s += table.second.printUsing();
+    return s;
+}
+
+string Database::printHelpers()
+{
+    string s;
+    s += "/* DO NOT EDIT! This is an autogenerated file. */\n\n";
+
+    s += "EObjectType getTableType(const std::string &table)\n";
+    s += "{\n";
+    s += space + "static std::map<std::string, EObjectType> types =\n";
+    s += space + "{\n";
+    {
+        string space = ::space + ::space;
+        for (auto &table : tables)
+            s += space + "{ \"" + table.first + "\", EObjectType::" + getTableName(table.first) + " },\n";
+    }
+    s += space + "};\n";
+    s += space + "return types[table];\n";
+    s += "};\n\n";
+    
+    s += "std::string getTableNameByType(EObjectType type)\n";
+    s += "{\n";
+    s += space + "static std::map<EObjectType, std::string> tables =\n";
+    s += space + "{\n";
+    {
+        string space = ::space + ::space;
+        for (auto &table : tables)
+            s += space + "{ EObjectType::" + getTableName(table.first) + ", \"" + table.first + "\" },\n";
+    }
+    s += space + "};\n";
+    s += space + "return tables[type];\n";
+    s += "};\n\n";
+
     return s;
 }

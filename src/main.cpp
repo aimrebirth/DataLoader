@@ -34,7 +34,9 @@ int main(int argc, char *argv[])
     }
     db.assignFks();
     ofstream("Types.h") << db.printTypes();
+    //ofstream("TypesUsing.h") << db.printTypesUsing();
     ofstream("Storage.h") << db.printStorage();
     ofstream("StorageImpl.h") << db.printStorageImpl();
+    ofstream("Helpers.h") << db.printHelpers();
     return 0;
 }

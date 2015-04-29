@@ -30,7 +30,9 @@ struct Column
     ForeignKey *fk = 0;
 
     string printVar() const;
+    string printVarName() const;
     string printLoad() const;
+    string printSet() const;
     string printSave(string var) const;
 
     bool operator<(const Column &rhs) const
@@ -58,6 +60,7 @@ struct Table
     string printLoadPtrs();
     string printLoadArrays(const Tables &tables);
     string printSave();
+    string printUsing();
 
     bool operator<(const Table &rhs) const
     {
@@ -78,6 +81,8 @@ struct Database
 
     void assignFks();
     string printTypes();
+    string printTypesUsing();
     string printStorage();
     string printStorageImpl();
+    string printHelpers();
 };
