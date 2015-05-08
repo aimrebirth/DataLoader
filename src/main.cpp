@@ -33,10 +33,16 @@ int main(int argc, char *argv[])
         return 3;
     }
     db.assignFks();
-    ofstream("Types.h") << db.printTypes();
+    std::string impl;
+    ofstream("Types.h") << db.printTypes(impl);
+    ofstream("Types.cpp") << impl;
     //ofstream("TypesUsing.h") << db.printTypesUsing();
     ofstream("Storage.h") << db.printStorage();
-    ofstream("StorageImpl.h") << db.printStorageImpl();
-    ofstream("Helpers.h") << db.printHelpers();
+    impl.clear();
+    ofstream("StorageImpl.h") << db.printStorageImpl(impl);
+    ofstream("StorageImpl.cpp") << impl;
+    impl.clear();
+    ofstream("Helpers.h") << db.printHelpers(impl);
+    ofstream("Helpers.cpp") << impl;
     return 0;
 }
