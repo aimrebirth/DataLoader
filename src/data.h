@@ -90,4 +90,6 @@ struct Database
     string printHelpers(string &impl);
     string printQtTreeView(string &impl);
     string printGetOrderedMap(string &impl);
+    string printAddDeleteRecord(string &impl);
+    string printAddDeleteRecordVirtual();
 };

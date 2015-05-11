@@ -548,6 +548,17 @@ string Table::print(const Tables &tables, string &si) const
     }
 end:
 
+    s += "\n";
+    s += space + "bool operator==(const " + getTableName(this->name) + " &rhs) const;\n";
+    si += "bool " + getTableName(this->name) + "::operator==(const " + getTableName(this->name) + " &rhs) const\n";
+    si += "{\n";
+    si += space + "return\n";
+    for (auto &col : columns)
+        if (col.first != "id")
+            si += space + space + col.second.printVarName() + " == rhs." + col.second.printVarName() + " &&\n";
+    si += space + space + "1;\n";
+    si += "}\n\n";
+
     s += "};\n\n";
     return s;
 }
@@ -850,6 +861,8 @@ string Database::printStorage()
     s += "#endif\n";
     s += "\n";
     s += space + "virtual OrderedObjectMap getOrderedMap(EObjectType type) const = 0;\n";
+    s += "\n";
+    s += printAddDeleteRecordVirtual();
     s += "};\n\n";
     return s;
 }
@@ -917,6 +930,11 @@ string Database::printStorageImpl(string &si)
     }
     si += "}\n\n";
 
+    s += "\n";
+    s += printAddDeleteRecord(si);
+    s += "\n";
+    si += "\n";
+
     s += "#ifdef USE_QT\n";
     si += "#ifdef USE_QT\n";
     s += printQtTreeView(si);
@@ -924,6 +942,145 @@ string Database::printStorageImpl(string &si)
     s += "#endif\n";
     s += printGetOrderedMap(si);
     s += "};\n\n";
+    return s;
+}
+
+string Database::printAddDeleteRecordVirtual()
+{
+    string s;
+    for (auto &table : tables)
+    {
+        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
+            continue;
+        s += space + "virtual Ptr<" + getTableName(table.second.name) + "> add" + getTableName(table.second.name) + "(IObject *parent = 0) = 0;\n";
+        s += space + "virtual void delete" + getTableName(table.second.name) + "(" + getTableName(table.second.name) + " *object) = 0;\n";
+    }
+    s += "\n";
+    s += space + "virtual Ptr<IObject> addRecord(IObject *parent = 0) = 0;\n";
+    s += space + "virtual void deleteRecord(IObject *data) = 0;\n";
+    return s;
+}
+
+string Database::printAddDeleteRecord(string &si)
+{
+    string s;
+    for (auto &table : tables)
+    {
+        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
+            continue;
+        s += space + "virtual Ptr<" + getTableName(table.second.name) + "> add" + getTableName(table.second.name) + "(IObject *parent = 0);\n";
+        si += "Ptr<" + getTableName(table.second.name) + "> " + storageImpl + "::add" + getTableName(table.second.name) + "(IObject *parent)\n";
+        si += "{\n";
+        if (isMapTable(getTableName(table.first)))
+        {
+            si += space + "int id = 1;\n";
+            si += space + "if (!" + toVarName(table.second.name) + ".empty())" + "\n";
+            si += space + ::space + "id = " + toVarName(table.second.name) + ".rbegin()->first + 1;" + "\n";
+            si += space + "auto v = std::make_shared<" + getTableName(table.second.name) + ">();" + "\n";
+            si += space + "v->id = id;" + "\n";
+            si += space + "" + toVarName(table.second.name) + "[v->id] = v;" + "\n";
+
+            string var = toVarName(getParentType(table.first));
+            si += space + getParentType(table.first) + " *" + var +
+                " = (" + getParentType(table.first) + " *)parent;" + "\n";
+            si += space + var + "->" + toVarName(table.first.substr(var.size())) +
+                ".push_back(v);" + "\n";
+            si += space + "v->" + var + " = " + var + "s[" + var + "->id];" + "\n";
+
+        }
+        else
+        {
+            if (treeViewItems.find(table.second.name) != treeViewItems.end())
+            {
+                si += space + "int id = 1;\n";
+                si += space + "if (!" + toVarName(table.second.name) + ".empty())" + "\n";
+                si += space + ::space + "id = " + toVarName(table.second.name) + ".rbegin()->first + 1;" + "\n";
+                si += space + "auto v = std::make_shared<" + getTableName(table.second.name) + ">();" + "\n";
+                si += space + "v->id = id;" + "\n";
+                si += space + "" + toVarName(table.second.name) + "[v->id] = v;" + "\n";
+            }
+            else
+            {
+                string var = toVarName(getParentType(table.first));
+                si += space + "auto v = std::make_shared<" + getTableName(table.second.name) + ">();" + "\n";
+                si += space + getParentType(table.first) + " *" + var +
+                    " = (" + getParentType(table.first) + " *)parent;" + "\n";
+                si += space + var + "->" + toVarName(table.first.substr(var.size())) +
+                    ".push_back(v);" + "\n";
+                si += space + toVarName(table.first) + ".push_back(v);" + "\n";
+                si += space + "v->" + var + " = " + var + "s[" + var + "->id];" + "\n";
+            }
+        }
+        si += space + "return v;\n";
+        si += "}\n\n";
+
+        s += space + "virtual void delete" + getTableName(table.second.name) + "(" + getTableName(table.second.name) + " *object);\n";
+        si += "void " + storageImpl + "::delete" + getTableName(table.second.name) + "(" + getTableName(table.second.name) + " *v)\n";
+        si += "{\n";
+        if (treeViewItems.find(table.second.name) != treeViewItems.end() || isMapTable(getTableName(table.second.name)))
+        {
+            si += space + "" + toVarName(table.second.name) + ".erase(v->id);" + "\n";
+        }
+        else
+        {
+            string var = toVarName(table.second.name);
+            si += space + "while (1)\n";
+            si += space + "{\n";
+            {
+                string space = ::space + ::space;
+                si += space + "auto i = find_if(" +
+                    var + ".begin(), " + var + ".end(), " +
+                    "[v](const Ptr<" + getTableName(table.second.name) + "> &p)" +
+                    "{ return p.get() == v; });" + "\n";
+                si += space + "if (i == " + var + ".end())\n";
+                si += space + ::space + "break;\n";
+                si += space + var + ".erase(i);\n";
+            }
+            si += space + "}\n";
+        }
+        si += "}\n\n";
+    }
+    s += "\n";
+
+    s += space + "virtual Ptr<IObject> addRecord(IObject *parent = 0);\n";
+    si += "Ptr<IObject> " + storageImpl + "::addRecord(IObject *parent)\n";
+    si += "{\n";
+    si += space + "EObjectType type = parent->getType();\n";
+    si += space + "switch (type)\n";
+    si += space + "{\n";
+    for (auto &table : tables)
+    {
+        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
+            continue;
+        si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
+        si += space + space + "return add" + getTableName(table.second.name) + "(parent);" + "\n";
+
+    }
+    si += space + "default:" + "\n";
+    si += space + space + "return Ptr<IObject>(0);\n";
+    si += space + "}\n";
+    si += "}\n\n";
+
+    s += space + "virtual void deleteRecord(IObject *data);\n";
+    si += "void " + storageImpl + "::deleteRecord(IObject *data)\n";
+    si += "{\n";
+    si += space + "EObjectType type = data->getType();\n";
+    si += space + "switch (type)\n";
+    si += space + "{\n";
+    for (auto &table : tables)
+    {
+        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
+            continue;
+
+        string space = ::space + ::space;
+        si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
+        si += space + "delete" + getTableName(table.second.name) + "((" + getTableName(table.second.name) + " *)data);" + "\n";
+        si += space + "break;\n";
+    }
+    si += space + "default:" + "\n";
+    si += space + space + "break;\n";
+    si += space + "}\n";
+    si += "}\n";
     return s;
 }
 
@@ -939,6 +1096,7 @@ string Database::printQtTreeView(string &si)
     {
         if (treeViewItems.find(table.second.name) == treeViewItems.end())
             continue;
+
         si += "\n";
         si += space + "item = new QTreeWidgetItem(root, QStringList(" + tr(splitWords(table.second.name)) + "));" + "\n";
         si += space + "item->setData(0, Qt::UserRole, static_cast<int>(EObjectType::" + getTableName(table.second.name) + "));" + "\n";
@@ -952,7 +1110,6 @@ string Database::printQtTreeView(string &si)
     si += "QTreeWidgetItem *" + storageImpl + "::addRecord(QTreeWidgetItem *item)\n";
     si += "{\n";
     si += space + "EObjectType type = static_cast<EObjectType>(item->data(0, Qt::UserRole).toInt());\n";
-    si += space + "int id = 1;" + "\n";
     si += space + "IObject *parent = 0;" + "\n";
     si += space + "auto parentItem = item->parent();" + "\n";
     si += space + "if (parentItem)" + "\n";
@@ -965,32 +1122,8 @@ string Database::printQtTreeView(string &si)
             continue;
 
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
-        si += ::space + "{\n";
         string space = ::space + ::space;
-        if (treeViewItems.find(table.second.name) != treeViewItems.end())
-        {
-            si += space + "if (!" + toVarName(table.second.name) + ".empty())" + "\n";
-            si += space + ::space + "id = " + toVarName(table.second.name) + ".rbegin()->first + 1;" + "\n";
-            si += space + "auto v = std::make_shared<" + getTableName(table.second.name) + ">();" + "\n";
-            si += space + "v->id = id;" + "\n";
-            si += space + "" + toVarName(table.second.name) + "[v->id] = v;" + "\n";
-        }
-        else
-        {
-            string var = toVarName(getParentType(table.first));
-            si += space + "auto v = std::make_shared<" + getTableName(table.second.name) + ">();" + "\n";
-            si += space + getParentType(table.first) + " *" + var +
-                " = (" + getParentType(table.first) + " *)parent;" + "\n";
-            si += space + var + "->" + toVarName(table.first.substr(var.size())) +
-                ".push_back(v);" + "\n";
-            if (isMapTable(getTableName(table.first)))
-                si += space + "" + toVarName(table.first) + "[v->id] = v;" + "\n";
-            else
-                si += space + toVarName(table.first) + ".push_back(v);" + "\n";
-            si += space + "v->" + var + " = " + var + "s[" + var + "->id];" + "\n";
-        }
-        si += space + "return v->printQtTreeView(item);" + "\n";
-        si += ::space + "}\n";
+        si += space + "return add" + getTableName(table.second.name) + "(parent)->printQtTreeView(item);" + "\n";
     }
     si += space + "default:" + "\n";
     si += space + space + "return 0;\n";
@@ -1011,36 +1144,13 @@ string Database::printQtTreeView(string &si)
         
         string space = ::space + ::space;
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
-        si += ::space + "{\n";
-        si += space + "" + getTableName(table.second.name) + " *v = (" + getTableName(table.second.name) + " *)item->data(0, Qt::UserRole).toULongLong();" + "\n";
-        if (treeViewItems.find(table.second.name) != treeViewItems.end() || isMapTable(getTableName(table.second.name)))
-        {
-            si += space + "" + toVarName(table.second.name) + ".erase(v->id);" + "\n";
-        }
-        else
-        {
-            string var = toVarName(table.second.name);
-            si += space + "while (1)\n";
-            si += space + "{\n";
-            {
-                string space = ::space + ::space + ::space;
-                si += space + "auto i = find_if(" +
-                    var + ".begin(), " + var + ".end(), " +
-                    "[v](const Ptr<" + getTableName(table.second.name) + "> &p)" +
-                    "{ return p.get() == v; });" + "\n";
-                si += space + "if (i == " + var + ".end())\n";
-                si += space + ::space + "break;\n";
-                si += space + var + ".erase(i);\n";
-            }
-            si += space + "}\n";
-        }
-        si += space + "item->parent()->removeChild(item);" + "\n";
+        si += space + "delete" + getTableName(table.second.name) + "((" + getTableName(table.second.name) + " *)data);" + "\n";
         si += space + "break;\n";
-        si += ::space + "}\n";
     }
     si += space + "default:" + "\n";
     si += space + space + "break;\n";
     si += space + "}\n";
+    si += space + "item->parent()->removeChild(item);" + "\n";
     si += "}\n";
 
     return s;
