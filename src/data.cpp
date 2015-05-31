@@ -374,11 +374,11 @@ string Table::print(const Tables &tables, string &si) const
         for (auto &col : cols)
         {
             si += space + "case " + to_string(col.id) + ":\n";
-            if (col.type == ColumnType::Real)
-            {
-                si += space + ::space + "{ std::stringstream ss; ss << " + col.printVarName() + "; return ss.str(); }\n";
-                continue;
-            }
+            //if (col.type == ColumnType::Real)
+            //{
+            //    si += space + ::space + "{ std::stringstream ss; ss << " + col.printVarName() + "; return ss.str(); }\n";
+            //    continue;
+            //}
             si += space + ::space + "return to_string(" + col.printVarName() + ");\n";
         }
         si += space + "default:\n";
@@ -472,41 +472,44 @@ string Table::print(const Tables &tables, string &si) const
     
     if (name != String)
     {
+        s += space + "virtual Text getName() const;\n";
+        si += "Text " + name + "::getName() const\n";
+        si += "{\n";
+        si += space + "Text n;\n";
         auto iter_object_name = objectNames.find(this->name);
         if (iter_object_name != objectNames.end())
         {
-            s += space + "virtual Text getName() const;\n";
-            si += "Text " + name + "::getName() const\n";
-            si += "{\n";
-            si += space + "return " + iter_object_name->second + ";\n";
-            si += "}\n\n";
-            goto end;
+            si += space + "n = " + iter_object_name->second + ";\n";
+            si += space + "if (!n.empty())\n";
+            si += space + space + "return n;\n";
         }
         auto iter = find_if(columns.begin(), columns.end(), [](const Columns::value_type &p)
         {
             return p.first.find("name") != -1;
         });
-        if (iter == columns.end())
-            iter = find_if(columns.begin(), columns.end(), [](const Columns::value_type &p)
+        if (iter != columns.end())
+        {
+            if (iter->second.type == ColumnType::Text)
+                si += space + "n = " + iter->second.printVarName() + ";\n";
+            else
+                si += space + "n = to_string(" + iter->second.printVarName() + ");\n";
+            si += space + "if (!n.empty())\n";
+            si += space + space + "return n;\n";
+        }
+        iter = find_if(columns.begin(), columns.end(), [](const Columns::value_type &p)
         {
             return p.first.find("text") != -1;
         });
         if (iter != columns.end())
         {
-            s += space + "virtual Text getName() const;\n";
-            si += "Text " + name + "::getName() const\n";
-            si += "{\n";
-            {
-                if (iter->second.type == ColumnType::Text)
-                    si += space + "return " + iter->second.printVarName() + ";\n";
-                else
-                    si += space + "return to_string(" + iter->second.printVarName() + ");\n";
-            }
-            si += "}\n\n";
-            goto end;
+            if (iter->second.type == ColumnType::Text)
+                si += space + "n = " + iter->second.printVarName() + ";\n";
+            else
+                si += space + "n = to_string(" + iter->second.printVarName() + ");\n";
+            si += space + "if (!n.empty())\n";
+            si += space + space + "return n;\n";
         }
-        if (iter == columns.end())
-            iter = find_if(columns.begin(), columns.end(), [&](const Columns::value_type &p)
+        iter = find_if(columns.begin(), columns.end(), [&](const Columns::value_type &p)
         {
             string ptr_type = getParentType(name);
             string var = toVarName(name.substr(ptr_type.size()));
@@ -516,15 +519,14 @@ string Table::print(const Tables &tables, string &si) const
         });
         if (iter != columns.end())
         {
-            s += space + "virtual Text getName() const;\n";
-            si += "Text " + name + "::getName() const\n";
-            si += "{\n";
             string ptr_type = getParentType(name);
             string var = toVarName(name.substr(ptr_type.size()));
-            si += space + "return to_string(" + var + ");\n";
-            si += "}\n\n";
-            goto end;
+            si += space + "n = to_string(" + var + ");\n";
+            si += space + "if (!n.empty())\n";
+            si += space + space + "return n;\n";
         }
+        si += space + "return IObject::getName();\n";
+        si += "}\n\n";
     }
     else
     {
