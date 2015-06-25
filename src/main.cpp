@@ -44,5 +44,6 @@ int main(int argc, char *argv[])
     impl.clear();
     ofstream("Helpers.h") << db.printHelpers(impl);
     ofstream("Helpers.cpp") << impl;
+    ofstream("dbmgr_data.py") << db.printPy();
     return 0;
 }

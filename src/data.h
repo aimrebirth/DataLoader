@@ -92,4 +92,5 @@ struct Database
     string printGetOrderedMap(string &impl);
     string printAddDeleteRecord(string &impl);
     string printAddDeleteRecordVirtual();
+    string printPy();
 };

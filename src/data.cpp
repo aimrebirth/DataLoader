@@ -18,7 +18,6 @@ const set<string> mapTables =
 
 const set<string> removeFromAddRecord = 
 {
-    //"Coordinates",
     "MechanoidGroups",
     "ScriptVariables",
 };
@@ -1255,5 +1254,19 @@ string Database::printGetOrderedMap(string &si)
     si += space + space + "return OrderedObjectMap();\n";
     si += space + "}\n";
     si += "}\n";
+    return s;
+}
+
+string Database::printPy()
+{
+    string s;
+    s += "#!/usr/bin/python3\n";
+    s += "# -*- coding: utf-8 -*-\n\n";
+    s += "tables = [\n";
+    for (auto &table : tables)
+    {
+        s += space + "'" + toVarName(table.first) + "'" + ",\n";
+    }
+    s += "]\n";
     return s;
 }
