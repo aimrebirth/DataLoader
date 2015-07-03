@@ -32,10 +32,10 @@ ForeignKeys fks;
 %token EOQ 0 "end of file"
 %token ERROR_SYMBOL
 %token L_BRACKET R_BRACKET COMMA QUOTE SEMICOLON
-%token PRIMARY FOREIGN
+%token PRIMARY FOREIGN DEFAULT
 %token <strVal> STRING
 
-%type <strVal> quoted_string bracket_quoted_string
+%type <strVal> quoted_string bracket_quoted_string var_end
 
 %%
 
@@ -66,17 +66,24 @@ vars: var
     | var COMMA vars
     ;
     
-var: quoted_string STRING not_null
+var: quoted_string STRING var_end
     {
         Column column;
         column.id = col_id++;
         column.name = $1;
+        column.defaultValue = $3;
         if ($2 == string("INTEGER"))
+        {
             column.type = ColumnType::Integer;
+        }
         else if ($2 == string("REAL"))
+        {
             column.type = ColumnType::Real;
+        }
         else if ($2 == string("TEXT"))
+        {
             column.type = ColumnType::Text;
+        }
         else if ($2 == string("BLOB"))
             column.type = ColumnType::Blob;
         else
@@ -92,6 +99,16 @@ var: quoted_string STRING not_null
         fks[$3] = fk;
     }
     | STRING bracket_quoted_string /* UNIQUE */
+    ;
+
+var_end: not_null
+    {
+        $$ = "";
+    }
+    | DEFAULT STRING
+    {
+        $$ = $2;
+    }
     ;
 
 primary_keys: primary_key

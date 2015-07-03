@@ -13,13 +13,7 @@ const set<string> mapTables =
 {
     "MapBuilding",
     "MapObject",
-    "QuestReward"
-};
-
-const set<string> removeFromAddRecord = 
-{
-    "MechanoidGroups",
-    "ScriptVariables",
+    "QuestReward",
 };
 
 const set<string> containers = 
@@ -28,9 +22,9 @@ const set<string> containers =
     "MapBuilding",
     "QuestReward",
     "Modification",
-    "MechanoidGroup",
     "Clan",
     "Save",
+    "Group",
 };
 
 const multimap<string, string> containers1n = 
@@ -39,9 +33,11 @@ const multimap<string, string> containers1n =
     { "Map", "MapObject" },
     { "Save", "ScriptVariable" },
     { "Quest", "QuestReward" },
+    { "Mechanoid", "MechanoidQuest" },
 };
 
 // these objects are shown in tree view
+// also add to this to make sure your container is a map and not a vector
 const set<string> treeViewItems = 
 {
     "Buildings",
@@ -51,6 +47,7 @@ const set<string> treeViewItems =
     "Equipments",
     "Gliders",
     "Goods",
+    "Groups",
     "Maps",
     "Mechanoids",
     "Modifications",
@@ -60,6 +57,7 @@ const set<string> treeViewItems =
     "Projectiles",
     "Quests",
     "Saves",
+    //"Settings",
     "Strings",
     "Weapons",
 };
@@ -194,10 +192,13 @@ string Column::printVar() const
             switch (type)
             {
             case ColumnType::Integer:
-                s += "0";
+                s += defaultValue.empty() ? "0" : defaultValue;
                 break;
             case ColumnType::Real:
-                s += "0.0f";
+                s += defaultValue.empty() ? "0.0f" : defaultValue;
+                break;
+            case ColumnType::Text:
+                s += defaultValue;
                 break;
             }
         }
@@ -333,11 +334,16 @@ string Table::print(const Tables &tables, string &si) const
         s += space + col.printVar() + ";\n";
     if (containers.find(name) != containers.end())
     {
-        s += "\n";
+        bool once = false;
         for (auto &table : tables)
         {
             if (table.first.find(name) == 0 && isupper(table.first[name.size()]))
             {
+                if (!once)
+                {
+                    s += "\n";
+                    once = true;
+                }
                 string var = table.first.substr(name.size());
                 s += space + "CVector<Ptr<" + getTableName(table.first) + ">> " + toVarName(var) + ";\n";
             }
@@ -547,7 +553,6 @@ string Table::print(const Tables &tables, string &si) const
         si += space + "return s;\n";
         si += "}\n\n";
     }
-end:
 
     s += "\n";
     s += space + "bool operator==(const " + getTableName(this->name) + " &rhs) const;\n";
@@ -951,8 +956,6 @@ string Database::printAddDeleteRecordVirtual()
     string s;
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
         s += space + "virtual Ptr<" + getTableName(table.second.name) + "> add" + getTableName(table.second.name) + "(IObject *parent = 0) = 0;\n";
         s += space + "virtual void delete" + getTableName(table.second.name) + "(" + getTableName(table.second.name) + " *object) = 0;\n";
     }
@@ -967,8 +970,6 @@ string Database::printAddDeleteRecord(string &si)
     string s;
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
         s += space + "virtual Ptr<" + getTableName(table.second.name) + "> add" + getTableName(table.second.name) + "(IObject *parent = 0);\n";
         si += "Ptr<" + getTableName(table.second.name) + "> " + storageImpl + "::add" + getTableName(table.second.name) + "(IObject *parent)\n";
         si += "{\n";
@@ -1051,8 +1052,6 @@ string Database::printAddDeleteRecord(string &si)
     si += space + "{\n";
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
         si += space + space + "return add" + getTableName(table.second.name) + "(parent);" + "\n";
 
@@ -1070,9 +1069,6 @@ string Database::printAddDeleteRecord(string &si)
     si += space + "{\n";
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
-
         string space = ::space + ::space;
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
         si += space + "delete" + getTableName(table.second.name) + "((" + getTableName(table.second.name) + " *)data);" + "\n";
@@ -1119,9 +1115,6 @@ string Database::printQtTreeView(string &si)
     si += space + "{\n";
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
-
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
         string space = ::space + ::space;
         si += space + "return add" + getTableName(table.second.name) + "(parent)->printQtTreeView(item);" + "\n";
@@ -1140,9 +1133,6 @@ string Database::printQtTreeView(string &si)
     si += space + "{\n";
     for (auto &table : tables)
     {
-        if (removeFromAddRecord.find(table.first) != removeFromAddRecord.end())
-            continue;
-        
         string space = ::space + ::space;
         si += ::space + "case EObjectType::" + getTableName(table.second.name) + ":" + "\n";
         si += space + "delete" + getTableName(table.second.name) + "((" + getTableName(table.second.name) + " *)data);" + "\n";

@@ -29,6 +29,7 @@ struct Column
     int id;
     string name;
     ColumnType type;
+    string defaultValue;
     ForeignKey *fk = 0;
 
     string printVar() const;
@@ -67,12 +68,12 @@ struct Table
 
     bool operator<(const Table &rhs) const
     {
-        if (linksToThisTable.find(rhs.name) != linksToThisTable.end())
-            return true;
-        if (rhs.linksToThisTable.find(name) != rhs.linksToThisTable.end())
-            return false;
-        if (linksToThisTable.size() != rhs.linksToThisTable.size())
-            return linksToThisTable.size() > rhs.linksToThisTable.size();
+        //if (linksToThisTable.find(rhs.name) != linksToThisTable.end())
+        //    return true;
+        //if (rhs.linksToThisTable.find(name) != rhs.linksToThisTable.end())
+        //    return false;
+        //if (linksToThisTable.size() != rhs.linksToThisTable.size())
+        //    return linksToThisTable.size() > rhs.linksToThisTable.size();
         return name < rhs.name;
     }
 };

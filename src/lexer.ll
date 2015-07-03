@@ -29,10 +29,11 @@
 ")"                     return R_BRACKET;
 ","                     return COMMA;
 
+DEFAULT                 return DEFAULT;
 PRIMARY                 return PRIMARY;
 FOREIGN                 return FOREIGN;
 
-[A-Za-z_][A-Za-z_0-9]*  { CREATE_STRING; return STRING; }
+[A-Za-z_0-9][A-Za-z_0-9]*  { CREATE_STRING; return STRING; }
 
 \"                      { BEGIN(USER_STRING); return QUOTE; }
 <USER_STRING>\"         { BEGIN(0);           return QUOTE; }

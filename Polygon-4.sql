@@ -411,48 +411,11 @@ FOREIGN KEY ("questReward_id") REFERENCES "QuestRewards" ("id"),
 FOREIGN KEY ("modificator_id") REFERENCES "Modificators" ("id")
 );
 
-CREATE TABLE "SaveQuests" (
-"save_id" INTEGER NOT NULL,
-"quest_id" INTEGER NOT NULL,
-"state" INTEGER,
-PRIMARY KEY ("save_id", "quest_id") ,
-FOREIGN KEY ("save_id") REFERENCES "Saves" ("id"),
-FOREIGN KEY ("quest_id") REFERENCES "Quests" ("id")
-);
-
-CREATE TABLE "Saves" (
-"id" INTEGER NOT NULL,
-"modification_id" INTEGER,
-"name" TEXT,
-"date" TEXT,
-PRIMARY KEY ("id") ,
-FOREIGN KEY ("modification_id") REFERENCES "Modifications" ("id")
-);
-
 CREATE TABLE "Players" (
 "id" INTEGER NOT NULL,
 "mechanoid_id" INTEGER,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("mechanoid_id") REFERENCES "Mechanoids" ("id")
-);
-
-CREATE TABLE "SavePlayers" (
-"save_id" INTEGER NOT NULL,
-"player_id" INTEGER NOT NULL,
-PRIMARY KEY ("save_id", "player_id") ,
-FOREIGN KEY ("save_id") REFERENCES "Saves" ("id"),
-FOREIGN KEY ("player_id") REFERENCES "Players" ("id")
-);
-
-CREATE TABLE "Coordinates" (
-"id" INTEGER NOT NULL,
-"x" REAL,
-"y" REAL,
-"z" REAL,
-"pitch" REAL,
-"yaw" REAL,
-"roll" REAL,
-PRIMARY KEY ("id") 
 );
 
 CREATE TABLE "MapObjects" (
@@ -466,6 +429,10 @@ CREATE TABLE "MapObjects" (
 "pitch" REAL,
 "yaw" REAL,
 "roll" REAL,
+"scale" REAL DEFAULT 1,
+"scale_x" REAL DEFAULT 1,
+"scale_y" REAL DEFAULT 1,
+"scale_z" REAL DEFAULT 1,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("map_id") REFERENCES "Maps" ("id"),
 FOREIGN KEY ("object_id") REFERENCES "Objects" ("id")
@@ -479,22 +446,6 @@ CREATE TABLE "Objects" (
 "type" INTEGER,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("name_id") REFERENCES "Strings" ("id")
-);
-
-CREATE TABLE "SaveObjects" (
-"save_id" INTEGER NOT NULL,
-"object_id" INTEGER NOT NULL,
-"map_id" INTEGER,
-"x" REAL,
-"y" REAL,
-"z" REAL,
-"pitch" REAL,
-"yaw" REAL,
-"roll" REAL,
-PRIMARY KEY ("save_id") ,
-FOREIGN KEY ("save_id") REFERENCES "Saves" ("id"),
-FOREIGN KEY ("object_id") REFERENCES "Objects" ("id"),
-FOREIGN KEY ("map_id") REFERENCES "Maps" ("id")
 );
 
 CREATE TABLE "ModificationMechanoids" (
@@ -517,7 +468,21 @@ CREATE TABLE "ScriptVariables" (
 "save_id" INTEGER NOT NULL,
 "variable" TEXT NOT NULL,
 "value" TEXT,
-PRIMARY KEY ("save_id", "variable") ,
-FOREIGN KEY ("save_id") REFERENCES "Saves" ("id")
+PRIMARY KEY ("save_id", "variable") 
+);
+
+CREATE TABLE "PlayerQuests" (
+"player_id" INTEGER NOT NULL,
+"quest_id" INTEGER NOT NULL,
+"state" INTEGER,
+PRIMARY KEY ("player_id", "quest_id") ,
+FOREIGN KEY ("player_id") REFERENCES "Players" ("id"),
+FOREIGN KEY ("quest_id") REFERENCES "Quests" ("id")
+);
+
+CREATE TABLE "Settings" (
+"player_id" INTEGER NOT NULL,
+PRIMARY KEY ("player_id") ,
+FOREIGN KEY ("player_id") REFERENCES "Players" ("id")
 );
 
