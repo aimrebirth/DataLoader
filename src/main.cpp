@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
         printf("Error during parsing sql file");
         return 3;
     }
-    db.assignFks();
+
+    db.init();
 
     fs::path p = "DatabaseManager";
     auto header = p / "include" / "Polygon4" / "detail";
@@ -48,12 +49,18 @@ int main(int argc, char *argv[])
     std::string impl;
     ofstream(fs::path(header / "Types.h").string()) << db.printTypes(impl);
     ofstream(fs::path(src / "Types.cpp").string()) << impl;
-    //ofstream(fs::path(header / "TypesUsing.h").string()) << db.printTypesUsing();
-    ofstream(fs::path(header / "Storage.h").string()) << db.printStorage();
     impl.clear();
+
+    //ofstream(fs::path(header / "TypesUsing.h").string()) << db.printTypesUsing();
+
+    ofstream(fs::path(header / "Storage.h").string()) << db.printStorage(impl);
+    //ofstream(fs::path(src / "Storage.cpp").string()) << impl;
+    impl.clear();
+
     ofstream(fs::path(header / "StorageImpl.h").string()) << db.printStorageImpl(impl);
     ofstream(fs::path(src / "StorageImpl.cpp").string()) << impl;
     impl.clear();
+
     ofstream(fs::path(header / "Helpers.h").string()) << db.printHelpers(impl);
     ofstream(fs::path(src / "Helpers.cpp").string()) << impl;
 
