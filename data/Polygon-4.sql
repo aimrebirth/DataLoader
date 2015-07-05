@@ -3,12 +3,8 @@ CREATE TABLE "Maps" (
 "text_id" TEXT NOT NULL,
 "resource" TEXT NOT NULL,
 "name_id" INTEGER,
-"x_k" REAL,
-"x_b" REAL,
-"y_k" REAL,
-"y_b" REAL,
-"z_k" REAL,
-"z_b" REAL,
+"h_min" REAL,
+"h_max" REAL,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("name_id") REFERENCES "Strings" ("id")
 );
@@ -148,7 +144,7 @@ CREATE TABLE "Mechanoids" (
 "rating" REAL,
 "money" REAL,
 "configuration_id" INTEGER,
-"mechanoidGroup_id" INTEGER,
+"group_id" INTEGER,
 "clan_id" INTEGER,
 "rating_fight" REAL,
 "rating_courier" REAL,
@@ -167,7 +163,7 @@ FOREIGN KEY ("clan_id") REFERENCES "Clans" ("id"),
 FOREIGN KEY ("map_id") REFERENCES "Maps" ("id"),
 FOREIGN KEY ("mapBuilding_id") REFERENCES "MapBuildings" ("id"),
 FOREIGN KEY ("name_id") REFERENCES "Strings" ("id"),
-FOREIGN KEY ("mechanoidGroup_id") REFERENCES "MechanoidGroups" ("id")
+FOREIGN KEY ("group_id") REFERENCES "Groups" ("id")
 );
 
 CREATE TABLE "Clans" (
@@ -188,7 +184,7 @@ FOREIGN KEY ("clan_id") REFERENCES "Clans" ("id"),
 FOREIGN KEY ("clan_id2") REFERENCES "Clans" ("id")
 );
 
-CREATE TABLE "MechanoidGroups" (
+CREATE TABLE "Groups" (
 "id" INTEGER NOT NULL,
 "text_id" TEXT,
 "name_id" INTEGER,
@@ -278,6 +274,7 @@ CREATE TABLE "Buildings" (
 "text_id" TEXT,
 "resource" TEXT,
 "name_id" INTEGER,
+"interactive" INTEGER DEFAULT 0,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("name_id") REFERENCES "Strings" ("id")
 );
@@ -293,6 +290,10 @@ CREATE TABLE "MapBuildings" (
 "pitch" REAL,
 "yaw" REAL,
 "roll" REAL,
+"scale" REAL DEFAULT 1,
+"scale_x" REAL DEFAULT 1,
+"scale_y" REAL DEFAULT 1,
+"scale_z" REAL DEFAULT 1,
 PRIMARY KEY ("id") ,
 FOREIGN KEY ("map_id") REFERENCES "Maps" ("id"),
 FOREIGN KEY ("building_id") REFERENCES "Buildings" ("id")
@@ -351,7 +352,7 @@ CREATE TABLE "Modifications" (
 "date_created" TEXT,
 "date_modified" TEXT,
 "comment" TEXT,
-"version" REAL,
+"version" TEXT,
 "script_language" TEXT,
 "script_main" TEXT,
 "player_mechanoid_id" INTEGER,
@@ -465,18 +466,17 @@ FOREIGN KEY ("clan_id") REFERENCES "Clans" ("id")
 );
 
 CREATE TABLE "ScriptVariables" (
-"save_id" INTEGER NOT NULL,
 "variable" TEXT NOT NULL,
 "value" TEXT,
-PRIMARY KEY ("save_id", "variable") 
+PRIMARY KEY ("variable") 
 );
 
-CREATE TABLE "PlayerQuests" (
-"player_id" INTEGER NOT NULL,
+CREATE TABLE "MechanoidQuests" (
+"mechanoid_id" INTEGER NOT NULL,
 "quest_id" INTEGER NOT NULL,
 "state" INTEGER,
-PRIMARY KEY ("player_id", "quest_id") ,
-FOREIGN KEY ("player_id") REFERENCES "Players" ("id"),
+PRIMARY KEY ("mechanoid_id", "quest_id") ,
+FOREIGN KEY ("mechanoid_id") REFERENCES "Mechanoids" ("id"),
 FOREIGN KEY ("quest_id") REFERENCES "Quests" ("id")
 );
 
@@ -484,5 +484,21 @@ CREATE TABLE "Settings" (
 "player_id" INTEGER NOT NULL,
 PRIMARY KEY ("player_id") ,
 FOREIGN KEY ("player_id") REFERENCES "Players" ("id")
+);
+
+CREATE TABLE "GroupMechanoids" (
+"group_id" INTEGER NOT NULL,
+"mechanoid_id" INTEGER NOT NULL,
+PRIMARY KEY ("mechanoid_id") ,
+FOREIGN KEY ("group_id") REFERENCES "Groups" ("id"),
+FOREIGN KEY ("mechanoid_id") REFERENCES "Mechanoids" ("id")
+);
+
+CREATE TABLE "ClanMechanoids" (
+"clan_id" INTEGER NOT NULL,
+"mechanoid_id" INTEGER NOT NULL,
+PRIMARY KEY ("mechanoid_id") ,
+FOREIGN KEY ("clan_id") REFERENCES "Clans" ("id"),
+FOREIGN KEY ("mechanoid_id") REFERENCES "Mechanoids" ("id")
 );
 

@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     ofstream(fs::path(header / "Helpers.h").string()) << db.printHelpers(impl);
     ofstream(fs::path(src / "Helpers.cpp").string()) << impl;
 
-    ofstream("dbmgr_data.py") << db.printPy();
+    //ofstream("dbmgr_data.py") << db.printPy();
 
     return 0;
 }

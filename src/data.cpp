@@ -40,33 +40,9 @@ const map<string, string> objectNames =
     { "ClanReputations", "clan.id < clan2.id ? (to_string(clan).wstring() + L\" - \" + to_string(clan2).wstring()) : (to_string(clan2).wstring() + L\" - \" + to_string(clan).wstring())" },
     { "MapBuildings", "to_string(building)" },
     { "Coordinates", "to_string(*this)" },
-    { "QuestRewards", "to_string(quest)" }
+    { "QuestRewards", "to_string(quest)" },
+    { "Maps", "text_id" },
 };
-
-bool replaceAll(std::string &str, const std::string &from, const std::string &to)
-{
-    bool replaced = false;
-    size_t start_pos = 0;
-    while ((start_pos = str.find(from, start_pos)) != std::string::npos)
-    {
-         str.replace(start_pos, from.length(), to);
-         start_pos += to.length();
-         replaced = true;
-    }
-    return replaced;
-}
-
-string removeId(string s)
-{
-    replaceAll(s, "_id", "");
-    return s;
-}
-
-string toVarName(string s)
-{
-    s[0] = tolower(s[0]);
-    return s;
-}
 
 string splitWords(string s)
 {
@@ -160,7 +136,7 @@ string Column::printVarName() const
     string s;
     if (fk)
     {
-        s += toVarName(removeId(name));
+        s += getCleanName();
     }
     else
     {
@@ -174,7 +150,7 @@ string Column::printLoad() const
     string s;
     if (fk)
     {
-        s += toVarName(removeId(name)) + ".id = std::stoi(cols[" + to_string(id) + "])";
+        s += getCleanName() + ".id = std::stoi(cols[" + to_string(id) + "])";
     }
     else
     {
@@ -200,7 +176,7 @@ string Column::printSet() const
     string s;
     if (fk)
     {
-        s += toVarName(removeId(name)) + ".id = std::stoi(text.string())";
+        s += getCleanName() + ".id = std::stoi(text.string())";
     }
     else
     {
@@ -226,7 +202,7 @@ string Column::printSetPtr() const
     string s;
     if (fk)
     {
-        s += toVarName(removeId(name)) + " = std::static_pointer_cast<" + fk->table->getCppName() + ">(ptr)";
+        s += getCleanName() + " = std::static_pointer_cast<" + fk->table->getCppName() + ">(ptr)";
     }
     return s;
 }
@@ -261,13 +237,25 @@ string Table::printForward() const
     return s;
 }
 
+string Table::getParentName() const
+{
+    string p = splitWords(getCppName());
+    int pos = p.rfind(' ');
+    if (pos == -1)
+        return "";
+    p = p.substr(0, pos);
+    replaceAll(p, " ", "");
+    return p;
+}
+
 void Table::init(Tables &tables)
 {
     auto tbls = tables;
-    auto pn = getParentName();
+    const auto pn = getParentName();
     hasParent = !pn.empty() && find_if(tables.begin(), tables.end(), [&](const decltype(tbls)::value_type &v){ return v.second.getCppName() == pn; }) != tables.end();
+    hasChild = !pn.empty() && find_if(tables.begin(), tables.end(), [&](const decltype(tbls)::value_type &v){ return v.second.getCppName() == getChildName(pn); }) != tables.end();
     hasIdField = find_if(columns.begin(), columns.end(), [](const decltype(columns)::value_type &v){ return v.second.isId(); }) != columns.end();
-    isMapTable = hasParent && hasIdField;
+    isMapTable = hasParent && hasChild && hasIdField;
     
     // assign fks
     for (auto &fk : fks)
@@ -290,18 +278,13 @@ void Table::init(Tables &tables)
         }
     }
     
-    isProxy = !hasIdField && count_if(columns.begin(), columns.end(), [](const decltype(columns)::value_type &v){ return v.second.getFk(); }) > 1;
-}
 
-string Table::getParentName() const
-{
-    string p = splitWords(getCppName());
-    int pos = p.rfind(' ');
-    if (pos == -1)
-        return "";
-    p = p.substr(0, pos);
-    replaceAll(p, " ", "");
-    return p;
+    isProxy = 
+        !hasIdField &&
+        hasParent &&
+        hasChild &&
+        1
+        ;
 }
 
 string Table::print(const Tables &tables, string &si) const
@@ -340,6 +323,24 @@ string Table::print(const Tables &tables, string &si) const
     for (auto &t : contains)
         s += space + "CVector<Ptr<" + t->getCppName() + ">> " + t->getChildVariableArrayName(getCppName()) + ";\n";
     s += "\n";
+    
+    // getId(), setId()
+    if (hasIdField)
+    {
+        s += space + "int getId() const;\n";
+        si += "int " + getCppName() + "::getId() const\n";
+        si += "{\n";
+        si += space + "return id;\n";
+        si += "}\n\n";
+
+        s += space + "void setId(int id);\n";
+        si += "void " + getCppName() + "::setId(int id)\n";
+        si += "{\n";
+        si += space + "this->id = id;\n";
+        si += "}\n\n";
+
+        s += "\n";
+    }
 
     // getType()
     s += space + "virtual EObjectType getType() const;\n";
@@ -415,8 +416,8 @@ string Table::print(const Tables &tables, string &si) const
                 si += "\n";
                 string var = t->getChildArrayName(getCppName());
                 si += space + "root = new QTreeWidgetItem(item, QStringList(" + tr(splitWords(var)) + "));\n";
-                si += space + "root->setData(0, Qt::UserRole, static_cast<int>(EObjectType::" + getCppName() + "));" + "\n";
-                si += space + "for (auto &" + t->getChildVariableArrayName(getCppName()) + " : " + toVarName(var) + ")\n";
+                si += space + "root->setData(0, Qt::UserRole, static_cast<int>(EObjectType::" + t->getCppName() + "));" + "\n";
+                si += space + "for (auto &" + t->getChildVariableName(getCppName()) + " : " + t->getChildVariableArrayName(getCppName()) + ")\n";
                 {
                     string space = ::space + ::space;
                     si += space + t->getChildVariableName(getCppName()) + "->" + "printQtTreeView(root);\n";
@@ -554,6 +555,20 @@ string Table::print(const Tables &tables, string &si) const
     //
     s += space + "friend class " + storageImpl + ";\n";
     s += space + "template <typename T> friend struct IdPtr;\n";
+    s += "\n";
+
+    //
+    // static functions
+    //
+    s += "public:\n";
+    s += space + "static const char *getSql();\n";
+    si += "const char *" + getCppName() + "::getSql()\n";
+    si += "{\n";
+    auto sql_ = sql;
+    replaceAll(sql_, "\n", " \\\n");
+    replaceAll(sql_, "\"", "\\\"");
+    si += space + "return\n" + space + "\" \\\n" + sql_ + " \\\n" + space + "\";\n";
+    si += "}\n\n";
 
     s += "};\n\n";
     return s;
@@ -618,16 +633,16 @@ string Table::printLoadPtrs(string &si)
                 string name2 = toVarName(fk->table_name);
                 if (hasIdField)
                 {
-                    si += space + "if (" + name2 + ".find(" + var + ".second->" + removeId(col.getName()) + ".id) != " + name2 + ".end())" + "\n";
-                    si += space + ::space + (toVarName(name)) + ".second->" + removeId(col.getName()) + ".ptr = " +
-                        name2 + "[" + var + ".second->" + removeId(col.getName()) + ".id]";
+                    si += space + "if (" + name2 + ".find(" + var + ".second->" + col.getCleanName() + ".id) != " + name2 + ".end())" + "\n";
+                    si += space + ::space + (toVarName(name)) + ".second->" + col.getCleanName() + ".ptr = " +
+                        name2 + "[" + var + ".second->" + col.getCleanName() + ".id]";
                     si += ";\n";
                 }
                 else
                 {
-                    si += space + "if (" + name2 + ".find(" + var + "->" + removeId(col.getName()) + ".id) != " + name2 + ".end())" + "\n";
-                    si += space + ::space + var + "->" + removeId(col.getName()) + ".ptr = " +
-                        name2 + "[" + var + "->" + removeId(col.getName()) + ".id]";
+                    si += space + "if (" + name2 + ".find(" + var + "->" + col.getCleanName() + ".id) != " + name2 + ".end())" + "\n";
+                    si += space + ::space + var + "->" + col.getCleanName() + ".ptr = " +
+                        name2 + "[" + var + "->" + col.getCleanName() + ".id]";
                     si += ";\n";
                 }
             }
@@ -867,6 +882,7 @@ string Database::printStorage(string &si)
         //si += "}\n\n";
     //}
     //s += "\n";
+    s += space + "virtual void create() const = 0;\n";
     s += space + "virtual void clear() = 0;\n";
     s += space + "virtual void load(ProgressCallback callback = ProgressCallback()) = 0;\n";
     s += space + "virtual void save(ProgressCallback callback = ProgressCallback()) const = 0;\n";
@@ -902,12 +918,23 @@ string Database::printStorageImpl(string &si)
     s += "public:\n";
     s += space + "StorageImpl(Ptr<Database> db) : db(db) {}" + "\n";
     s += "\n";
+    s += space + "void setDb(Ptr<Database> db) { this->db = db; }\n";
+    s += "\n";
 
+    // create()
+    s += space + "virtual void create() const;\n";
+    si += "void " + storageImpl + "::create() const\n";
+    si += "{\n";
+    for (auto &table : tables)
+        si += space + "db->execute(" + table.second.getCppName() + "::getSql()" + ");\n";
+    si += "}\n\n";
+
+    // clear()
     s += space + "virtual void clear();\n";
     si += "void " + storageImpl + "::clear()\n";
     si += "{\n";
     for (auto &table : tables)
-        si += space + toVarName(table.first) + ".clear();\n";
+        si += space + table.second.getVariableArrayName() + ".clear();\n";
     si += "}\n\n";
     
     double step = 100.0 / (tables.size() * 3.0);
@@ -1197,9 +1224,7 @@ string Database::printPy()
     s += "# -*- coding: utf-8 -*-\n\n";
     s += "tables = [\n";
     for (auto &table : tables)
-    {
-        s += space + "'" + toVarName(table.first) + "'" + ",\n";
-    }
+        s += space + "'" + table.second.getVariableArrayName() + "'" + ",\n";
     s += "]\n";
     return s;
 }

@@ -1,0 +1,301 @@
+{
+  "Buildings": {
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Buildings\" (\r\r\n\"id\" INTEGER NOT NULL,\r\r\n\"text_id\" TEXT,\r\r\n\"resource\" TEXT,\r\r\n\"name_id\" INTEGER,\r\r\nPRIMARY KEY (\"id\") ,\r\r\nFOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\")\r\r\n)",
+    "values": [
+      {
+        "id": 1,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_CHARGE"
+      },
+      {
+        "id": 2,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_DOBUST_KACHALKA"
+      },
+      {
+        "id": 3,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_DOBUST_MAIN"
+      },
+      {
+        "id": 4,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_DOBUST_VENT"
+      },
+      {
+        "id": 5,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_EFFECTOR"
+      },
+      {
+        "id": 6,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_KONC"
+      },
+      {
+        "id": 7,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_MAIN"
+      },
+      {
+        "id": 8,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_MAINBASE"
+      },
+      {
+        "id": 9,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_MINI"
+      },
+      {
+        "id": 10,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PFZ"
+      },
+      {
+        "id": 11,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PRZ"
+      },
+      {
+        "id": 12,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_RAWBASE"
+      },
+      {
+        "id": 13,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_TUNNEL"
+      },
+      {
+        "id": 14,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_TUNNEL_01"
+      },
+      {
+        "id": 15,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_ZRM"
+      },
+      {
+        "id": 16,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_BUNKER_FIRST"
+      },
+      {
+        "id": 17,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_OBELISK"
+      },
+      {
+        "id": 18,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_IK_ARENA_INSIDE"
+      },
+      {
+        "id": 19,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_IK_ARENA"
+      },
+      {
+        "id": 20,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_ISP_KOMP"
+      },
+      {
+        "id": 21,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_KOND_PIPE"
+      },
+      {
+        "id": 22,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_SENSOR"
+      },
+      {
+        "id": 23,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_UNDERGROUND"
+      },
+      {
+        "id": 24,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_ISP_ANGAR"
+      },
+      {
+        "id": 25,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_GKP"
+      },
+      {
+        "id": 26,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KA_KONDER"
+      },
+      {
+        "id": 27,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_MAINBASE_LIFT"
+      },
+      {
+        "id": 28,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_BUNKER_SUPER"
+      },
+      {
+        "id": 29,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_KEEPER"
+      },
+      {
+        "id": 30,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_OBSERVER_SHIP"
+      },
+      {
+        "id": 31,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_DIAFRAGM"
+      },
+      {
+        "id": 32,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_DIAFRAGM_1111"
+      },
+      {
+        "id": 33,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_IK"
+      },
+      {
+        "id": 34,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_MAYAK"
+      },
+      {
+        "id": 35,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_EXIT"
+      },
+      {
+        "id": 36,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_HEALER"
+      },
+      {
+        "id": 37,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_SERVICE"
+      },
+      {
+        "id": 38,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_PLATFORM_CONTROL"
+      },
+      {
+        "id": 39,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_LAB_ARLINGS"
+      },
+      {
+        "id": 40,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_U_ENTER"
+      },
+      {
+        "id": 41,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_U_FACTORY"
+      },
+      {
+        "id": 42,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_U_TRANSFER_GATE"
+      },
+      {
+        "id": 43,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "B_L12_U_BASE"
+      },
+      {
+        "id": 44,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_TUNNEL_L7"
+      },
+      {
+        "id": 45,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_NEW_SPHERE"
+      },
+      {
+        "id": 46,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_U_TUNNEL_DOOR"
+      },
+      {
+        "id": 47,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "BLD_U_LOCK_GATE_TMNL"
+      }
+    ]
+  }
+}

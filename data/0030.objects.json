@@ -1,0 +1,5031 @@
+{
+  "Objects": {
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Objects\" (\r\r\n\"id\" INTEGER NOT NULL,\r\r\n\"text_id\" TEXT,\r\r\n\"resource\" TEXT,\r\r\n\"name_id\" INTEGER,\r\r\n\"type\" INTEGER,\r\r\nPRIMARY KEY (\"id\") ,\r\r\nFOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\")\r\r\n)",
+    "values": [
+      {
+        "id": 1,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PLITA",
+        "type": 0
+      },
+      {
+        "id": 2,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PLITAX16",
+        "type": 0
+      },
+      {
+        "id": 3,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PLITAX4",
+        "type": 0
+      },
+      {
+        "id": 4,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BLD_PLITA_HALF",
+        "type": 0
+      },
+      {
+        "id": 5,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_ MOX001",
+        "type": 0
+      },
+      {
+        "id": 6,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_ MOX004",
+        "type": 0
+      },
+      {
+        "id": 7,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_ALIEN_SHIP",
+        "type": 0
+      },
+      {
+        "id": 8,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BAR_MINI",
+        "type": 0
+      },
+      {
+        "id": 9,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_LAMP_CLIFF",
+        "type": 0
+      },
+      {
+        "id": 10,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_NUT_01",
+        "type": 0
+      },
+      {
+        "id": 11,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_NUT_02",
+        "type": 0
+      },
+      {
+        "id": 12,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_TUBE_01",
+        "type": 0
+      },
+      {
+        "id": 13,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_TUBE_02",
+        "type": 0
+      },
+      {
+        "id": 14,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L1_TUBE_03",
+        "type": 0
+      },
+      {
+        "id": 15,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_LOCATOR_1",
+        "type": 0
+      },
+      {
+        "id": 16,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_PRISTAN",
+        "type": 0
+      },
+      {
+        "id": 17,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_ROAD_BARRIER",
+        "type": 0
+      },
+      {
+        "id": 18,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_ROAD_CLEANER1",
+        "type": 0
+      },
+      {
+        "id": 19,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_ROAD_CLEANER2",
+        "type": 0
+      },
+      {
+        "id": 20,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_ARKA1",
+        "type": 0
+      },
+      {
+        "id": 21,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_ASM_1",
+        "type": 0
+      },
+      {
+        "id": 22,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_ASM_2",
+        "type": 0
+      },
+      {
+        "id": 23,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_ASM_3",
+        "type": 0
+      },
+      {
+        "id": 24,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_ASM_4",
+        "type": 0
+      },
+      {
+        "id": 25,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_BIG_1",
+        "type": 0
+      },
+      {
+        "id": 26,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_BIG_2",
+        "type": 0
+      },
+      {
+        "id": 27,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_BIG_6",
+        "type": 0
+      },
+      {
+        "id": 28,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FA3R",
+        "type": 0
+      },
+      {
+        "id": 29,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE1",
+        "type": 0
+      },
+      {
+        "id": 30,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE10",
+        "type": 0
+      },
+      {
+        "id": 31,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE11",
+        "type": 0
+      },
+      {
+        "id": 32,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE11R",
+        "type": 0
+      },
+      {
+        "id": 33,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE2",
+        "type": 0
+      },
+      {
+        "id": 34,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE3",
+        "type": 0
+      },
+      {
+        "id": 35,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE4",
+        "type": 0
+      },
+      {
+        "id": 36,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE5",
+        "type": 0
+      },
+      {
+        "id": 37,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE6",
+        "type": 0
+      },
+      {
+        "id": 38,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE7",
+        "type": 0
+      },
+      {
+        "id": 39,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE8",
+        "type": 0
+      },
+      {
+        "id": 40,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE9",
+        "type": 0
+      },
+      {
+        "id": 41,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE9R",
+        "type": 0
+      },
+      {
+        "id": 42,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_KSTONE01",
+        "type": 0
+      },
+      {
+        "id": 43,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_NASA1",
+        "type": 0
+      },
+      {
+        "id": 44,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_NASA2",
+        "type": 0
+      },
+      {
+        "id": 45,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_SSSS",
+        "type": 0
+      },
+      {
+        "id": 46,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_TEH_MONITOR_POINT",
+        "type": 0
+      },
+      {
+        "id": 47,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L1_GREB001",
+        "type": 0
+      },
+      {
+        "id": 48,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_CACTUS1",
+        "type": 0
+      },
+      {
+        "id": 49,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_CACTUS2",
+        "type": 0
+      },
+      {
+        "id": 50,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_BAO",
+        "type": 0
+      },
+      {
+        "id": 51,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_BURN0",
+        "type": 0
+      },
+      {
+        "id": 52,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_BURN_1",
+        "type": 0
+      },
+      {
+        "id": 53,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_BURN_2",
+        "type": 0
+      },
+      {
+        "id": 54,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_BURN_3",
+        "type": 0
+      },
+      {
+        "id": 55,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_DRY_0",
+        "type": 0
+      },
+      {
+        "id": 56,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_DRY_1",
+        "type": 0
+      },
+      {
+        "id": 57,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_DRY_2",
+        "type": 0
+      },
+      {
+        "id": 58,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_DRY_3",
+        "type": 0
+      },
+      {
+        "id": 59,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_KRONA",
+        "type": 0
+      },
+      {
+        "id": 60,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_KRONA1",
+        "type": 0
+      },
+      {
+        "id": 61,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_KRONA2",
+        "type": 0
+      },
+      {
+        "id": 62,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_KUST_1",
+        "type": 0
+      },
+      {
+        "id": 63,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L1_KUST_1M",
+        "type": 0
+      },
+      {
+        "id": 64,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L2_MUSH_1",
+        "type": 0
+      },
+      {
+        "id": 65,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_BLD_1",
+        "type": 0
+      },
+      {
+        "id": 66,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP1",
+        "type": 0
+      },
+      {
+        "id": 67,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP1_CROSS",
+        "type": 0
+      },
+      {
+        "id": 68,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP_UNDER",
+        "type": 0
+      },
+      {
+        "id": 69,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "FALLEN_TREE_2",
+        "type": 0
+      },
+      {
+        "id": 70,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "FALLEN_TREE_3",
+        "type": 0
+      },
+      {
+        "id": 71,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "FALLEN_TREE_BURN_1",
+        "type": 0
+      },
+      {
+        "id": 72,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "FALLEN_TREE_BURN_2",
+        "type": 0
+      },
+      {
+        "id": 73,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "FALLEN_TREE_BURN_3",
+        "type": 0
+      },
+      {
+        "id": 74,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_BRIDGE",
+        "type": 0
+      },
+      {
+        "id": 75,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_PASSWAY",
+        "type": 0
+      },
+      {
+        "id": 76,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STONE_LIGHT",
+        "type": 0
+      },
+      {
+        "id": 77,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STONE_LIGHT2",
+        "type": 0
+      },
+      {
+        "id": 78,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STONE_LIGHT3",
+        "type": 0
+      },
+      {
+        "id": 79,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STONE_LIGHT4",
+        "type": 0
+      },
+      {
+        "id": 80,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STONE_LIGHT5",
+        "type": 0
+      },
+      {
+        "id": 81,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L2_ARC2",
+        "type": 0
+      },
+      {
+        "id": 82,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L2_ARC3",
+        "type": 0
+      },
+      {
+        "id": 83,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L2_COLLECTOR",
+        "type": 0
+      },
+      {
+        "id": 84,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_EFF",
+        "type": 0
+      },
+      {
+        "id": 85,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_FACT",
+        "type": 0
+      },
+      {
+        "id": 86,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_MINE1",
+        "type": 0
+      },
+      {
+        "id": 87,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TEMP_PUSHKA",
+        "type": 0
+      },
+      {
+        "id": 88,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BUSH_04",
+        "type": 0
+      },
+      {
+        "id": 89,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BUSH_GREEN_03",
+        "type": 0
+      },
+      {
+        "id": 90,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "EL001",
+        "type": 0
+      },
+      {
+        "id": 91,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "EL002A",
+        "type": 0
+      },
+      {
+        "id": 92,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_BUSH_04",
+        "type": 0
+      },
+      {
+        "id": 93,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE01",
+        "type": 0
+      },
+      {
+        "id": 94,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE02",
+        "type": 0
+      },
+      {
+        "id": 95,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE02_??",
+        "type": 0
+      },
+      {
+        "id": 96,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE03",
+        "type": 0
+      },
+      {
+        "id": 97,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE04",
+        "type": 0
+      },
+      {
+        "id": 98,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE05",
+        "type": 0
+      },
+      {
+        "id": 99,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE06",
+        "type": 0
+      },
+      {
+        "id": 100,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE_BURNED_2",
+        "type": 0
+      },
+      {
+        "id": 101,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE_BURNED_3",
+        "type": 0
+      },
+      {
+        "id": 102,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE_BURNED_4",
+        "type": 0
+      },
+      {
+        "id": 103,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_TALLTREE_BURNED_7",
+        "type": 0
+      },
+      {
+        "id": 104,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_BUSH2",
+        "type": 0
+      },
+      {
+        "id": 105,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_BUSH2_1",
+        "type": 0
+      },
+      {
+        "id": 106,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_TREE003",
+        "type": 0
+      },
+      {
+        "id": 107,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_WOOD_01",
+        "type": 0
+      },
+      {
+        "id": 108,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_WOOD_02",
+        "type": 0
+      },
+      {
+        "id": 109,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_WOOD_03",
+        "type": 0
+      },
+      {
+        "id": 110,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_WOOD_11",
+        "type": 0
+      },
+      {
+        "id": 111,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L6_V2",
+        "type": 0
+      },
+      {
+        "id": 112,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L7_BEREZA",
+        "type": 0
+      },
+      {
+        "id": 113,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "WOOD04",
+        "type": 0
+      },
+      {
+        "id": 114,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_L2_LAMP",
+        "type": 0
+      },
+      {
+        "id": 115,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BALKA",
+        "type": 0
+      },
+      {
+        "id": 116,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_PAR",
+        "type": 0
+      },
+      {
+        "id": 117,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_GASER_1_PAR",
+        "type": 0
+      },
+      {
+        "id": 118,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_GASER_2_PAR",
+        "type": 0
+      },
+      {
+        "id": 119,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_10_4",
+        "type": 0
+      },
+      {
+        "id": 120,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_11_2",
+        "type": 0
+      },
+      {
+        "id": 121,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_12_5",
+        "type": 0
+      },
+      {
+        "id": 122,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_1_5",
+        "type": 0
+      },
+      {
+        "id": 123,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_2_1",
+        "type": 0
+      },
+      {
+        "id": 124,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_2_3",
+        "type": 0
+      },
+      {
+        "id": 125,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_3_2",
+        "type": 0
+      },
+      {
+        "id": 126,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_4_4",
+        "type": 0
+      },
+      {
+        "id": 127,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_5_1",
+        "type": 0
+      },
+      {
+        "id": 128,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_5_3",
+        "type": 0
+      },
+      {
+        "id": 129,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_6_5",
+        "type": 0
+      },
+      {
+        "id": 130,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_7_2",
+        "type": 0
+      },
+      {
+        "id": 131,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_8_4",
+        "type": 0
+      },
+      {
+        "id": 132,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_9_3",
+        "type": 0
+      },
+      {
+        "id": 133,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ARKA1",
+        "type": 0
+      },
+      {
+        "id": 134,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG10_1",
+        "type": 0
+      },
+      {
+        "id": 135,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG10_5",
+        "type": 0
+      },
+      {
+        "id": 136,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG11_4",
+        "type": 0
+      },
+      {
+        "id": 137,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG12_1",
+        "type": 0
+      },
+      {
+        "id": 138,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG1_1",
+        "type": 0
+      },
+      {
+        "id": 139,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG1_4",
+        "type": 0
+      },
+      {
+        "id": 140,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG2_1",
+        "type": 0
+      },
+      {
+        "id": 141,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG3_2",
+        "type": 0
+      },
+      {
+        "id": 142,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG3_5",
+        "type": 0
+      },
+      {
+        "id": 143,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG4_4",
+        "type": 0
+      },
+      {
+        "id": 144,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG4_5",
+        "type": 0
+      },
+      {
+        "id": 145,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG5_1",
+        "type": 0
+      },
+      {
+        "id": 146,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG5_2",
+        "type": 0
+      },
+      {
+        "id": 147,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG6_1",
+        "type": 0
+      },
+      {
+        "id": 148,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG6_3",
+        "type": 0
+      },
+      {
+        "id": 149,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG7_1",
+        "type": 0
+      },
+      {
+        "id": 150,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG7_4",
+        "type": 0
+      },
+      {
+        "id": 151,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG8_1",
+        "type": 0
+      },
+      {
+        "id": 152,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG8_2",
+        "type": 0
+      },
+      {
+        "id": 153,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG9_4",
+        "type": 0
+      },
+      {
+        "id": 154,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_BIG9_5",
+        "type": 0
+      },
+      {
+        "id": 155,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_CRISTALS",
+        "type": 0
+      },
+      {
+        "id": 156,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICEBERG_01",
+        "type": 0
+      },
+      {
+        "id": 157,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICEBERG_02",
+        "type": 0
+      },
+      {
+        "id": 158,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_KRIST_1",
+        "type": 0
+      },
+      {
+        "id": 159,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_KRIST_2",
+        "type": 0
+      },
+      {
+        "id": 160,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_KRIST_3",
+        "type": 0
+      },
+      {
+        "id": 161,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOROS_8_5",
+        "type": 0
+      },
+      {
+        "id": 162,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_1_1",
+        "type": 0
+      },
+      {
+        "id": 163,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_2_5",
+        "type": 0
+      },
+      {
+        "id": 164,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_3_3",
+        "type": 0
+      },
+      {
+        "id": 165,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_4_2",
+        "type": 0
+      },
+      {
+        "id": 166,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_5_4",
+        "type": 0
+      },
+      {
+        "id": 167,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_6_1",
+        "type": 0
+      },
+      {
+        "id": 168,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_7_2",
+        "type": 0
+      },
+      {
+        "id": 169,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_ICE_TOR_9_4",
+        "type": 0
+      },
+      {
+        "id": 170,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L2_TUNNEL1",
+        "type": 0
+      },
+      {
+        "id": 171,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L3_DARKSTONE_01",
+        "type": 0
+      },
+      {
+        "id": 172,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L3_DARKSTONE_02",
+        "type": 0
+      },
+      {
+        "id": 173,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE001A",
+        "type": 0
+      },
+      {
+        "id": 174,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE002B",
+        "type": 0
+      },
+      {
+        "id": 175,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L2_MUSH2",
+        "type": 0
+      },
+      {
+        "id": 176,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_01",
+        "type": 0
+      },
+      {
+        "id": 177,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_02",
+        "type": 0
+      },
+      {
+        "id": 178,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_03",
+        "type": 0
+      },
+      {
+        "id": 179,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_04",
+        "type": 0
+      },
+      {
+        "id": 180,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_05",
+        "type": 0
+      },
+      {
+        "id": 181,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L3_SNOWTREE_06_F",
+        "type": 0
+      },
+      {
+        "id": 182,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_L2_CROSS",
+        "type": 0
+      },
+      {
+        "id": 183,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP2",
+        "type": 0
+      },
+      {
+        "id": 184,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STN_PASSWAY_2",
+        "type": 0
+      },
+      {
+        "id": 185,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_STN_PASSWAY_3",
+        "type": 0
+      },
+      {
+        "id": 186,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD01_C",
+        "type": 0
+      },
+      {
+        "id": 187,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD02",
+        "type": 0
+      },
+      {
+        "id": 188,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD03",
+        "type": 0
+      },
+      {
+        "id": 189,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "PORSTONE05",
+        "type": 0
+      },
+      {
+        "id": 190,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "PROVAL01",
+        "type": 0
+      },
+      {
+        "id": 191,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "PROVAL02",
+        "type": 0
+      },
+      {
+        "id": 192,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "PROVAL03",
+        "type": 0
+      },
+      {
+        "id": 193,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_DEAD_LAYER",
+        "type": 0
+      },
+      {
+        "id": 194,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_MAIN",
+        "type": 0
+      },
+      {
+        "id": 195,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_UNKNOWN",
+        "type": 0
+      },
+      {
+        "id": 196,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNKS_01",
+        "type": 0
+      },
+      {
+        "id": 197,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNKS_02",
+        "type": 0
+      },
+      {
+        "id": 198,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNK_01",
+        "type": 0
+      },
+      {
+        "id": 199,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNK_02",
+        "type": 0
+      },
+      {
+        "id": 200,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNK_03",
+        "type": 0
+      },
+      {
+        "id": 201,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_CHUNK_04",
+        "type": 0
+      },
+      {
+        "id": 202,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_FIRE",
+        "type": 0
+      },
+      {
+        "id": 203,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_SMOKE",
+        "type": 0
+      },
+      {
+        "id": 204,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_SMOKE2",
+        "type": 0
+      },
+      {
+        "id": 205,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_GASER_3_LAVA",
+        "type": 0
+      },
+      {
+        "id": 206,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_BUSH_01",
+        "type": 0
+      },
+      {
+        "id": 207,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_BUSH_02",
+        "type": 0
+      },
+      {
+        "id": 208,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_BUSH_03",
+        "type": 0
+      },
+      {
+        "id": 209,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_BUSH_04",
+        "type": 0
+      },
+      {
+        "id": 210,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_BUSH_05",
+        "type": 0
+      },
+      {
+        "id": 211,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_CRACK_01",
+        "type": 0
+      },
+      {
+        "id": 212,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_CRACK_02",
+        "type": 0
+      },
+      {
+        "id": 213,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_CRACK_03",
+        "type": 0
+      },
+      {
+        "id": 214,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_CRACK_04",
+        "type": 0
+      },
+      {
+        "id": 215,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_MELTSTONE_01",
+        "type": 0
+      },
+      {
+        "id": 216,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_MELTSTONE_02",
+        "type": 0
+      },
+      {
+        "id": 217,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L4_MELTSTONE_03",
+        "type": 0
+      },
+      {
+        "id": 218,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE01",
+        "type": 0
+      },
+      {
+        "id": 219,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE012",
+        "type": 0
+      },
+      {
+        "id": 220,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE02",
+        "type": 0
+      },
+      {
+        "id": 221,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE04",
+        "type": 0
+      },
+      {
+        "id": 222,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE06",
+        "type": 0
+      },
+      {
+        "id": 223,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE07",
+        "type": 0
+      },
+      {
+        "id": 224,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE08",
+        "type": 0
+      },
+      {
+        "id": 225,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE10",
+        "type": 0
+      },
+      {
+        "id": 226,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE11",
+        "type": 0
+      },
+      {
+        "id": 227,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE13",
+        "type": 0
+      },
+      {
+        "id": 228,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE14",
+        "type": 0
+      },
+      {
+        "id": 229,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE15",
+        "type": 0
+      },
+      {
+        "id": 230,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE16",
+        "type": 0
+      },
+      {
+        "id": 231,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE17",
+        "type": 0
+      },
+      {
+        "id": 232,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STONE18",
+        "type": 0
+      },
+      {
+        "id": 233,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD03_SECTION02_??",
+        "type": 0
+      },
+      {
+        "id": 234,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD04",
+        "type": 0
+      },
+      {
+        "id": 235,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L4_WOOD04_SECTION01",
+        "type": 0
+      },
+      {
+        "id": 236,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP4",
+        "type": 0
+      },
+      {
+        "id": 237,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_BEHOLDER_MAGIC",
+        "type": 0
+      },
+      {
+        "id": 238,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_MAGIC_BALLS_CYAN",
+        "type": 0
+      },
+      {
+        "id": 239,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_MAGIC_BALLS_GREEN",
+        "type": 0
+      },
+      {
+        "id": 240,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_SAND",
+        "type": 0
+      },
+      {
+        "id": 241,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_KSTONE02",
+        "type": 0
+      },
+      {
+        "id": 242,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_DARK_001",
+        "type": 0
+      },
+      {
+        "id": 243,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_DARK_002",
+        "type": 0
+      },
+      {
+        "id": 244,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_DARK_003",
+        "type": 0
+      },
+      {
+        "id": 245,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_001",
+        "type": 0
+      },
+      {
+        "id": 246,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_002",
+        "type": 0
+      },
+      {
+        "id": 247,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_003",
+        "type": 0
+      },
+      {
+        "id": 248,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_004",
+        "type": 0
+      },
+      {
+        "id": 249,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_005",
+        "type": 0
+      },
+      {
+        "id": 250,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_006",
+        "type": 0
+      },
+      {
+        "id": 251,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_007",
+        "type": 0
+      },
+      {
+        "id": 252,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_SAND_008",
+        "type": 0
+      },
+      {
+        "id": 253,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_WORM_CLAW",
+        "type": 0
+      },
+      {
+        "id": 254,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_WORM_EYE_1",
+        "type": 0
+      },
+      {
+        "id": 255,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L5_WORM_US",
+        "type": 0
+      },
+      {
+        "id": 256,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "BIGKUST1",
+        "type": 0
+      },
+      {
+        "id": 257,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_CACTUS_002",
+        "type": 0
+      },
+      {
+        "id": 258,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_CACTUS_004",
+        "type": 0
+      },
+      {
+        "id": 259,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_CACTUS_005_1",
+        "type": 0
+      },
+      {
+        "id": 260,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_CACTUS_005_X2",
+        "type": 0
+      },
+      {
+        "id": 261,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_001",
+        "type": 0
+      },
+      {
+        "id": 262,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_002",
+        "type": 0
+      },
+      {
+        "id": 263,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_003",
+        "type": 0
+      },
+      {
+        "id": 264,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_004",
+        "type": 0
+      },
+      {
+        "id": 265,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_005_SM",
+        "type": 0
+      },
+      {
+        "id": 266,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_DRY_006_SM",
+        "type": 0
+      },
+      {
+        "id": 267,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_PALM1",
+        "type": 0
+      },
+      {
+        "id": 268,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_PALM2",
+        "type": 0
+      },
+      {
+        "id": 269,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_SAC_001",
+        "type": 0
+      },
+      {
+        "id": 270,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_SAC_002",
+        "type": 0
+      },
+      {
+        "id": 271,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_SAC_003",
+        "type": 0
+      },
+      {
+        "id": 272,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L5_SAC_004",
+        "type": 0
+      },
+      {
+        "id": 273,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP5",
+        "type": 0
+      },
+      {
+        "id": 274,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP5_2",
+        "type": 0
+      },
+      {
+        "id": 275,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE001",
+        "type": 0
+      },
+      {
+        "id": 276,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE003",
+        "type": 0
+      },
+      {
+        "id": 277,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE004",
+        "type": 0
+      },
+      {
+        "id": 278,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE005",
+        "type": 0
+      },
+      {
+        "id": 279,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE006",
+        "type": 0
+      },
+      {
+        "id": 280,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE007",
+        "type": 0
+      },
+      {
+        "id": 281,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE008A",
+        "type": 0
+      },
+      {
+        "id": 282,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE009B",
+        "type": 0
+      },
+      {
+        "id": 283,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L3_STONE010C",
+        "type": 0
+      },
+      {
+        "id": 284,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L6_STN_BRIDGE_BASE",
+        "type": 0
+      },
+      {
+        "id": 285,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L6_STN_BRIDGE_BASE_X2",
+        "type": 0
+      },
+      {
+        "id": 286,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L6_STN_WATERFALL_STONE_1",
+        "type": 0
+      },
+      {
+        "id": 287,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L6_STN_WATERFALL_STONE_2",
+        "type": 0
+      },
+      {
+        "id": 288,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_BOX",
+        "type": 0
+      },
+      {
+        "id": 289,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_LU_BRIDGE",
+        "type": 0
+      },
+      {
+        "id": 290,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_WARNING_STRIPS",
+        "type": 0
+      },
+      {
+        "id": 291,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_WATERF_ST01",
+        "type": 0
+      },
+      {
+        "id": 292,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_WATERF_ST02",
+        "type": 0
+      },
+      {
+        "id": 293,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_04",
+        "type": 0
+      },
+      {
+        "id": 294,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_BIG_01",
+        "type": 0
+      },
+      {
+        "id": 295,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_BIG_03",
+        "type": 0
+      },
+      {
+        "id": 296,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_BIG_04",
+        "type": 0
+      },
+      {
+        "id": 297,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_BIG_05",
+        "type": 0
+      },
+      {
+        "id": 298,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_X2_1",
+        "type": 0
+      },
+      {
+        "id": 299,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_X2_2",
+        "type": 0
+      },
+      {
+        "id": 300,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_X2_3",
+        "type": 0
+      },
+      {
+        "id": 301,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L2_WOOD_X2_4",
+        "type": 0
+      },
+      {
+        "id": 302,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L6_BUSH_2",
+        "type": 0
+      },
+      {
+        "id": 303,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "WOOD05",
+        "type": 0
+      },
+      {
+        "id": 304,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP_UNDER2",
+        "type": 0
+      },
+      {
+        "id": 305,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP_UNDER3",
+        "type": 0
+      },
+      {
+        "id": 306,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP_UNDER4",
+        "type": 0
+      },
+      {
+        "id": 307,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_L7_POINTER",
+        "type": 0
+      },
+      {
+        "id": 308,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_GREEN_BUBBLES",
+        "type": 0
+      },
+      {
+        "id": 309,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_GREEN_FOUNTAIN",
+        "type": 0
+      },
+      {
+        "id": 310,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_GREEN_SMOKE",
+        "type": 0
+      },
+      {
+        "id": 311,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_CLAW",
+        "type": 0
+      },
+      {
+        "id": 312,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_CLAW_2",
+        "type": 0
+      },
+      {
+        "id": 313,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_LIANA_1",
+        "type": 0
+      },
+      {
+        "id": 314,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_LIANA_2",
+        "type": 0
+      },
+      {
+        "id": 315,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM1",
+        "type": 0
+      },
+      {
+        "id": 316,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_1",
+        "type": 0
+      },
+      {
+        "id": 317,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_2",
+        "type": 0
+      },
+      {
+        "id": 318,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_3",
+        "type": 0
+      },
+      {
+        "id": 319,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_3_2",
+        "type": 0
+      },
+      {
+        "id": 320,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_3_3",
+        "type": 0
+      },
+      {
+        "id": 321,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_4",
+        "type": 0
+      },
+      {
+        "id": 322,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_MUSHROOM_5",
+        "type": 0
+      },
+      {
+        "id": 323,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_PIMPLE",
+        "type": 0
+      },
+      {
+        "id": 324,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_SORE_1",
+        "type": 0
+      },
+      {
+        "id": 325,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_SORE_2",
+        "type": 0
+      },
+      {
+        "id": 326,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_STONE_2",
+        "type": 0
+      },
+      {
+        "id": 327,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_STONE_3",
+        "type": 0
+      },
+      {
+        "id": 328,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L6_STONE_MOSS2",
+        "type": 0
+      },
+      {
+        "id": 329,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_TREE_01",
+        "type": 0
+      },
+      {
+        "id": 330,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L7_TREE_02",
+        "type": 0
+      },
+      {
+        "id": 331,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "TREE_L7_BUSH_02",
+        "type": 0
+      },
+      {
+        "id": 332,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_DEAD_MAYAK",
+        "type": 0
+      },
+      {
+        "id": 333,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_ENTRANCE_TUBE",
+        "type": 0
+      },
+      {
+        "id": 334,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_POLIPSTONE",
+        "type": 0
+      },
+      {
+        "id": 335,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_POLIPSTONE_2",
+        "type": 0
+      },
+      {
+        "id": 336,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_TORC",
+        "type": 0
+      },
+      {
+        "id": 337,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_TRIZUB",
+        "type": 0
+      },
+      {
+        "id": 338,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "RESPAWN_SUPPORT",
+        "type": 0
+      },
+      {
+        "id": 339,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_BODY",
+        "type": 0
+      },
+      {
+        "id": 340,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_BODY_02",
+        "type": 0
+      },
+      {
+        "id": 341,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_LIANA",
+        "type": 0
+      },
+      {
+        "id": 342,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_ROOTS_0001",
+        "type": 0
+      },
+      {
+        "id": 343,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_ROOTS_0001_??",
+        "type": 0
+      },
+      {
+        "id": 344,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHAPE_01",
+        "type": 0
+      },
+      {
+        "id": 345,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP",
+        "type": 0
+      },
+      {
+        "id": 346,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP11",
+        "type": 0
+      },
+      {
+        "id": 347,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUPACA_0001",
+        "type": 0
+      },
+      {
+        "id": 348,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP_02",
+        "type": 0
+      },
+      {
+        "id": 349,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP_02_01",
+        "type": 0
+      },
+      {
+        "id": 350,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP_03",
+        "type": 0
+      },
+      {
+        "id": 351,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP_04",
+        "type": 0
+      },
+      {
+        "id": 352,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_SHUP_05",
+        "type": 0
+      },
+      {
+        "id": 353,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "L8_WORM04_111",
+        "type": 0
+      },
+      {
+        "id": 354,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_CEILING_RUSTY",
+        "type": 0
+      },
+      {
+        "id": 355,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_CEILING_STONE",
+        "type": 0
+      },
+      {
+        "id": 356,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_POTOLOK2",
+        "type": 0
+      },
+      {
+        "id": 357,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_POTOLOK3",
+        "type": 0
+      },
+      {
+        "id": 358,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_1",
+        "type": 0
+      },
+      {
+        "id": 359,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_10",
+        "type": 0
+      },
+      {
+        "id": 360,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_2",
+        "type": 0
+      },
+      {
+        "id": 361,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_4",
+        "type": 0
+      },
+      {
+        "id": 362,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_4A",
+        "type": 0
+      },
+      {
+        "id": 363,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_4B",
+        "type": 0
+      },
+      {
+        "id": 364,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_CEILING_6",
+        "type": 0
+      },
+      {
+        "id": 365,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_BLD_UG_DEVICE",
+        "type": 0
+      },
+      {
+        "id": 366,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_FX_SPARKS",
+        "type": 0
+      },
+      {
+        "id": 367,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_BIG_5",
+        "type": 0
+      },
+      {
+        "id": 368,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_L1_FSTONE12",
+        "type": 0
+      },
+      {
+        "id": 369,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "STN_UG_BROKEN_TRANSPORT",
+        "type": 0
+      },
+      {
+        "id": 370,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "LMP_LAMP_UNDER6",
+        "type": 0
+      },
+      {
+        "id": 371,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT",
+        "type": 0
+      },
+      {
+        "id": 372,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT_02",
+        "type": 0
+      },
+      {
+        "id": 373,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT_03",
+        "type": 0
+      },
+      {
+        "id": 374,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT_04",
+        "type": 0
+      },
+      {
+        "id": 375,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT_05",
+        "type": 0
+      },
+      {
+        "id": 376,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_FLAT_06",
+        "type": 0
+      },
+      {
+        "id": 377,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_LO_FUNGO",
+        "type": 0
+      },
+      {
+        "id": 378,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_FIREFLIES",
+        "type": 0
+      },
+      {
+        "id": 379,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_WATERFALL_SPLASH",
+        "type": 0
+      },
+      {
+        "id": 380,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_GENERATOR",
+        "type": 0
+      },
+      {
+        "id": 381,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_GENERATOR_RUSTY",
+        "type": 0
+      },
+      {
+        "id": 382,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BRIDGE_GRATE_CLOSED",
+        "type": 0
+      },
+      {
+        "id": 383,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_FERN",
+        "type": 0
+      },
+      {
+        "id": 384,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_FERN_02",
+        "type": 0
+      },
+      {
+        "id": 385,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_FERN_03",
+        "type": 0
+      },
+      {
+        "id": 386,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_HIGH",
+        "type": 0
+      },
+      {
+        "id": 387,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_HIGH_02",
+        "type": 0
+      },
+      {
+        "id": 388,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_BUSH_DENSE",
+        "type": 0
+      },
+      {
+        "id": 389,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_LI_GROUP_A_01",
+        "type": 0
+      },
+      {
+        "id": 390,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_LI_GROUP_A_03",
+        "type": 0
+      },
+      {
+        "id": 391,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_LI_GROUP_B_01",
+        "type": 0
+      },
+      {
+        "id": 392,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_LI_GROUP_B_02",
+        "type": 0
+      },
+      {
+        "id": 393,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_MINI_BR",
+        "type": 0
+      },
+      {
+        "id": 394,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_WATERFALL1",
+        "type": 0
+      },
+      {
+        "id": 395,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_LAMP1_BROKEN",
+        "type": 0
+      },
+      {
+        "id": 396,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_MONITOR_POINT_F",
+        "type": 0
+      },
+      {
+        "id": 397,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BORDER_02",
+        "type": 0
+      },
+      {
+        "id": 398,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_MOLD_1",
+        "type": 0
+      },
+      {
+        "id": 399,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_MOLD_2",
+        "type": 0
+      },
+      {
+        "id": 400,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_MOLD_3",
+        "type": 0
+      },
+      {
+        "id": 401,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_MOLD_4",
+        "type": 0
+      },
+      {
+        "id": 402,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_MOLD_6",
+        "type": 0
+      },
+      {
+        "id": 403,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_TEH_BRIDGE_SP",
+        "type": 0
+      },
+      {
+        "id": 404,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_STN_TEH_JUMP_PAD",
+        "type": 0
+      },
+      {
+        "id": 405,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BIG_GUN_2",
+        "type": 0
+      },
+      {
+        "id": 406,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_BRIDGE",
+        "type": 0
+      },
+      {
+        "id": 407,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_BRIDGE_03",
+        "type": 0
+      },
+      {
+        "id": 408,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_BRIDGE_04",
+        "type": 0
+      },
+      {
+        "id": 409,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_BRIDGE_05",
+        "type": 0
+      },
+      {
+        "id": 410,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_TEH_ROAD_BAN_45",
+        "type": 0
+      },
+      {
+        "id": 411,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_TEH_ROAD_BAN_90",
+        "type": 0
+      },
+      {
+        "id": 412,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_TEH_ROAD_BAN_STRAIGHT",
+        "type": 0
+      },
+      {
+        "id": 413,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_TEH_ROAD_SUP",
+        "type": 0
+      },
+      {
+        "id": 414,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L10_TEH_ROAD_WARNING",
+        "type": 0
+      },
+      {
+        "id": 415,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_PFZ_FAKE",
+        "type": 0
+      },
+      {
+        "id": 416,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BRIDGE_GRATE",
+        "type": 0
+      },
+      {
+        "id": 417,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_GATE_SERVICE",
+        "type": 0
+      },
+      {
+        "id": 418,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_DEC",
+        "type": 0
+      },
+      {
+        "id": 419,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_01",
+        "type": 0
+      },
+      {
+        "id": 420,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_02",
+        "type": 0
+      },
+      {
+        "id": 421,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_02A",
+        "type": 0
+      },
+      {
+        "id": 422,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_03",
+        "type": 0
+      },
+      {
+        "id": 423,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_04",
+        "type": 0
+      },
+      {
+        "id": 424,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_PINE_SM",
+        "type": 0
+      },
+      {
+        "id": 425,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_SOSNA_CURVE_001",
+        "type": 0
+      },
+      {
+        "id": 426,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "LMP_LAMP11",
+        "type": 0
+      },
+      {
+        "id": 427,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_LO_FLOWER",
+        "type": 0
+      },
+      {
+        "id": 428,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_LO_MORF",
+        "type": 0
+      },
+      {
+        "id": 429,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_LO_TESTA",
+        "type": 0
+      },
+      {
+        "id": 430,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_LO_TREE",
+        "type": 0
+      },
+      {
+        "id": 431,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_01",
+        "type": 0
+      },
+      {
+        "id": 432,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_02",
+        "type": 0
+      },
+      {
+        "id": 433,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_04",
+        "type": 0
+      },
+      {
+        "id": 434,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_06",
+        "type": 0
+      },
+      {
+        "id": 435,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_07",
+        "type": 0
+      },
+      {
+        "id": 436,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_08",
+        "type": 0
+      },
+      {
+        "id": 437,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_MUSHROOM_09",
+        "type": 0
+      },
+      {
+        "id": 438,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_PROTECTIVE_TUNNEL",
+        "type": 0
+      },
+      {
+        "id": 439,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_PROTECTIVE_TUNNEL_2",
+        "type": 0
+      },
+      {
+        "id": 440,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_WALL_01",
+        "type": 0
+      },
+      {
+        "id": 441,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_WALL_02",
+        "type": 0
+      },
+      {
+        "id": 442,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_WALL_03",
+        "type": 0
+      },
+      {
+        "id": 443,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L11_STN_WALL_04",
+        "type": 0
+      },
+      {
+        "id": 444,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BIG_TENTFLR_FLY",
+        "type": 0
+      },
+      {
+        "id": 445,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BIG_TENTFLR_FLY_YELLOW",
+        "type": 0
+      },
+      {
+        "id": 446,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BIG_TENTFLR_GRD",
+        "type": 0
+      },
+      {
+        "id": 447,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_DESINFECT",
+        "type": 0
+      },
+      {
+        "id": 448,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L11_MUSHROOM_GROUP_01",
+        "type": 0
+      },
+      {
+        "id": 449,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L11_MUSHROOM_GROUP_02",
+        "type": 0
+      },
+      {
+        "id": 450,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L11_MUSHROOM_GROUP_03",
+        "type": 0
+      },
+      {
+        "id": 451,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_ANTENNA",
+        "type": 0
+      },
+      {
+        "id": 452,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_UZELKONT",
+        "type": 0
+      },
+      {
+        "id": 453,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_WIDE_01",
+        "type": 0
+      },
+      {
+        "id": 454,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_WIDE_02",
+        "type": 0
+      },
+      {
+        "id": 455,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_L11_TRE_WIDE_03",
+        "type": 0
+      },
+      {
+        "id": 456,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L10_TRE_LO_BOWELS",
+        "type": 0
+      },
+      {
+        "id": 457,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "LMP_LAMP6",
+        "type": 0
+      },
+      {
+        "id": 458,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_01",
+        "type": 0
+      },
+      {
+        "id": 459,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_02",
+        "type": 0
+      },
+      {
+        "id": 460,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_03",
+        "type": 0
+      },
+      {
+        "id": 461,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_04",
+        "type": 0
+      },
+      {
+        "id": 462,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_05",
+        "type": 0
+      },
+      {
+        "id": 463,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_06",
+        "type": 0
+      },
+      {
+        "id": 464,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_07",
+        "type": 0
+      },
+      {
+        "id": 465,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_09",
+        "type": 0
+      },
+      {
+        "id": 466,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_10",
+        "type": 0
+      },
+      {
+        "id": 467,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_11",
+        "type": 0
+      },
+      {
+        "id": 468,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_12",
+        "type": 0
+      },
+      {
+        "id": 469,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_DARK_SOLID_13",
+        "type": 0
+      },
+      {
+        "id": 470,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_TRANSFER_GATE_IDLE",
+        "type": 0
+      },
+      {
+        "id": 471,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEN_INFILTRATOR",
+        "type": 0
+      },
+      {
+        "id": 472,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_CROSSBEAM",
+        "type": 0
+      },
+      {
+        "id": 473,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_SQUARES_01",
+        "type": 0
+      },
+      {
+        "id": 474,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_STONE_01",
+        "type": 0
+      },
+      {
+        "id": 475,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_STONE_02",
+        "type": 0
+      },
+      {
+        "id": 476,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_STONE_03",
+        "type": 0
+      },
+      {
+        "id": 477,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_LAMP_FLOODLIGHT",
+        "type": 0
+      },
+      {
+        "id": 478,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_BARREL_EMPTY",
+        "type": 0
+      },
+      {
+        "id": 479,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_SEMAFON_GREEN",
+        "type": 0
+      },
+      {
+        "id": 480,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNEL_LIGHT",
+        "type": 0
+      },
+      {
+        "id": 481,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_01",
+        "type": 0
+      },
+      {
+        "id": 482,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_04",
+        "type": 0
+      },
+      {
+        "id": 483,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_06",
+        "type": 0
+      },
+      {
+        "id": 484,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_07",
+        "type": 0
+      },
+      {
+        "id": 485,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_14",
+        "type": 0
+      },
+      {
+        "id": 486,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_15",
+        "type": 0
+      },
+      {
+        "id": 487,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_17",
+        "type": 0
+      },
+      {
+        "id": 488,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_18",
+        "type": 0
+      },
+      {
+        "id": 489,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_WALL",
+        "type": 0
+      },
+      {
+        "id": 490,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_01",
+        "type": 0
+      },
+      {
+        "id": 491,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_02",
+        "type": 0
+      },
+      {
+        "id": 492,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_03",
+        "type": 0
+      },
+      {
+        "id": 493,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_04",
+        "type": 0
+      },
+      {
+        "id": 494,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_05",
+        "type": 0
+      },
+      {
+        "id": 495,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_SCRAP_GLIDERS_06",
+        "type": 0
+      },
+      {
+        "id": 496,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BORDER_01",
+        "type": 0
+      },
+      {
+        "id": 497,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BORDER_ADDON",
+        "type": 0
+      },
+      {
+        "id": 498,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BOX_RED",
+        "type": 0
+      },
+      {
+        "id": 499,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BRIDGE_GRATE_04",
+        "type": 0
+      },
+      {
+        "id": 500,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BRS_TUNNEL_HOLE",
+        "type": 0
+      },
+      {
+        "id": 501,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_ROUND",
+        "type": 0
+      },
+      {
+        "id": 502,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_ROUNDED",
+        "type": 0
+      },
+      {
+        "id": 503,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_ROUNDED_2",
+        "type": 0
+      },
+      {
+        "id": 504,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_ROUNDED_R2",
+        "type": 0
+      },
+      {
+        "id": 505,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_ROUND_T",
+        "type": 0
+      },
+      {
+        "id": 506,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_SQUARES_06",
+        "type": 0
+      },
+      {
+        "id": 507,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ELECTRO_01",
+        "type": 0
+      },
+      {
+        "id": 508,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ELECTRO_03",
+        "type": 0
+      },
+      {
+        "id": 509,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_FC_12",
+        "type": 0
+      },
+      {
+        "id": 510,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_LOCK_GATE_L",
+        "type": 0
+      },
+      {
+        "id": 511,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_MACHINE",
+        "type": 0
+      },
+      {
+        "id": 512,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE",
+        "type": 0
+      },
+      {
+        "id": 513,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_CORNER",
+        "type": 0
+      },
+      {
+        "id": 514,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_CORNER_2",
+        "type": 0
+      },
+      {
+        "id": 515,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_FILTER",
+        "type": 0
+      },
+      {
+        "id": 516,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PITDOOR",
+        "type": 0
+      },
+      {
+        "id": 517,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PLINTH",
+        "type": 0
+      },
+      {
+        "id": 518,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PLINTH_03",
+        "type": 0
+      },
+      {
+        "id": 519,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_SUPPORT_BLUE",
+        "type": 0
+      },
+      {
+        "id": 520,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_PIPE",
+        "type": 0
+      },
+      {
+        "id": 521,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_PIPE_RIGHT",
+        "type": 0
+      },
+      {
+        "id": 522,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_STORAGE",
+        "type": 0
+      },
+      {
+        "id": 523,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUBE_LARGE",
+        "type": 0
+      },
+      {
+        "id": 524,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUBE_LARGE_CORNER",
+        "type": 0
+      },
+      {
+        "id": 525,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUBE_LARGE_END",
+        "type": 0
+      },
+      {
+        "id": 526,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNEL_LIGHT_DIS",
+        "type": 0
+      },
+      {
+        "id": 527,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL",
+        "type": 0
+      },
+      {
+        "id": 528,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_DOOR",
+        "type": 0
+      },
+      {
+        "id": 529,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_DOOR_OP",
+        "type": 0
+      },
+      {
+        "id": 530,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_VENT",
+        "type": 0
+      },
+      {
+        "id": 531,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINED_WALL_07",
+        "type": 0
+      },
+      {
+        "id": 532,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_2",
+        "type": 0
+      },
+      {
+        "id": 533,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_00",
+        "type": 0
+      },
+      {
+        "id": 534,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_00_G",
+        "type": 0
+      },
+      {
+        "id": 535,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_01",
+        "type": 0
+      },
+      {
+        "id": 536,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_01_G",
+        "type": 0
+      },
+      {
+        "id": 537,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_02",
+        "type": 0
+      },
+      {
+        "id": 538,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_02_G",
+        "type": 0
+      },
+      {
+        "id": 539,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_03",
+        "type": 0
+      },
+      {
+        "id": 540,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L10_PINE_CURVE_03_G",
+        "type": 0
+      },
+      {
+        "id": 541,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_01",
+        "type": 0
+      },
+      {
+        "id": 542,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ARENA_BR",
+        "type": 0
+      },
+      {
+        "id": 543,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ICE_FLOAT_01",
+        "type": 0
+      },
+      {
+        "id": 544,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ICE_FLOAT_02",
+        "type": 0
+      },
+      {
+        "id": 545,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ICE_FLOAT_03",
+        "type": 0
+      },
+      {
+        "id": 546,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ICE_FLOAT_04",
+        "type": 0
+      },
+      {
+        "id": 547,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L3_ICE_FLOAT_05",
+        "type": 0
+      },
+      {
+        "id": 548,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEMP_GL",
+        "type": 0
+      },
+      {
+        "id": 549,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_GROUP_01",
+        "type": 0
+      },
+      {
+        "id": 550,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_GROUP_02",
+        "type": 0
+      },
+      {
+        "id": 551,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_GROUP_03",
+        "type": 0
+      },
+      {
+        "id": 552,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_SNOW_01",
+        "type": 0
+      },
+      {
+        "id": 553,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_SNOW_02",
+        "type": 0
+      },
+      {
+        "id": 554,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_SNOW_03",
+        "type": 0
+      },
+      {
+        "id": 555,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L3_BLUE_SNOW_04",
+        "type": 0
+      },
+      {
+        "id": 556,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "B_L5_CLOSENTRANCE_L8_??",
+        "type": 0
+      },
+      {
+        "id": 557,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_BEHOLDER_MAGIC_OFF",
+        "type": 0
+      },
+      {
+        "id": 558,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L5_WORM_BONES",
+        "type": 0
+      },
+      {
+        "id": 559,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L5_WORM_SKULL",
+        "type": 0
+      },
+      {
+        "id": 560,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TREE_BIG_BAO_LIST01",
+        "type": 0
+      },
+      {
+        "id": 561,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TREE_BIG_BAO_LIST02",
+        "type": 0
+      },
+      {
+        "id": 562,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TREE_L5_PALM3",
+        "type": 0
+      },
+      {
+        "id": 563,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TREE_L5_TREE_Dictyosperma",
+        "type": 0
+      },
+      {
+        "id": 564,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_00",
+        "type": 0
+      },
+      {
+        "id": 565,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_01",
+        "type": 0
+      },
+      {
+        "id": 566,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_02",
+        "type": 0
+      },
+      {
+        "id": 567,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_03",
+        "type": 0
+      },
+      {
+        "id": 568,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_04",
+        "type": 0
+      },
+      {
+        "id": 569,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_05",
+        "type": 0
+      },
+      {
+        "id": 570,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TRE_L5_CACTUS_DEAD_06",
+        "type": 0
+      },
+      {
+        "id": 571,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T4",
+        "type": 0
+      },
+      {
+        "id": 572,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T5",
+        "type": 0
+      },
+      {
+        "id": 573,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_BLD_RUINS_01",
+        "type": 0
+      },
+      {
+        "id": 574,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_DUMB",
+        "type": 0
+      },
+      {
+        "id": 575,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_GROUND_TUBES",
+        "type": 0
+      },
+      {
+        "id": 576,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_KA_AMPLIFIER",
+        "type": 0
+      },
+      {
+        "id": 577,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_KA_CHARGER_XL",
+        "type": 0
+      },
+      {
+        "id": 578,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_MAGNETIC_STIRRER2",
+        "type": 0
+      },
+      {
+        "id": 579,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_RM_FLUSH",
+        "type": 0
+      },
+      {
+        "id": 580,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_STORAGE_SMALL",
+        "type": 0
+      },
+      {
+        "id": 581,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_L6_STORES_L",
+        "type": 0
+      },
+      {
+        "id": 582,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "TREE_BIG_MEGA_TREE01",
+        "type": 0
+      },
+      {
+        "id": 583,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L8_WORM1",
+        "type": 0
+      },
+      {
+        "id": 584,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L8_WORM2",
+        "type": 0
+      },
+      {
+        "id": 585,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L8_WORM3",
+        "type": 0
+      },
+      {
+        "id": 586,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L8_WORM4",
+        "type": 0
+      },
+      {
+        "id": 587,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_FOG_HIGHLANDS",
+        "type": 0
+      },
+      {
+        "id": 588,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINS_LARGE",
+        "type": 0
+      },
+      {
+        "id": 589,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEMP_GL_4",
+        "type": 0
+      },
+      {
+        "id": 590,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEMP_GL_5",
+        "type": 0
+      },
+      {
+        "id": 591,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEMP_GL_??",
+        "type": 0
+      },
+      {
+        "id": 592,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_MECHMIND_DEAD",
+        "type": 0
+      },
+      {
+        "id": 593,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_RACE_IZMORNIK",
+        "type": 0
+      },
+      {
+        "id": 594,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_WAT_HEAD",
+        "type": 0
+      },
+      {
+        "id": 595,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_01",
+        "type": 0
+      },
+      {
+        "id": 596,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_02",
+        "type": 0
+      },
+      {
+        "id": 597,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_03",
+        "type": 0
+      },
+      {
+        "id": 598,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_04",
+        "type": 0
+      },
+      {
+        "id": 599,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_05",
+        "type": 0
+      },
+      {
+        "id": 600,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_LIGHT_SOLID_06",
+        "type": 0
+      },
+      {
+        "id": 601,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_POROUS",
+        "type": 0
+      },
+      {
+        "id": 602,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_POROUS_02",
+        "type": 0
+      },
+      {
+        "id": 603,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_POROUS_03",
+        "type": 0
+      },
+      {
+        "id": 604,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "L9_STN_POROUS_04",
+        "type": 0
+      },
+      {
+        "id": 605,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_ANGAR",
+        "type": 0
+      },
+      {
+        "id": 606,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUINS_UNKNOWN_XL",
+        "type": 0
+      },
+      {
+        "id": 607,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_01",
+        "type": 0
+      },
+      {
+        "id": 608,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_02",
+        "type": 0
+      },
+      {
+        "id": 609,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_03",
+        "type": 0
+      },
+      {
+        "id": 610,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_04",
+        "type": 0
+      },
+      {
+        "id": 611,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_05",
+        "type": 0
+      },
+      {
+        "id": 612,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_06",
+        "type": 0
+      },
+      {
+        "id": 613,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_07",
+        "type": 0
+      },
+      {
+        "id": 614,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_08",
+        "type": 0
+      },
+      {
+        "id": 615,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_09",
+        "type": 0
+      },
+      {
+        "id": 616,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_10",
+        "type": 0
+      },
+      {
+        "id": 617,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_5B",
+        "type": 0
+      },
+      {
+        "id": 618,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T1",
+        "type": 0
+      },
+      {
+        "id": 619,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T2",
+        "type": 0
+      },
+      {
+        "id": 620,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T3",
+        "type": 0
+      },
+      {
+        "id": 621,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_BLD_RUSTY_T6",
+        "type": 0
+      },
+      {
+        "id": 622,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FORTESS",
+        "type": 0
+      },
+      {
+        "id": 623,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_FLARE_RED",
+        "type": 0
+      },
+      {
+        "id": 624,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_SPARKLES_ELECTRO",
+        "type": 0
+      },
+      {
+        "id": 625,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_STEAM_LARGE",
+        "type": 0
+      },
+      {
+        "id": 626,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_GAS_DEPOT",
+        "type": 0
+      },
+      {
+        "id": 627,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_BIDGE_DESTROYED",
+        "type": 0
+      },
+      {
+        "id": 628,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_BLD_RUINS_02",
+        "type": 0
+      },
+      {
+        "id": 629,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_GENERATOR_RUSTY_02",
+        "type": 0
+      },
+      {
+        "id": 630,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_GENERATOR_RUSTY_03",
+        "type": 0
+      },
+      {
+        "id": 631,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_GENERATOR_TUBE",
+        "type": 0
+      },
+      {
+        "id": 632,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINED_WALL_02",
+        "type": 0
+      },
+      {
+        "id": 633,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINED_WALL_03",
+        "type": 0
+      },
+      {
+        "id": 634,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINED_WALL_04",
+        "type": 0
+      },
+      {
+        "id": 635,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINED_WALL_05",
+        "type": 0
+      },
+      {
+        "id": 636,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINS_LARGE_02",
+        "type": 0
+      },
+      {
+        "id": 637,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINS_LARGE_03",
+        "type": 0
+      },
+      {
+        "id": 638,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINS_LARGE_04",
+        "type": 0
+      },
+      {
+        "id": 639,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_RUINS_LARGE_05",
+        "type": 0
+      },
+      {
+        "id": 640,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TANK_BODY",
+        "type": 0
+      },
+      {
+        "id": 641,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TANK_GUN",
+        "type": 0
+      },
+      {
+        "id": 642,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TANK_RL",
+        "type": 0
+      },
+      {
+        "id": 643,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TANK_TUREL_01",
+        "type": 0
+      },
+      {
+        "id": 644,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TARGET",
+        "type": 0
+      },
+      {
+        "id": 645,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_BASE",
+        "type": 0
+      },
+      {
+        "id": 646,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_BASE_DAMAGE",
+        "type": 0
+      },
+      {
+        "id": 647,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_PANEL",
+        "type": 0
+      },
+      {
+        "id": 648,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_PANEL_2",
+        "type": 0
+      },
+      {
+        "id": 649,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_TUREL",
+        "type": 0
+      },
+      {
+        "id": 650,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TEH_TEST_TUREL_DAMAGE",
+        "type": 0
+      },
+      {
+        "id": 651,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TR_20",
+        "type": 0
+      },
+      {
+        "id": 652,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TR_21",
+        "type": 0
+      },
+      {
+        "id": 653,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_L9_TR_22",
+        "type": 0
+      },
+      {
+        "id": 654,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_BARREL_01",
+        "type": 0
+      },
+      {
+        "id": 655,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_BARREL_02",
+        "type": 0
+      },
+      {
+        "id": 656,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_BARREL_03",
+        "type": 0
+      },
+      {
+        "id": 657,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_BARREL_04",
+        "type": 0
+      },
+      {
+        "id": 658,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_TANK",
+        "type": 0
+      },
+      {
+        "id": 659,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_TANK_3",
+        "type": 0
+      },
+      {
+        "id": 660,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_TANK_5",
+        "type": 0
+      },
+      {
+        "id": 661,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TRENCH",
+        "type": 0
+      },
+      {
+        "id": 662,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BOILER",
+        "type": 0
+      },
+      {
+        "id": 663,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CABLE_750",
+        "type": 0
+      },
+      {
+        "id": 664,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_LAMPS_01",
+        "type": 0
+      },
+      {
+        "id": 665,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_01",
+        "type": 0
+      },
+      {
+        "id": 666,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_LAMP_WALL_LONG",
+        "type": 0
+      },
+      {
+        "id": 667,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_LAMP_WALL_LONG_B",
+        "type": 0
+      },
+      {
+        "id": 668,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_BARREL",
+        "type": 0
+      },
+      {
+        "id": 669,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER",
+        "type": 0
+      },
+      {
+        "id": 670,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_RCV",
+        "type": 0
+      },
+      {
+        "id": 671,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_HIGH",
+        "type": 0
+      },
+      {
+        "id": 672,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_HIGH_DEADEND",
+        "type": 0
+      },
+      {
+        "id": 673,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_02",
+        "type": 0
+      },
+      {
+        "id": 674,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_09",
+        "type": 0
+      },
+      {
+        "id": 675,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_12",
+        "type": 0
+      },
+      {
+        "id": 676,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_13",
+        "type": 0
+      },
+      {
+        "id": 677,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_02",
+        "type": 0
+      },
+      {
+        "id": 678,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_PIPE_BURN",
+        "type": 0
+      },
+      {
+        "id": 679,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_LAMPS_03",
+        "type": 0
+      },
+      {
+        "id": 680,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_03",
+        "type": 0
+      },
+      {
+        "id": 681,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_SUPPORT_LIGHT",
+        "type": 0
+      },
+      {
+        "id": 682,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_RCV2",
+        "type": 0
+      },
+      {
+        "id": 683,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRANSFER_SEMAFON_BLUE",
+        "type": 0
+      },
+      {
+        "id": 684,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_05",
+        "type": 0
+      },
+      {
+        "id": 685,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_06",
+        "type": 0
+      },
+      {
+        "id": 686,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PIPE_TRANSFORMER",
+        "type": 0
+      },
+      {
+        "id": 687,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_12",
+        "type": 0
+      },
+      {
+        "id": 688,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_19",
+        "type": 0
+      },
+      {
+        "id": 689,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_20",
+        "type": 0
+      },
+      {
+        "id": 690,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_22",
+        "type": 0
+      },
+      {
+        "id": 691,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_23",
+        "type": 0
+      },
+      {
+        "id": 692,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_24",
+        "type": 0
+      },
+      {
+        "id": 693,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_26",
+        "type": 0
+      },
+      {
+        "id": 694,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_27",
+        "type": 0
+      },
+      {
+        "id": 695,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_CEIL_LAMPS_02",
+        "type": 0
+      },
+      {
+        "id": 696,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_17",
+        "type": 0
+      },
+      {
+        "id": 697,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_TEH_AIRCRAFT_STILL",
+        "type": 0
+      },
+      {
+        "id": 698,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_21",
+        "type": 0
+      },
+      {
+        "id": 699,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_11",
+        "type": 0
+      },
+      {
+        "id": 700,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_16",
+        "type": 0
+      },
+      {
+        "id": 701,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_23",
+        "type": 0
+      },
+      {
+        "id": 702,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_32",
+        "type": 0
+      },
+      {
+        "id": 703,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_33",
+        "type": 0
+      },
+      {
+        "id": 704,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_BRS_CROSS",
+        "type": 0
+      },
+      {
+        "id": 705,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ELECTRO_04",
+        "type": 0
+      },
+      {
+        "id": 706,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_35",
+        "type": 0
+      },
+      {
+        "id": 707,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_21",
+        "type": 0
+      },
+      {
+        "id": 708,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_30",
+        "type": 0
+      },
+      {
+        "id": 709,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_ID_ST_36",
+        "type": 0
+      },
+      {
+        "id": 710,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TUNNEL_MAIN_25",
+        "type": 0
+      },
+      {
+        "id": 711,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_FX_GLOW_DEFAULT",
+        "type": 0
+      },
+      {
+        "id": 712,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_PLINTH_LIGHT_01",
+        "type": 0
+      },
+      {
+        "id": 713,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_TRAIN_ROOF",
+        "type": 0
+      },
+      {
+        "id": 714,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_WIRE_01",
+        "type": 0
+      },
+      {
+        "id": 715,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_WIRE_END_01",
+        "type": 0
+      },
+      {
+        "id": 716,
+        "name_id": 0,
+        "resource": "",
+        "text_id": "STN_U_WIRE_END_02",
+        "type": 0
+      }
+    ]
+  }
+}

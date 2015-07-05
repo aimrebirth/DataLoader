@@ -1,0 +1,315 @@
+{
+  "Maps": {
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Maps\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT NOT NULL, \"internal_name\" TEXT, \"resource\" TEXT NOT NULL, \"name_id\" INTEGER, \"h_min\" REAL, \"h_max\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "values": [
+      {
+        "h_max": 2988.28125,
+        "h_min": -459.532288,
+        "id": 1,
+        "name_id": 1,
+        "resource": "AIM/Maps/rocks/rocks",
+        "text_id": "m1.location1"
+      },
+      {
+        "h_max": 2489.658447,
+        "h_min": 204.572266,
+        "id": 2,
+        "name_id": 1,
+        "resource": "AIM/Maps/arctic/arctic",
+        "text_id": "m1.location2"
+      },
+      {
+        "h_max": 2693.620117,
+        "h_min": -1482.37085,
+        "id": 3,
+        "name_id": 1,
+        "resource": "AIM/Maps/tundra/tundra",
+        "text_id": "m1.location3"
+      },
+      {
+        "h_max": 1858.739746,
+        "h_min": -120.821022,
+        "id": 4,
+        "name_id": 1,
+        "resource": "AIM/Maps/volcano/volcano",
+        "text_id": "m1.location4"
+      },
+      {
+        "h_max": 3247.179688,
+        "h_min": 131.504181,
+        "id": 5,
+        "name_id": 1,
+        "resource": "AIM/Maps/desert/desert",
+        "text_id": "m1.location5"
+      },
+      {
+        "h_max": 1458.229004,
+        "h_min": -30.632965,
+        "id": 6,
+        "name_id": 1,
+        "resource": "AIM/Maps/hills/hills",
+        "text_id": "m1.location6"
+      },
+      {
+        "h_max": 1584.556763,
+        "h_min": -107.812225,
+        "id": 7,
+        "name_id": 1,
+        "resource": "AIM2/Maps/swamps/swamps",
+        "text_id": "m1.location7"
+      },
+      {
+        "h_max": 1992.187378,
+        "h_min": -93.040787,
+        "id": 8,
+        "name_id": 1,
+        "resource": "AIM/Maps/outworld/outworld",
+        "text_id": "m1.location8"
+      },
+      {
+        "h_max": 199.218735,
+        "h_min": 48.4375,
+        "id": 9,
+        "name_id": 1,
+        "resource": "AIM/Maps/arena/arena",
+        "text_id": "m1.arena"
+      },
+      {
+        "h_max": 215.07811,
+        "h_min": -22.910156,
+        "id": 10,
+        "name_id": 1,
+        "resource": "AIM/Maps/start/start",
+        "text_id": "m1.start"
+      },
+      {
+        "h_max": 199.218735,
+        "h_min": -739.257813,
+        "id": 11,
+        "name_id": 1,
+        "resource": "AIM/Maps/under/under",
+        "text_id": "m1.under"
+      },
+      {
+        "h_max": 2484.110107,
+        "h_min": 849.468384,
+        "id": 12,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.demo_map"
+      },
+      {
+        "h_max": 2988.28125,
+        "h_min": -459.532288,
+        "id": 13,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location1"
+      },
+      {
+        "h_max": 2489.658447,
+        "h_min": 204.572266,
+        "id": 14,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location2"
+      },
+      {
+        "h_max": 2693.620117,
+        "h_min": -795.098145,
+        "id": 15,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location3"
+      },
+      {
+        "h_max": 4237.583984,
+        "h_min": 1091.375,
+        "id": 16,
+        "name_id": 1,
+        "resource": "AIM2/Maps/desert/desert",
+        "text_id": "m2.location5"
+      },
+      {
+        "h_max": 1458.229004,
+        "h_min": -30.632965,
+        "id": 17,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location6"
+      },
+      {
+        "h_max": 199.92984,
+        "h_min": -135.29808,
+        "id": 18,
+        "name_id": 1,
+        "resource": "AIM2/Maps/swamps/swamps",
+        "text_id": "m2.location7"
+      },
+      {
+        "h_max": 2140.458252,
+        "h_min": 108.255524,
+        "id": 19,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location9"
+      },
+      {
+        "h_max": 1906.696411,
+        "h_min": -371.420837,
+        "id": 20,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location10"
+      },
+      {
+        "h_max": 1847.255859,
+        "h_min": 158.302277,
+        "id": 21,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location11"
+      },
+      {
+        "h_max": 200.291245,
+        "h_min": -16.457268,
+        "id": 22,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location12"
+      },
+      {
+        "h_max": 99.609375,
+        "h_min": -1381.367188,
+        "id": 23,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.location13"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 24,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_01"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 25,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_02"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 26,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_03"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 27,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_05"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 28,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_06"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 29,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_12"
+      },
+      {
+        "h_max": 0.246072,
+        "h_min": 0.0,
+        "id": 30,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_17"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 31,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_21"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 32,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_23"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 33,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_32"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 34,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_33"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 35,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_35"
+      },
+      {
+        "h_max": 14.765625,
+        "h_min": -29.882813,
+        "id": 36,
+        "name_id": 1,
+        "resource": "",
+        "text_id": "m2.station_36"
+      },
+      {
+        "h_max": 553.539063,
+        "h_min": 0.0,
+        "id": 37,
+        "name_id": 1,
+        "resource": "AIM2/Maps/training/training",
+        "text_id": "m2.trainmap"
+      }
+    ]
+  }
+}
