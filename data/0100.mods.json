@@ -79,23 +79,40 @@
     ]
   },
   "Strings": {
-    "fks": [],
-    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\") )",
+    "fks": [
+      {
+        "from": "table_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Tables",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
     "values": [
       {
         "en": "AIM",
         "id": 1,
-        "ru": ""
+        "ru": "",
+        "table_id": 30,
+        "text_id": ""
       },
       {
         "en": "AIM2",
         "id": 2,
-        "ru": ""
+        "ru": "",
+        "table_id": 30,
+        "text_id": ""
       },
       {
         "en": "Test Mod",
         "id": 3,
-        "ru": ""
+        "ru": "",
+        "table_id": 30,
+        "text_id": ""
       }
     ]
   }

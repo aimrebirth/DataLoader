@@ -1,0 +1,75 @@
+{
+  "Clans": {
+    "fks": [
+      {
+        "from": "member_name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"member_name_id\" INTEGER, \"bonusexp\" INTEGER, \"bonusrepair\" INTEGER, \"bonustrade\" INTEGER, \"helpness\" INTEGER, \"Volatile\" REAL, \"noblivion\" REAL, \"playereffect\" REAL, \"color\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"member_name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "values": [
+      {
+        "Volatile": 0.01,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 0,
+        "id": 1,
+        "member_name_id": 8,
+        "name_id": 7,
+        "noblivion": 1.0,
+        "playereffect": 0.0,
+        "resource": "",
+        "text_id": "ORG_FREE"
+      }
+    ]
+  },
+  "Strings": {
+    "fks": [
+      {
+        "from": "table_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Tables",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
+    "values": [
+      {
+        "en": "",
+        "id": 7,
+        "ru": "\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 8,
+        "ru": "\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439",
+        "table_id": 4,
+        "text_id": ""
+      }
+    ]
+  }
+}

@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import re
 import sqlite3
 
 values_key = 'values'
@@ -62,6 +63,8 @@ def clear(db):
     c.execute('''select * from sqlite_master WHERE type = 'table';''')
     for table in c.fetchall():
         name = table[2]
+        if name == 'Tables':
+            continue
         c.execute('delete from ' + name + ';')
     conn.commit()
     conn.close()
@@ -80,15 +83,28 @@ def dump(db, fn, tables):
     c.execute('''select * from sqlite_master WHERE type = 'table';''')
     for table in c.fetchall():
         name = table['name']
-
-        if tables and not name.lower() in tables:
+        if name == 'Tables':
             continue
-        
-        print('dumping: ' + name)
+
+        if tables:
+            found = False
+            for t in tables:
+                if re.match(t.lower(), name.lower()):
+                    found = True
+                    break
+            if not found:
+                continue
+
+        c.execute('select * from ' + name)
+        rows = c.fetchall()
+        if len(rows) == 0:
+            continue
 
         tdata = []
-        for row in c.execute('select * from ' + name):
+        for row in rows:
             tdata.append(row)
+        
+        print('dumping: ' + name)
 
         fks = []
         c.execute('PRAGMA foreign_key_list(' + name + ');')
@@ -114,17 +130,17 @@ def load(db, fn):
         print('loading: ' + table)
         c.execute('delete from ' + table + ';')
         s = 'insert into ' + table + ' ({0}) values '
-        f = ''
-        for row in data[table][values_key][0]:
-            f += row + ', '
-        f = f[:-2]
-        s = s.format(f)
         for row in data[table][values_key]:
+            f = ''
+            for field in row.keys():
+                f += "'" + field + "'" + ', '
+            f = f[:-2]
+            sql = s.format(f)
             f = ''
             for field in row.keys():
                 f += "'" + str(row[field]) + "'" + ', '
             f = f[:-2]
-            sql = s + '(' + f + ');'
+            sql = sql + '(' + f + ');'
             c.execute(sql)
     conn.commit()
     conn.close()
@@ -143,8 +159,12 @@ def merge(fn, files):
     json.dump(first, open(fn, 'w'), sort_keys = True, indent = 2)
     
 def do_merge(first, second):
-    # find max ids
     maxId = dict()
+    maxIdSecond = dict()
+    maxId['tables'] = 0
+    maxIdSecond['tables'] = 0
+
+    # find max ids on first table
     for table in sorted(first):
         maxId[table.lower()] = 0
         hasId = False
@@ -154,18 +174,34 @@ def do_merge(first, second):
             for row in first[table][values_key]:
                 maxId[table.lower()] = max(maxId[table.lower()], row['id'])
 
+    # find max ids on second table
+    for table in sorted(second):
+        maxIdSecond[table.lower()] = 0
+        hasId = False
+        if len(second[table][values_key]) > 0:
+            hasId = 'id' in second[table][values_key][0]
+        if hasId:
+            for row in second[table][values_key]:
+                maxIdSecond[table.lower()] = max(maxIdSecond[table.lower()], row['id'])
+
     # apply max ids
     for table in sorted(second):
         hasId = False
         if len(second[table][values_key]) > 0:
             hasId = 'id' in second[table][values_key][0]
         for row in second[table][values_key]:
+            # increase id in the same subsequent tables
             if hasId:
-                row['id'] += maxId[table.lower()]
+                if row['id'] != 0:
+                    row['id'] += maxId[table.lower()]
+            # increase foreign keys only if the current (second) table
+            #  brings new keys to the target table
             for field in row:
                 for fk in second[table][fks_key]:
                     if fk['from'] == field:
-                        row[field] += maxId[fk['table'].lower()]
+                        if row[field] != 0:
+                            if fk['table'].lower() in maxIdSecond and maxIdSecond[fk['table'].lower()] != 0:
+                                row[field] += maxId[fk['table'].lower()]
 
     # write second to first
     for table in sorted(second):

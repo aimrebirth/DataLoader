@@ -1,0 +1,166 @@
+{
+  "ConfigurationEquipments": {
+    "fks": [
+      {
+        "from": "equipment_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Equipments",
+        "to": "id"
+      },
+      {
+        "from": "configuration_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Configurations",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ConfigurationEquipments\" ( \"configuration_id\" INTEGER NOT NULL, \"equipment_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"equipment_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
+    "values": [
+      {
+        "configuration_id": 1,
+        "equipment_id": 18,
+        "quantity": 1
+      },
+      {
+        "configuration_id": 1,
+        "equipment_id": 26,
+        "quantity": 1
+      },
+      {
+        "configuration_id": 1,
+        "equipment_id": 16,
+        "quantity": 1
+      }
+    ]
+  },
+  "ConfigurationGoods": {
+    "fks": [
+      {
+        "from": "good_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Goods",
+        "to": "id"
+      },
+      {
+        "from": "configuration_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Configurations",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ConfigurationGoods\" ( \"configuration_id\" INTEGER NOT NULL, \"good_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"good_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "values": []
+  },
+  "ConfigurationProjectiles": {
+    "fks": [
+      {
+        "from": "projectile_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Projectiles",
+        "to": "id"
+      },
+      {
+        "from": "configuration_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Configurations",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ConfigurationProjectiles\" ( \"configuration_id\" INTEGER NOT NULL, \"projectile_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"projectile_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "values": []
+  },
+  "ConfigurationWeapons": {
+    "fks": [
+      {
+        "from": "weapon_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Weapons",
+        "to": "id"
+      },
+      {
+        "from": "configuration_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Configurations",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ConfigurationWeapons\" ( \"configuration_id\" INTEGER NOT NULL, \"weapon_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"weapon_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
+    "values": [
+      {
+        "configuration_id": 1,
+        "quantity": 1,
+        "weapon_id": 30
+      },
+      {
+        "configuration_id": 1,
+        "quantity": 1,
+        "weapon_id": 29
+      }
+    ]
+  },
+  "Configurations": {
+    "fks": [
+      {
+        "from": "glider_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Gliders",
+        "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Configurations\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"glider_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
+    "values": [
+      {
+        "glider_id": 2,
+        "id": 1,
+        "name_id": 0,
+        "text_id": "m1.start config"
+      }
+    ]
+  }
+}

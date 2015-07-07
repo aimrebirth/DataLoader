@@ -115,9 +115,22 @@ public:
     
     const Column *getColumn(const string &name) const
     {
+        Columns::const_iterator i;
+        i = find_if(columns.begin(), columns.end(), [name](const Columns::value_type &p)
+        {
+            return p.second.getCleanName() == name;
+        });
+        if (i != columns.end())
+            return &i->second;
+        i = find_if(columns.begin(), columns.end(), [name](const Columns::value_type &p)
+        {
+            return p.second.getName() == name + "_id";
+        });
+        if (i != columns.end())
+            return &i->second;
         auto iter = find_if(columns.begin(), columns.end(), [name](const Columns::value_type &p)
         {
-            return p.first.find(name) != -1;
+            return p.second.getName().find(name) != -1;
         });
         if (iter != columns.end())
             return &iter->second;

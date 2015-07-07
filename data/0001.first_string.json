@@ -59,8 +59,18 @@
   "Clans": {
     "fks": [
       {
-        "from": "name_id",
+        "from": "member_name_id",
         "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
@@ -69,7 +79,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"member_name_id\" INTEGER, \"bonusexp\" INTEGER, \"bonusrepair\" INTEGER, \"bonustrade\" INTEGER, \"helpness\" INTEGER, \"Volatile\" REAL, \"noblivion\" REAL, \"playereffect\" REAL, \"color\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"member_name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "ConfigurationEquipments": {
@@ -771,7 +781,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Modificators\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"probability\" REAL, \"price\" REAL, \"k_price\" REAL, \"k_param1\" REAL, \"k_param2\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Modificators\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"probability\" REAL, \"price\" REAL, \"k_price\" REAL, \"k_param1\" REAL, \"k_param2\" REAL, \"unicum_id\" INTEGER, \"mask\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "Objects": {
@@ -1124,7 +1134,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Weapons\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"power\" REAL, \"firerate\" REAL, \"damage\" REAL, \"price\" REAL, \"projectile_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "sql": "CREATE TABLE \"Weapons\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"projectile_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"power\" REAL, \"firerate\" REAL, \"damage\" REAL, \"price\" REAL, \"fx\" REAL, \"shoottype\" INTEGER, \"shootscale\" REAL, \"xstate\" INTEGER, \"rcolor\" REAL, \"gcolor\" REAL, \"bcolor\" REAL, \"typearms\" INTEGER, \"tfire\" REAL, \"vtype\" INTEGER, \"spare\" REAL, \"reconstruction\" REAL, \"maxdistance\" REAL, \"angle\" REAL, \"fxtime\" REAL, \"damagetype\" INTEGER, \"fxmodeltime\" REAL, \"inside_mul\" REAL, \"inside_x\" REAL, \"inside_y\" REAL, \"inside_z\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
     "values": []
   }
 }

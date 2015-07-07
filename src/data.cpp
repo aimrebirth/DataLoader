@@ -686,7 +686,7 @@ string Table::printSave(string &si)
     {
         si += space + "std::string query;" + "\n";
         si += space + "query += \"delete from " + name + ";\"" + ";\n";
-        si += space + "db->execute(query.c_str(), 0, 0);\n";
+        si += space + "db->execute(query.c_str());\n";
         si += space + "query.clear();\n";
         si += space + "if (" + toVarName(name) + ".empty())" + "\n";
         si += space + ::space + "return;\n";
@@ -705,7 +705,7 @@ string Table::printSave(string &si)
         si += space + "}\n";
         si += space + "query.resize(query.size() - 2);\n";
         si += space + "query += \";\";\n";
-        si += space + "db->execute(query.c_str(), 0, 0);\n";
+        si += space + "db->execute(query.c_str());\n";
     }
     si += "}\n\n";
     return s;

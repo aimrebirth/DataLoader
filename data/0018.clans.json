@@ -1,0 +1,706 @@
+{
+  "Clans": {
+    "fks": [
+      {
+        "from": "member_name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"member_name_id\" INTEGER, \"bonusexp\" INTEGER, \"bonusrepair\" INTEGER, \"bonustrade\" INTEGER, \"helpness\" INTEGER, \"Volatile\" REAL, \"noblivion\" REAL, \"playereffect\" REAL, \"color\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"member_name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "values": [
+      {
+        "Volatile": 0.3,
+        "bonusexp": 15,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 50,
+        "id": 2,
+        "member_name_id": 0,
+        "name_id": 19,
+        "noblivion": 0.1,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_WILD"
+      },
+      {
+        "Volatile": 0.2,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 20,
+        "id": 3,
+        "member_name_id": 0,
+        "name_id": 10,
+        "noblivion": 0.5,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_INVADERS"
+      },
+      {
+        "Volatile": 0.1,
+        "bonusexp": 0,
+        "bonusrepair": 40,
+        "bonustrade": 10,
+        "color": 0,
+        "helpness": 10,
+        "id": 4,
+        "member_name_id": 0,
+        "name_id": 2,
+        "noblivion": 1.0,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_CARRIERS"
+      },
+      {
+        "Volatile": 0.1,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": -2,
+        "id": 5,
+        "member_name_id": 0,
+        "name_id": 20,
+        "noblivion": 0.5,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_TROOPS"
+      },
+      {
+        "Volatile": 0.05,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": -1,
+        "id": 6,
+        "member_name_id": 0,
+        "name_id": 16,
+        "noblivion": 1.0,
+        "playereffect": 0.5,
+        "resource": "",
+        "text_id": "ORG_SC"
+      },
+      {
+        "Volatile": 0.2,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 10,
+        "id": 7,
+        "member_name_id": 0,
+        "name_id": 21,
+        "noblivion": 0.1,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_WATCHSTONES"
+      },
+      {
+        "Volatile": 0.3,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 50,
+        "id": 8,
+        "member_name_id": 0,
+        "name_id": 17,
+        "noblivion": 0.1,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_SINIGR"
+      },
+      {
+        "Volatile": 0.3,
+        "bonusexp": 15,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 50,
+        "id": 9,
+        "member_name_id": 0,
+        "name_id": 4,
+        "noblivion": 0.15,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_ELIMINATORS"
+      },
+      {
+        "Volatile": 0.3,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 50,
+        "id": 10,
+        "member_name_id": 0,
+        "name_id": 6,
+        "noblivion": 0.1,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_FIRST"
+      },
+      {
+        "Volatile": 0.05,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 7,
+        "color": 0,
+        "helpness": 25,
+        "id": 11,
+        "member_name_id": 0,
+        "name_id": 13,
+        "noblivion": 1.0,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_PANZIR"
+      },
+      {
+        "Volatile": 0.1,
+        "bonusexp": 0,
+        "bonusrepair": 50,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": -20,
+        "id": 12,
+        "member_name_id": 0,
+        "name_id": 9,
+        "noblivion": 0.5,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_HUNTERS"
+      },
+      {
+        "Volatile": 0.2,
+        "bonusexp": 30,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 50,
+        "id": 13,
+        "member_name_id": 0,
+        "name_id": 15,
+        "noblivion": 0.25,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_RESTRICTORS"
+      },
+      {
+        "Volatile": 0.1,
+        "bonusexp": 25,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 10,
+        "id": 17,
+        "member_name_id": 0,
+        "name_id": 3,
+        "noblivion": 0.5,
+        "playereffect": 0.2,
+        "resource": "",
+        "text_id": "ORG_BLACKGAMERS"
+      },
+      {
+        "Volatile": 0.05,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 5,
+        "color": 0,
+        "helpness": 50,
+        "id": 20,
+        "member_name_id": 0,
+        "name_id": 18,
+        "noblivion": 1.0,
+        "playereffect": 0.05,
+        "resource": "",
+        "text_id": "ORG_TRANSES"
+      },
+      {
+        "Volatile": 0.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -16711936,
+        "helpness": 200,
+        "id": 21,
+        "member_name_id": 0,
+        "name_id": 1,
+        "noblivion": 0.0,
+        "playereffect": 1.0,
+        "resource": "MOD_ICO_20_USER",
+        "text_id": "ORG_PLAYER"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -2928017,
+        "helpness": 25,
+        "id": 22,
+        "member_name_id": 0,
+        "name_id": 11,
+        "noblivion": 0.5,
+        "playereffect": 0.5,
+        "resource": "MOD_ICO_11_NARGOONS",
+        "text_id": "ORG_NARGOON"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -16777216,
+        "helpness": 100,
+        "id": 23,
+        "member_name_id": 0,
+        "name_id": 5,
+        "noblivion": 0.1,
+        "playereffect": 0.2,
+        "resource": "MOD_ICO_27_FINDERS",
+        "text_id": "ORG_FINDERS"
+      },
+      {
+        "Volatile": 0.05,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 0,
+        "id": 24,
+        "member_name_id": 0,
+        "name_id": 14,
+        "noblivion": 1.0,
+        "playereffect": 0.05,
+        "resource": "MOD_ICO_RECONERS",
+        "text_id": "ORG_RECONERS"
+      },
+      {
+        "Volatile": 0.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": 0,
+        "helpness": 0,
+        "id": 25,
+        "member_name_id": 0,
+        "name_id": 12,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "",
+        "text_id": "ORG_NPC"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -11972706,
+        "helpness": 100,
+        "id": 27,
+        "member_name_id": 0,
+        "name_id": 28,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_14_FORWARD",
+        "text_id": "ORG_FORWARD"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -12286644,
+        "helpness": 100,
+        "id": 28,
+        "member_name_id": 0,
+        "name_id": 29,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_06_HIDDEN",
+        "text_id": "ORG_HIDDEN"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -8962717,
+        "helpness": 100,
+        "id": 29,
+        "member_name_id": 0,
+        "name_id": 23,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_08_ARHEYS",
+        "text_id": "ORG_ARHEYS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -5263080,
+        "helpness": 100,
+        "id": 30,
+        "member_name_id": 0,
+        "name_id": 24,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_09_ASCENDS",
+        "text_id": "ORG_ASCENDS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -9058599,
+        "helpness": 10,
+        "id": 31,
+        "member_name_id": 0,
+        "name_id": 31,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_17_MORFS",
+        "text_id": "ORG_MORFS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -217322,
+        "helpness": 50,
+        "id": 32,
+        "member_name_id": 0,
+        "name_id": 25,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_22_CALMKEEPER",
+        "text_id": "ORG_CALMKEEPERS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -30464,
+        "helpness": 100,
+        "id": 33,
+        "member_name_id": 0,
+        "name_id": 26,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_18_FANTOMS",
+        "text_id": "ORG_FANTOMS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -16711681,
+        "helpness": 100,
+        "id": 34,
+        "member_name_id": 0,
+        "name_id": 30,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_04_MERCATORS",
+        "text_id": "ORG_MERCATORS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -13931835,
+        "helpness": 50,
+        "id": 35,
+        "member_name_id": 0,
+        "name_id": 33,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_03_TOLERANCE",
+        "text_id": "ORG_TOLERANS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -2309031,
+        "helpness": 100,
+        "id": 36,
+        "member_name_id": 0,
+        "name_id": 32,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_13_SURVIVORS",
+        "text_id": "ORG_SURVIVORS"
+      },
+      {
+        "Volatile": 1.0,
+        "bonusexp": 0,
+        "bonusrepair": 0,
+        "bonustrade": 0,
+        "color": -6279389,
+        "helpness": 100,
+        "id": 37,
+        "member_name_id": 0,
+        "name_id": 27,
+        "noblivion": 0.0,
+        "playereffect": 0.0,
+        "resource": "MOD_ICO_21_FIREHALF",
+        "text_id": "ORG_FIREHALF"
+      }
+    ]
+  },
+  "Strings": {
+    "fks": [
+      {
+        "from": "table_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Tables",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
+    "values": [
+      {
+        "en": "",
+        "id": 1,
+        "ru": "\u041a\u043b\u0430\u043d \u0438\u0433\u0440\u043e\u043a\u0430",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 2,
+        "ru": "\u0412\u043e\u0437\u0447\u0438\u043a\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 3,
+        "ru": "\u0427\u0451\u0440\u043d\u044b\u0435 \u0438\u0433\u0440\u043e\u043a\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 4,
+        "ru": "\u0420\u0430\u0437\u0440\u0443\u0448\u0438\u0442\u0435\u043b\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 5,
+        "ru": "\u0418\u0441\u043a\u0430\u0442\u0435\u043b\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 6,
+        "ru": "\u041f\u0435\u0440\u0432\u044b\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 9,
+        "ru": "\u041e\u0445\u043e\u0442\u043d\u0438\u043a\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 10,
+        "ru": "\u0417\u0430\u0445\u0432\u0430\u0442\u0447\u0438\u043a\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 11,
+        "ru": "\u041d\u0430\u0440\u0433\u0443\u043d\u044b",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 12,
+        "ru": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 13,
+        "ru": "\u041f\u0430\u043d\u0446\u0438\u0440\u043d\u0438\u043a\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 14,
+        "ru": "\u0421\u0447\u0438\u0442\u0430\u044e\u0449\u0438\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 15,
+        "ru": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0438\u0442\u0435\u043b\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 16,
+        "ru": "\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u041f\u0435\u0440\u0435\u043c\u0435\u043d",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 17,
+        "ru": "\u0421\u0438\u043d\u0438\u0433\u0440",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 18,
+        "ru": "\u0422\u0440\u0430\u043d\u0441\u044b",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 19,
+        "ru": "\u0414\u0438\u043a\u0438\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 20,
+        "ru": "\u0421\u0442\u0430\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 21,
+        "ru": "\u0421\u043b\u0435\u0434\u044f\u0449\u0438\u0435 \u043a\u0430\u043c\u043d\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 23,
+        "ru": "\u0410\u0440\u0445\u0435\u0438",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 24,
+        "ru": "\u0412\u043e\u0441\u0445\u043e\u0434\u044f\u0449\u0438\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 25,
+        "ru": "\u0425\u0440\u0430\u043d\u0438\u0442\u0435\u043b\u0438 \u043f\u043e\u043a\u043e\u044f",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 26,
+        "ru": "\u0424\u0430\u043d\u0442\u043e\u043c\u044b",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 27,
+        "ru": "\u041f\u043e\u043b\u043e\u0432\u0438\u043d\u0430 \u041e\u0433\u043d\u044f",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 28,
+        "ru": "\u0424\u043e\u0440\u0432\u0430\u0440\u0434",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 29,
+        "ru": "\u0421\u043a\u0440\u044b\u0442\u044b\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 30,
+        "ru": "\u041c\u0435\u0440\u043a\u0430\u0442\u043e\u0440\u044b",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 31,
+        "ru": "\u041c\u043e\u0440\u0444\u044b",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 32,
+        "ru": "\u0416\u0438\u0432\u0443\u0447\u0438\u0435",
+        "table_id": 4,
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 33,
+        "ru": "\u0422\u043e\u043b\u0435\u0440\u0430\u043d\u0441\u044b",
+        "table_id": 4,
+        "text_id": ""
+      }
+    ]
+  }
+}

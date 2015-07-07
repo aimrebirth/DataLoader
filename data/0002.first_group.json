@@ -1,0 +1,48 @@
+{
+  "Groups": {
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Groups\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "values": [
+      {
+        "id": 1,
+        "name_id": 1,
+        "text_id": "NO GROUP"
+      }
+    ]
+  },
+  "Strings": {
+    "fks": [
+      {
+        "from": "table_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Tables",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
+    "values": [
+      {
+        "en": "",
+        "id": 1,
+        "ru": "\u0411\u0435\u0437 \u0433\u0440\u0443\u043f\u043f\u044b",
+        "table_id": 14,
+        "text_id": ""
+      }
+    ]
+  }
+}
