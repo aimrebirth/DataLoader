@@ -140,6 +140,8 @@ public:
     string printAddDeleteRecord(string &impl);
     string printUsing();
 
+    bool isVisibleInTreeView() const;
+
     bool operator<(const Table &rhs) const
     {
         //if (linksToThisTable.find(rhs.name) != linksToThisTable.end())

@@ -1,0 +1,765 @@
+{
+  "Goods": {
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Goods\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"resource_drop\" TEXT, \"name_id\" INTEGER, \"price\" INTEGER, \"weight\" REAL, \"notrade\" INTEGER, \"type\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "values": [
+      {
+        "id": 1,
+        "name_id": 1,
+        "notrade": 1,
+        "price": 0,
+        "resource": "MOD_CONT_001",
+        "resource_drop": "",
+        "text_id": "TOV_CONTAINER",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 2,
+        "name_id": 2,
+        "notrade": 0,
+        "price": 50,
+        "resource": "MOD_TOV_NIKEL",
+        "resource_drop": "",
+        "text_id": "TOV_NIKEL",
+        "type": 0,
+        "weight": 175.0
+      },
+      {
+        "id": 3,
+        "name_id": 3,
+        "notrade": 0,
+        "price": 80,
+        "resource": "MOD_TOV_TITAN",
+        "resource_drop": "",
+        "text_id": "TOV_TITAN",
+        "type": 0,
+        "weight": 160.0
+      },
+      {
+        "id": 4,
+        "name_id": 4,
+        "notrade": 0,
+        "price": 100,
+        "resource": "MOD_TOV_AKTIVMETALL",
+        "resource_drop": "",
+        "text_id": "TOV_ACTIVE_METALL",
+        "type": 0,
+        "weight": 120.0
+      },
+      {
+        "id": 5,
+        "name_id": 5,
+        "notrade": 0,
+        "price": 500,
+        "resource": "MOD_TOV_RAEL",
+        "resource_drop": "",
+        "text_id": "TOV_RADIOACTIVES",
+        "type": 0,
+        "weight": 500.0
+      },
+      {
+        "id": 6,
+        "name_id": 6,
+        "notrade": 0,
+        "price": 1000,
+        "resource": "MOD_TOV_MM",
+        "resource_drop": "",
+        "text_id": "TOV_MULTIMASSE",
+        "type": 0,
+        "weight": 200.0
+      },
+      {
+        "id": 7,
+        "name_id": 7,
+        "notrade": 0,
+        "price": 100,
+        "resource": "MOD_TOV_KR",
+        "resource_drop": "",
+        "text_id": "TOV_CRYSTALS",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 8,
+        "name_id": 8,
+        "notrade": 0,
+        "price": 250,
+        "resource": "MOD_TOV_GR",
+        "resource_drop": "",
+        "text_id": "TOV_GAS",
+        "type": 0,
+        "weight": 100.0
+      },
+      {
+        "id": 9,
+        "name_id": 9,
+        "notrade": 0,
+        "price": 1750,
+        "resource": "MOD_TOV_BEC",
+        "resource_drop": "",
+        "text_id": "TOV_BIG_ENERGY_CONDENSOR",
+        "type": 1,
+        "weight": 420.0
+      },
+      {
+        "id": 10,
+        "name_id": 10,
+        "notrade": 0,
+        "price": 250,
+        "resource": "MOD_TOV_RB",
+        "resource_drop": "",
+        "text_id": "TOV_REPAIR_MODUL",
+        "type": 1,
+        "weight": 200.0
+      },
+      {
+        "id": 11,
+        "name_id": 11,
+        "notrade": 1,
+        "price": 0,
+        "resource": "MOD_TOV_MECHMIND",
+        "resource_drop": "",
+        "text_id": "TOV_MECHANOID",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 12,
+        "name_id": 12,
+        "notrade": 0,
+        "price": 700,
+        "resource": "MOD_TOV_KRIO",
+        "resource_drop": "",
+        "text_id": "TOV_CRYOTRON",
+        "type": 2,
+        "weight": 250.0
+      },
+      {
+        "id": 13,
+        "name_id": 13,
+        "notrade": 0,
+        "price": 200,
+        "resource": "MOD_TOV_EM",
+        "resource_drop": "",
+        "text_id": "TOV_ENERGOMODUL",
+        "type": 1,
+        "weight": 75.0
+      },
+      {
+        "id": 14,
+        "name_id": 14,
+        "notrade": 0,
+        "price": 300,
+        "resource": "MOD_TOV_ELO",
+        "resource_drop": "",
+        "text_id": "TOV_LG_ELEMENTS",
+        "type": 2,
+        "weight": 200.0
+      },
+      {
+        "id": 15,
+        "name_id": 15,
+        "notrade": 0,
+        "price": 190,
+        "resource": "MOD_TOV_EX",
+        "resource_drop": "",
+        "text_id": "TOV_EXPLOSIVES",
+        "type": 1,
+        "weight": 100.0
+      },
+      {
+        "id": 16,
+        "name_id": 16,
+        "notrade": 0,
+        "price": 150,
+        "resource": "MOD_TOV_NM",
+        "resource_drop": "",
+        "text_id": "TOV_NAV_MOLECTRONIC",
+        "type": 2,
+        "weight": 75.0
+      },
+      {
+        "id": 17,
+        "name_id": 17,
+        "notrade": 0,
+        "price": 240,
+        "resource": "MOD_TOV_STABPOL",
+        "resource_drop": "",
+        "text_id": "TOV_FIELD_STABILIZER",
+        "type": 2,
+        "weight": 60.0
+      },
+      {
+        "id": 18,
+        "name_id": 18,
+        "notrade": 0,
+        "price": 350,
+        "resource": "MOD_TOV_PEF",
+        "resource_drop": "",
+        "text_id": "TOV_FIELD_AFFECTOR",
+        "type": 2,
+        "weight": 200.0
+      },
+      {
+        "id": 19,
+        "name_id": 19,
+        "notrade": 0,
+        "price": 520,
+        "resource": "MOD_TOV_ZR",
+        "resource_drop": "",
+        "text_id": "TOV_ZERO_REACTOR",
+        "type": 2,
+        "weight": 250.0
+      },
+      {
+        "id": 20,
+        "name_id": 20,
+        "notrade": 0,
+        "price": 95,
+        "resource": "MOD_TOV_ERBO",
+        "resource_drop": "",
+        "text_id": "TOV_RB_ELEMENTS",
+        "type": 2,
+        "weight": 45.0
+      },
+      {
+        "id": 21,
+        "name_id": 21,
+        "notrade": 0,
+        "price": 600,
+        "resource": "MOD_TOV_ETO",
+        "resource_drop": "",
+        "text_id": "TOV_HG_ELEMENTS",
+        "type": 2,
+        "weight": 250.0
+      },
+      {
+        "id": 22,
+        "name_id": 22,
+        "notrade": 0,
+        "price": 190,
+        "resource": "MOD_TOV_ANTIV",
+        "resource_drop": "",
+        "text_id": "TOV_ANTIMATTER",
+        "type": 1,
+        "weight": 60.0
+      },
+      {
+        "id": 23,
+        "name_id": 23,
+        "notrade": 0,
+        "price": 1200,
+        "resource": "MOD_TOV_POLYPLAST",
+        "resource_drop": "",
+        "text_id": "TOV_POLYMER_PLATE",
+        "type": 2,
+        "weight": 560.0
+      },
+      {
+        "id": 24,
+        "name_id": 24,
+        "notrade": 0,
+        "price": 325,
+        "resource": "MOD_TOV_MULTIORG",
+        "resource_drop": "",
+        "text_id": "TOV_MULTIORGANIC",
+        "type": 2,
+        "weight": 80.0
+      },
+      {
+        "id": 25,
+        "name_id": 25,
+        "notrade": 0,
+        "price": 550,
+        "resource": "MOD_TOV_NF",
+        "resource_drop": "",
+        "text_id": "TOV_NUCLEAR_FUEL",
+        "type": 1,
+        "weight": 150.0
+      },
+      {
+        "id": 26,
+        "name_id": 26,
+        "notrade": 0,
+        "price": 400,
+        "resource": "MOD_TOV_HK",
+        "resource_drop": "",
+        "text_id": "TOV_CHAOS_CONVERTOR",
+        "type": 1,
+        "weight": 80.0
+      },
+      {
+        "id": 27,
+        "name_id": 38,
+        "notrade": 0,
+        "price": 320,
+        "resource": "MOD_TOV_KATVAK",
+        "resource_drop": "",
+        "text_id": "TOV_VACUUM_CATALYZER",
+        "type": 1,
+        "weight": 75.0
+      },
+      {
+        "id": 28,
+        "name_id": 28,
+        "notrade": 0,
+        "price": 240,
+        "resource": "MOD_TOV_RAKT",
+        "resource_drop": "",
+        "text_id": "TOV_ROCKET_FUEL",
+        "type": 2,
+        "weight": 130.0
+      },
+      {
+        "id": 36,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_SUPERMODUL",
+        "type": 0,
+        "weight": 300.0
+      },
+      {
+        "id": 39,
+        "name_id": 29,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_ANTENNA",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 40,
+        "name_id": 30,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_ANTENNA_DESTRUCT",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 91,
+        "name_id": 31,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_BIOKONTAINER",
+        "type": 0,
+        "weight": 15.0
+      },
+      {
+        "id": 92,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_ATOMIC_RUBISH",
+        "type": 0,
+        "weight": 260.0
+      },
+      {
+        "id": 93,
+        "name_id": 40,
+        "notrade": 1,
+        "price": 0,
+        "resource": "MOD_TOV_INFPACK",
+        "resource_drop": "",
+        "text_id": "TOV_INFORMPAKET",
+        "type": 0,
+        "weight": 0.0
+      },
+      {
+        "id": 94,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_PHASE_CONVERTER",
+        "type": 0,
+        "weight": 300.0
+      },
+      {
+        "id": 97,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_BUILDMODUL",
+        "type": 0,
+        "weight": 500.0
+      },
+      {
+        "id": 105,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_ANCHOR",
+        "type": 0,
+        "weight": 10.0
+      },
+      {
+        "id": 111,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "",
+        "resource_drop": "",
+        "text_id": "TOV_DANGEROUS",
+        "type": 0,
+        "weight": 400.0
+      },
+      {
+        "id": 113,
+        "name_id": 0,
+        "notrade": 1,
+        "price": 0,
+        "resource": "MOD_EQP_ART_MAJAK",
+        "resource_drop": "",
+        "text_id": "TOV_ANCHOR2",
+        "type": 0,
+        "weight": 10.0
+      },
+      {
+        "id": 130,
+        "name_id": 32,
+        "notrade": 0,
+        "price": 100,
+        "resource": "MOD_CRASH_SMALL_01",
+        "resource_drop": "",
+        "text_id": "TOV_RAW_FRAGMENT",
+        "type": 0,
+        "weight": 25.0
+      },
+      {
+        "id": 131,
+        "name_id": 33,
+        "notrade": 0,
+        "price": 50,
+        "resource": "MOD_TOV_ORE",
+        "resource_drop": "",
+        "text_id": "TOV_ORE",
+        "type": 0,
+        "weight": 200.0
+      },
+      {
+        "id": 132,
+        "name_id": 34,
+        "notrade": 0,
+        "price": 30,
+        "resource": "MOD_TOV_GAS",
+        "resource_drop": "",
+        "text_id": "TOV_RAW_GAS",
+        "type": 0,
+        "weight": 80.0
+      },
+      {
+        "id": 133,
+        "name_id": 35,
+        "notrade": 0,
+        "price": 60,
+        "resource": "MOD_TOV_ORGANIC_MASS",
+        "resource_drop": "",
+        "text_id": "TOV_ORGANIC_MASS",
+        "type": 0,
+        "weight": 75.0
+      },
+      {
+        "id": 134,
+        "name_id": 36,
+        "notrade": 0,
+        "price": 50,
+        "resource": "MOD_TOV_CHEMICALS",
+        "resource_drop": "",
+        "text_id": "TOV_CHEMICALS",
+        "type": 0,
+        "weight": 100.0
+      },
+      {
+        "id": 135,
+        "name_id": 39,
+        "notrade": 1,
+        "price": 0,
+        "resource": "MOD_CONT_001",
+        "resource_drop": "",
+        "text_id": "TOV_UNIQUE_CONTAINER",
+        "type": 0,
+        "weight": 50.0
+      },
+      {
+        "id": 142,
+        "name_id": 37,
+        "notrade": 0,
+        "price": 500,
+        "resource": "MOD_L11_RESOURCE_01",
+        "resource_drop": "",
+        "text_id": "TOV_FUNGUS",
+        "type": 0,
+        "weight": 50.0
+      }
+    ]
+  },
+  "Strings": {
+    "fks": [],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\") )",
+    "values": [
+      {
+        "en": "",
+        "id": 1,
+        "ru": "\u041a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 2,
+        "ru": "\u041d\u0438\u043a\u0435\u043b\u044c",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 3,
+        "ru": "\u0422\u0438\u0442\u0430\u043d",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 4,
+        "ru": "\u0410\u043a\u0442\u0438\u0432\u043d\u044b\u0435 \u043c\u0435\u0442\u0430\u043b\u043b\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 5,
+        "ru": "\u0420\u0430\u0434\u0438\u043e\u0430\u043a\u0442\u0438\u0432\u043d\u044b\u0435 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 6,
+        "ru": "\u041c\u0443\u043b\u044c\u0442\u0438\u043c\u0430\u0441\u0441\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 7,
+        "ru": "\u041c\u043e\u043d\u043e\u043a\u0440\u0438\u0441\u0442\u0430\u043b\u043b\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 8,
+        "ru": "\u0413\u0430\u0437\u043e\u0432\u0430\u044f \u0441\u043c\u0435\u0441\u044c",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 9,
+        "ru": "\u0411\u043e\u043b\u044c\u0448\u043e\u0438\u0306 \u044d\u043d\u0435\u0440\u0433\u043e\u043a\u043e\u043d\u0434\u0435\u043d\u0441\u043e\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 10,
+        "ru": "\u0420\u0435\u043c\u043e\u043d\u0442\u043d\u044b\u0439 \u0431\u043b\u043e\u043a",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 11,
+        "ru": "\u041c\u0435\u0445\u0430\u043d\u043e\u0438\u0434",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 12,
+        "ru": "\u041a\u0440\u0438\u043e\u0442\u043e\u043d\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 13,
+        "ru": "\u042d\u043d\u0435\u0440\u0433\u043e\u043c\u043e\u0434\u0443\u043b\u044c",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 14,
+        "ru": "\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b \u043b\u0451\u0433\u043a\u043e\u0433\u043e \u043e\u0440\u0443\u0436\u0438\u044f",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 15,
+        "ru": "\u0412\u0437\u0440\u044b\u0432\u0447\u0430\u0442\u043a\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 16,
+        "ru": "\u041d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u043c\u043e\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u0438\u043a\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 17,
+        "ru": "\u0421\u0442\u0430\u0431\u0438\u043b\u0438\u0437\u0430\u0442\u043e\u0440 \u043f\u043e\u043b\u044f",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 18,
+        "ru": "\u041f\u043e\u043b\u0435\u0432\u043e\u0439 \u044d\u0444\u0444\u0435\u043a\u0442\u043e\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 19,
+        "ru": "\u041d\u0443\u043b\u044c-\u0440\u0435\u0430\u043a\u0442\u043e\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 20,
+        "ru": "\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b \u0431\u043e\u0435\u043f\u0440\u0438\u043f\u0430\u0441\u043e\u0432",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 21,
+        "ru": "\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b \u0442\u044f\u0436\u0451\u043b\u043e\u0433\u043e \u043e\u0440\u0443\u0436\u0438\u044f",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 22,
+        "ru": "\u0410\u043d\u0442\u0438\u043c\u0430\u0442\u0435\u0440\u0438\u044f",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 23,
+        "ru": "\u041f\u043e\u043b\u0438\u043c\u0435\u0440\u043d\u044b\u0435 \u043f\u043b\u0430\u0441\u0442\u0438\u043d\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 24,
+        "ru": "\u041c\u0443\u043b\u044c\u0442\u0438\u043e\u0440\u0433\u0430\u043d\u0438\u043a\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 25,
+        "ru": "\u042f\u0434\u0435\u0440\u043d\u043e\u0435 \u0442\u043e\u043f\u043b\u0438\u0432\u043e",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 26,
+        "ru": "\u0425\u0430\u043e\u0441-\u043a\u043e\u043d\u0432\u0435\u0440\u0442\u043e\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 28,
+        "ru": "\u0420\u0430\u043a\u0435\u0442\u043d\u043e\u0435 \u0442\u043e\u043f\u043b\u0438\u0432\u043e",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 29,
+        "ru": "\u0410\u043d\u0442\u0435\u043d\u043d\u0430 \u043a\u043b\u0438\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 30,
+        "ru": "\u0421\u043b\u043e\u043c\u0430\u043d\u043d\u0430\u044f \u0430\u043d\u0442\u0435\u043d\u043d\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 31,
+        "ru": "\u0411\u0438\u043e\u043a\u043e\u043d\u0442\u0435\u0439\u043d\u0435\u0440",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 32,
+        "ru": "\u041e\u0431\u043b\u043e\u043c\u043e\u043a \u0433\u043b\u0430\u0439\u0434\u0435\u0440\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 33,
+        "ru": "\u0420\u0443\u0434\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 34,
+        "ru": "\u041d\u0435\u043e\u0447\u0438\u0449\u0435\u043d\u043d\u044b\u0439 \u0441\u0436\u0430\u0442\u044b\u0439 \u0433\u0430\u0437",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 35,
+        "ru": "\u041e\u0440\u0433\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043c\u0430\u0441\u0441\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 36,
+        "ru": "\u041d\u0435\u043e\u0447\u0438\u0449\u0435\u043d\u043d\u044b\u0435 \u0445\u0438\u043c\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 37,
+        "ru": "\u0413\u0440\u0438\u0431\u044b",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 38,
+        "ru": "\u041a\u0430\u0442\u0430\u043b\u0438\u0437\u0430\u0442\u043e\u0440 \u0432\u0430\u043a\u0443\u0443\u043c\u043d\u043e\u0433\u043e \u0441\u0438\u043d\u0442\u0435\u0437\u0430",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 39,
+        "ru": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0439 \u0433\u0440\u0443\u0437",
+        "text_id": ""
+      },
+      {
+        "en": "",
+        "id": 40,
+        "ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u043f\u0430\u043a\u0435\u0442",
+        "text_id": ""
+      }
+    ]
+  }
+}

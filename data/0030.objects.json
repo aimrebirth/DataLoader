@@ -16,2590 +16,2590 @@
     "values": [
       {
         "id": 1,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BLD_PLITA",
         "type": 0
       },
       {
         "id": 2,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BLD_PLITAX16",
         "type": 0
       },
       {
         "id": 3,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BLD_PLITAX4",
         "type": 0
       },
       {
         "id": 4,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BLD_PLITA_HALF",
         "type": 0
       },
       {
         "id": 5,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_ MOX001",
         "type": 0
       },
       {
         "id": 6,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_ MOX004",
         "type": 0
       },
       {
         "id": 7,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_ALIEN_SHIP",
         "type": 0
       },
       {
         "id": 8,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BAR_MINI",
         "type": 0
       },
       {
         "id": 9,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_LAMP_CLIFF",
         "type": 0
       },
       {
         "id": 10,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_NUT_01",
         "type": 0
       },
       {
         "id": 11,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_NUT_02",
         "type": 0
       },
       {
         "id": 12,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_TUBE_01",
         "type": 0
       },
       {
         "id": 13,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_TUBE_02",
         "type": 0
       },
       {
         "id": 14,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L1_TUBE_03",
         "type": 0
       },
       {
         "id": 15,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_LOCATOR_1",
         "type": 0
       },
       {
         "id": 16,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_PRISTAN",
         "type": 0
       },
       {
         "id": 17,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_ROAD_BARRIER",
         "type": 0
       },
       {
         "id": 18,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_ROAD_CLEANER1",
         "type": 0
       },
       {
         "id": 19,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_ROAD_CLEANER2",
         "type": 0
       },
       {
         "id": 20,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_ARKA1",
         "type": 0
       },
       {
         "id": 21,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_ASM_1",
         "type": 0
       },
       {
         "id": 22,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_ASM_2",
         "type": 0
       },
       {
         "id": 23,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_ASM_3",
         "type": 0
       },
       {
         "id": 24,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_ASM_4",
         "type": 0
       },
       {
         "id": 25,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_BIG_1",
         "type": 0
       },
       {
         "id": 26,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_BIG_2",
         "type": 0
       },
       {
         "id": 27,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_BIG_6",
         "type": 0
       },
       {
         "id": 28,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FA3R",
         "type": 0
       },
       {
         "id": 29,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE1",
         "type": 0
       },
       {
         "id": 30,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE10",
         "type": 0
       },
       {
         "id": 31,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE11",
         "type": 0
       },
       {
         "id": 32,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE11R",
         "type": 0
       },
       {
         "id": 33,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE2",
         "type": 0
       },
       {
         "id": 34,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE3",
         "type": 0
       },
       {
         "id": 35,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE4",
         "type": 0
       },
       {
         "id": 36,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE5",
         "type": 0
       },
       {
         "id": 37,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE6",
         "type": 0
       },
       {
         "id": 38,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE7",
         "type": 0
       },
       {
         "id": 39,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE8",
         "type": 0
       },
       {
         "id": 40,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE9",
         "type": 0
       },
       {
         "id": 41,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE9R",
         "type": 0
       },
       {
         "id": 42,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_KSTONE01",
         "type": 0
       },
       {
         "id": 43,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_NASA1",
         "type": 0
       },
       {
         "id": 44,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_NASA2",
         "type": 0
       },
       {
         "id": 45,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_SSSS",
         "type": 0
       },
       {
         "id": 46,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_TEH_MONITOR_POINT",
         "type": 0
       },
       {
         "id": 47,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L1_GREB001",
         "type": 0
       },
       {
         "id": 48,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_CACTUS1",
         "type": 0
       },
       {
         "id": 49,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_CACTUS2",
         "type": 0
       },
       {
         "id": 50,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_BAO",
         "type": 0
       },
       {
         "id": 51,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_BURN0",
         "type": 0
       },
       {
         "id": 52,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_BURN_1",
         "type": 0
       },
       {
         "id": 53,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_BURN_2",
         "type": 0
       },
       {
         "id": 54,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_BURN_3",
         "type": 0
       },
       {
         "id": 55,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_DRY_0",
         "type": 0
       },
       {
         "id": 56,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_DRY_1",
         "type": 0
       },
       {
         "id": 57,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_DRY_2",
         "type": 0
       },
       {
         "id": 58,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_DRY_3",
         "type": 0
       },
       {
         "id": 59,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_KRONA",
         "type": 0
       },
       {
         "id": 60,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_KRONA1",
         "type": 0
       },
       {
         "id": 61,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_KRONA2",
         "type": 0
       },
       {
         "id": 62,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_KUST_1",
         "type": 0
       },
       {
         "id": 63,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L1_KUST_1M",
         "type": 0
       },
       {
         "id": 64,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L2_MUSH_1",
         "type": 0
       },
       {
         "id": 65,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_BLD_1",
         "type": 0
       },
       {
         "id": 66,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP1",
         "type": 0
       },
       {
         "id": 67,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP1_CROSS",
         "type": 0
       },
       {
         "id": 68,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP_UNDER",
         "type": 0
       },
       {
         "id": 69,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "FALLEN_TREE_2",
         "type": 0
       },
       {
         "id": 70,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "FALLEN_TREE_3",
         "type": 0
       },
       {
         "id": 71,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "FALLEN_TREE_BURN_1",
         "type": 0
       },
       {
         "id": 72,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "FALLEN_TREE_BURN_2",
         "type": 0
       },
       {
         "id": 73,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "FALLEN_TREE_BURN_3",
         "type": 0
       },
       {
         "id": 74,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_BRIDGE",
         "type": 0
       },
       {
         "id": 75,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_PASSWAY",
         "type": 0
       },
       {
         "id": 76,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STONE_LIGHT",
         "type": 0
       },
       {
         "id": 77,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STONE_LIGHT2",
         "type": 0
       },
       {
         "id": 78,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STONE_LIGHT3",
         "type": 0
       },
       {
         "id": 79,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STONE_LIGHT4",
         "type": 0
       },
       {
         "id": 80,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STONE_LIGHT5",
         "type": 0
       },
       {
         "id": 81,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L2_ARC2",
         "type": 0
       },
       {
         "id": 82,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L2_ARC3",
         "type": 0
       },
       {
         "id": 83,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L2_COLLECTOR",
         "type": 0
       },
       {
         "id": 84,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_RUINS_EFF",
         "type": 0
       },
       {
         "id": 85,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_RUINS_FACT",
         "type": 0
       },
       {
         "id": 86,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_RUINS_MINE1",
         "type": 0
       },
       {
         "id": 87,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TEMP_PUSHKA",
         "type": 0
       },
       {
         "id": 88,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BUSH_04",
         "type": 0
       },
       {
         "id": 89,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BUSH_GREEN_03",
         "type": 0
       },
       {
         "id": 90,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "EL001",
         "type": 0
       },
       {
         "id": 91,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "EL002A",
         "type": 0
       },
       {
         "id": 92,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_BUSH_04",
         "type": 0
       },
       {
         "id": 93,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE01",
         "type": 0
       },
       {
         "id": 94,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE02",
         "type": 0
       },
       {
         "id": 95,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE02_??",
         "type": 0
       },
       {
         "id": 96,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE03",
         "type": 0
       },
       {
         "id": 97,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE04",
         "type": 0
       },
       {
         "id": 98,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE05",
         "type": 0
       },
       {
         "id": 99,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE06",
         "type": 0
       },
       {
         "id": 100,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE_BURNED_2",
         "type": 0
       },
       {
         "id": 101,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE_BURNED_3",
         "type": 0
       },
       {
         "id": 102,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE_BURNED_4",
         "type": 0
       },
       {
         "id": 103,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_TALLTREE_BURNED_7",
         "type": 0
       },
       {
         "id": 104,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_BUSH2",
         "type": 0
       },
       {
         "id": 105,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_BUSH2_1",
         "type": 0
       },
       {
         "id": 106,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_TREE003",
         "type": 0
       },
       {
         "id": 107,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_WOOD_01",
         "type": 0
       },
       {
         "id": 108,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_WOOD_02",
         "type": 0
       },
       {
         "id": 109,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_WOOD_03",
         "type": 0
       },
       {
         "id": 110,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_WOOD_11",
         "type": 0
       },
       {
         "id": 111,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L6_V2",
         "type": 0
       },
       {
         "id": 112,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L7_BEREZA",
         "type": 0
       },
       {
         "id": 113,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "WOOD04",
         "type": 0
       },
       {
         "id": 114,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_L2_LAMP",
         "type": 0
       },
       {
         "id": 115,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BALKA",
         "type": 0
       },
       {
         "id": 116,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_PAR",
         "type": 0
       },
       {
         "id": 117,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_GASER_1_PAR",
         "type": 0
       },
       {
         "id": 118,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_GASER_2_PAR",
         "type": 0
       },
       {
         "id": 119,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_10_4",
         "type": 0
       },
       {
         "id": 120,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_11_2",
         "type": 0
       },
       {
         "id": 121,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_12_5",
         "type": 0
       },
       {
         "id": 122,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_1_5",
         "type": 0
       },
       {
         "id": 123,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_2_1",
         "type": 0
       },
       {
         "id": 124,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_2_3",
         "type": 0
       },
       {
         "id": 125,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_3_2",
         "type": 0
       },
       {
         "id": 126,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_4_4",
         "type": 0
       },
       {
         "id": 127,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_5_1",
         "type": 0
       },
       {
         "id": 128,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_5_3",
         "type": 0
       },
       {
         "id": 129,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_6_5",
         "type": 0
       },
       {
         "id": 130,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_7_2",
         "type": 0
       },
       {
         "id": 131,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_8_4",
         "type": 0
       },
       {
         "id": 132,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_9_3",
         "type": 0
       },
       {
         "id": 133,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ARKA1",
         "type": 0
       },
       {
         "id": 134,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG10_1",
         "type": 0
       },
       {
         "id": 135,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG10_5",
         "type": 0
       },
       {
         "id": 136,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG11_4",
         "type": 0
       },
       {
         "id": 137,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG12_1",
         "type": 0
       },
       {
         "id": 138,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG1_1",
         "type": 0
       },
       {
         "id": 139,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG1_4",
         "type": 0
       },
       {
         "id": 140,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG2_1",
         "type": 0
       },
       {
         "id": 141,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG3_2",
         "type": 0
       },
       {
         "id": 142,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG3_5",
         "type": 0
       },
       {
         "id": 143,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG4_4",
         "type": 0
       },
       {
         "id": 144,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG4_5",
         "type": 0
       },
       {
         "id": 145,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG5_1",
         "type": 0
       },
       {
         "id": 146,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG5_2",
         "type": 0
       },
       {
         "id": 147,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG6_1",
         "type": 0
       },
       {
         "id": 148,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG6_3",
         "type": 0
       },
       {
         "id": 149,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG7_1",
         "type": 0
       },
       {
         "id": 150,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG7_4",
         "type": 0
       },
       {
         "id": 151,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG8_1",
         "type": 0
       },
       {
         "id": 152,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG8_2",
         "type": 0
       },
       {
         "id": 153,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG9_4",
         "type": 0
       },
       {
         "id": 154,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_BIG9_5",
         "type": 0
       },
       {
         "id": 155,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_CRISTALS",
         "type": 0
       },
       {
         "id": 156,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICEBERG_01",
         "type": 0
       },
       {
         "id": 157,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICEBERG_02",
         "type": 0
       },
       {
         "id": 158,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_KRIST_1",
         "type": 0
       },
       {
         "id": 159,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_KRIST_2",
         "type": 0
       },
       {
         "id": 160,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_KRIST_3",
         "type": 0
       },
       {
         "id": 161,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOROS_8_5",
         "type": 0
       },
       {
         "id": 162,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_1_1",
         "type": 0
       },
       {
         "id": 163,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_2_5",
         "type": 0
       },
       {
         "id": 164,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_3_3",
         "type": 0
       },
       {
         "id": 165,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_4_2",
         "type": 0
       },
       {
         "id": 166,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_5_4",
         "type": 0
       },
       {
         "id": 167,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_6_1",
         "type": 0
       },
       {
         "id": 168,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_7_2",
         "type": 0
       },
       {
         "id": 169,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_ICE_TOR_9_4",
         "type": 0
       },
       {
         "id": 170,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L2_TUNNEL1",
         "type": 0
       },
       {
         "id": 171,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L3_DARKSTONE_01",
         "type": 0
       },
       {
         "id": 172,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L3_DARKSTONE_02",
         "type": 0
       },
       {
         "id": 173,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE001A",
         "type": 0
       },
       {
         "id": 174,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE002B",
         "type": 0
       },
       {
         "id": 175,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L2_MUSH2",
         "type": 0
       },
       {
         "id": 176,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_01",
         "type": 0
       },
       {
         "id": 177,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_02",
         "type": 0
       },
       {
         "id": 178,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_03",
         "type": 0
       },
       {
         "id": 179,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_04",
         "type": 0
       },
       {
         "id": 180,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_05",
         "type": 0
       },
       {
         "id": 181,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L3_SNOWTREE_06_F",
         "type": 0
       },
       {
         "id": 182,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_L2_CROSS",
         "type": 0
       },
       {
         "id": 183,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP2",
         "type": 0
       },
       {
         "id": 184,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STN_PASSWAY_2",
         "type": 0
       },
       {
         "id": 185,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_STN_PASSWAY_3",
         "type": 0
       },
       {
         "id": 186,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD01_C",
         "type": 0
       },
       {
         "id": 187,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD02",
         "type": 0
       },
       {
         "id": 188,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD03",
         "type": 0
       },
       {
         "id": 189,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "PORSTONE05",
         "type": 0
       },
       {
         "id": 190,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "PROVAL01",
         "type": 0
       },
       {
         "id": 191,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "PROVAL02",
         "type": 0
       },
       {
         "id": 192,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "PROVAL03",
         "type": 0
       },
       {
         "id": 193,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_DEAD_LAYER",
         "type": 0
       },
       {
         "id": 194,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_RUINS_MAIN",
         "type": 0
       },
       {
         "id": 195,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_RUINS_UNKNOWN",
         "type": 0
       },
       {
         "id": 196,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNKS_01",
         "type": 0
       },
       {
         "id": 197,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNKS_02",
         "type": 0
       },
       {
         "id": 198,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNK_01",
         "type": 0
       },
       {
         "id": 199,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNK_02",
         "type": 0
       },
       {
         "id": 200,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNK_03",
         "type": 0
       },
       {
         "id": 201,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_CHUNK_04",
         "type": 0
       },
       {
         "id": 202,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_FIRE",
         "type": 0
       },
       {
         "id": 203,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_SMOKE",
         "type": 0
       },
       {
         "id": 204,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_SMOKE2",
         "type": 0
       },
       {
         "id": 205,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_GASER_3_LAVA",
         "type": 0
       },
       {
         "id": 206,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_BUSH_01",
         "type": 0
       },
       {
         "id": 207,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_BUSH_02",
         "type": 0
       },
       {
         "id": 208,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_BUSH_03",
         "type": 0
       },
       {
         "id": 209,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_BUSH_04",
         "type": 0
       },
       {
         "id": 210,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_BUSH_05",
         "type": 0
       },
       {
         "id": 211,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_CRACK_01",
         "type": 0
       },
       {
         "id": 212,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_CRACK_02",
         "type": 0
       },
       {
         "id": 213,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_CRACK_03",
         "type": 0
       },
       {
         "id": 214,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_CRACK_04",
         "type": 0
       },
       {
         "id": 215,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_MELTSTONE_01",
         "type": 0
       },
       {
         "id": 216,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_MELTSTONE_02",
         "type": 0
       },
       {
         "id": 217,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L4_MELTSTONE_03",
         "type": 0
       },
       {
         "id": 218,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE01",
         "type": 0
       },
       {
         "id": 219,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE012",
         "type": 0
       },
       {
         "id": 220,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE02",
         "type": 0
       },
       {
         "id": 221,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE04",
         "type": 0
       },
       {
         "id": 222,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE06",
         "type": 0
       },
       {
         "id": 223,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE07",
         "type": 0
       },
       {
         "id": 224,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE08",
         "type": 0
       },
       {
         "id": 225,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE10",
         "type": 0
       },
       {
         "id": 226,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE11",
         "type": 0
       },
       {
         "id": 227,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE13",
         "type": 0
       },
       {
         "id": 228,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE14",
         "type": 0
       },
       {
         "id": 229,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE15",
         "type": 0
       },
       {
         "id": 230,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE16",
         "type": 0
       },
       {
         "id": 231,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE17",
         "type": 0
       },
       {
         "id": 232,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STONE18",
         "type": 0
       },
       {
         "id": 233,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD03_SECTION02_??",
         "type": 0
       },
       {
         "id": 234,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD04",
         "type": 0
       },
       {
         "id": 235,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L4_WOOD04_SECTION01",
         "type": 0
       },
       {
         "id": 236,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP4",
         "type": 0
       },
       {
         "id": 237,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_BEHOLDER_MAGIC",
         "type": 0
       },
       {
         "id": 238,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_MAGIC_BALLS_CYAN",
         "type": 0
       },
       {
         "id": 239,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_MAGIC_BALLS_GREEN",
         "type": 0
       },
       {
         "id": 240,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_SAND",
         "type": 0
       },
       {
         "id": 241,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_KSTONE02",
         "type": 0
       },
       {
         "id": 242,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_DARK_001",
         "type": 0
       },
       {
         "id": 243,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_DARK_002",
         "type": 0
       },
       {
         "id": 244,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_DARK_003",
         "type": 0
       },
       {
         "id": 245,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_001",
         "type": 0
       },
       {
         "id": 246,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_002",
         "type": 0
       },
       {
         "id": 247,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_003",
         "type": 0
       },
       {
         "id": 248,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_004",
         "type": 0
       },
       {
         "id": 249,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_005",
         "type": 0
       },
       {
         "id": 250,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_006",
         "type": 0
       },
       {
         "id": 251,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_007",
         "type": 0
       },
       {
         "id": 252,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_SAND_008",
         "type": 0
       },
       {
         "id": 253,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_WORM_CLAW",
         "type": 0
       },
       {
         "id": 254,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_WORM_EYE_1",
         "type": 0
       },
       {
         "id": 255,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L5_WORM_US",
         "type": 0
       },
       {
         "id": 256,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "BIGKUST1",
         "type": 0
       },
       {
         "id": 257,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_CACTUS_002",
         "type": 0
       },
       {
         "id": 258,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_CACTUS_004",
         "type": 0
       },
       {
         "id": 259,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_CACTUS_005_1",
         "type": 0
       },
       {
         "id": 260,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_CACTUS_005_X2",
         "type": 0
       },
       {
         "id": 261,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_001",
         "type": 0
       },
       {
         "id": 262,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_002",
         "type": 0
       },
       {
         "id": 263,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_003",
         "type": 0
       },
       {
         "id": 264,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_004",
         "type": 0
       },
       {
         "id": 265,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_005_SM",
         "type": 0
       },
       {
         "id": 266,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_DRY_006_SM",
         "type": 0
       },
       {
         "id": 267,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_PALM1",
         "type": 0
       },
       {
         "id": 268,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_PALM2",
         "type": 0
       },
       {
         "id": 269,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_SAC_001",
         "type": 0
       },
       {
         "id": 270,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_SAC_002",
         "type": 0
       },
       {
         "id": 271,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_SAC_003",
         "type": 0
       },
       {
         "id": 272,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L5_SAC_004",
         "type": 0
       },
       {
         "id": 273,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP5",
         "type": 0
       },
       {
         "id": 274,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP5_2",
         "type": 0
       },
       {
         "id": 275,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE001",
         "type": 0
       },
       {
         "id": 276,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE003",
         "type": 0
       },
       {
         "id": 277,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE004",
         "type": 0
       },
       {
         "id": 278,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE005",
         "type": 0
       },
       {
         "id": 279,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE006",
         "type": 0
       },
       {
         "id": 280,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE007",
         "type": 0
       },
       {
         "id": 281,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE008A",
         "type": 0
       },
       {
         "id": 282,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE009B",
         "type": 0
       },
       {
         "id": 283,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L3_STONE010C",
         "type": 0
       },
       {
         "id": 284,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L6_STN_BRIDGE_BASE",
         "type": 0
       },
       {
         "id": 285,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L6_STN_BRIDGE_BASE_X2",
         "type": 0
       },
       {
         "id": 286,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L6_STN_WATERFALL_STONE_1",
         "type": 0
       },
       {
         "id": 287,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L6_STN_WATERFALL_STONE_2",
         "type": 0
       },
       {
         "id": 288,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_BOX",
         "type": 0
       },
       {
         "id": 289,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_LU_BRIDGE",
         "type": 0
       },
       {
         "id": 290,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_WARNING_STRIPS",
         "type": 0
       },
       {
         "id": 291,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_WATERF_ST01",
         "type": 0
       },
       {
         "id": 292,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_WATERF_ST02",
         "type": 0
       },
       {
         "id": 293,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_04",
         "type": 0
       },
       {
         "id": 294,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_BIG_01",
         "type": 0
       },
       {
         "id": 295,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_BIG_03",
         "type": 0
       },
       {
         "id": 296,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_BIG_04",
         "type": 0
       },
       {
         "id": 297,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_BIG_05",
         "type": 0
       },
       {
         "id": 298,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_X2_1",
         "type": 0
       },
       {
         "id": 299,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_X2_2",
         "type": 0
       },
       {
         "id": 300,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_X2_3",
         "type": 0
       },
       {
         "id": 301,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L2_WOOD_X2_4",
         "type": 0
       },
       {
         "id": 302,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L6_BUSH_2",
         "type": 0
       },
       {
         "id": 303,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "WOOD05",
         "type": 0
       },
       {
         "id": 304,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP_UNDER2",
         "type": 0
       },
       {
         "id": 305,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP_UNDER3",
         "type": 0
       },
       {
         "id": 306,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP_UNDER4",
         "type": 0
       },
       {
         "id": 307,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_L7_POINTER",
         "type": 0
       },
       {
         "id": 308,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_GREEN_BUBBLES",
         "type": 0
       },
       {
         "id": 309,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_GREEN_FOUNTAIN",
         "type": 0
       },
       {
         "id": 310,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_GREEN_SMOKE",
         "type": 0
       },
       {
         "id": 311,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_CLAW",
         "type": 0
       },
       {
         "id": 312,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_CLAW_2",
         "type": 0
       },
       {
         "id": 313,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_LIANA_1",
         "type": 0
       },
       {
         "id": 314,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_LIANA_2",
         "type": 0
       },
       {
         "id": 315,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM1",
         "type": 0
       },
       {
         "id": 316,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_1",
         "type": 0
       },
       {
         "id": 317,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_2",
         "type": 0
       },
       {
         "id": 318,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_3",
         "type": 0
       },
       {
         "id": 319,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_3_2",
         "type": 0
       },
       {
         "id": 320,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_3_3",
         "type": 0
       },
       {
         "id": 321,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_4",
         "type": 0
       },
       {
         "id": 322,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_MUSHROOM_5",
         "type": 0
       },
       {
         "id": 323,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_PIMPLE",
         "type": 0
       },
       {
         "id": 324,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_SORE_1",
         "type": 0
       },
       {
         "id": 325,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_SORE_2",
         "type": 0
       },
       {
         "id": 326,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_STONE_2",
         "type": 0
       },
       {
         "id": 327,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_STONE_3",
         "type": 0
       },
       {
         "id": 328,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L6_STONE_MOSS2",
         "type": 0
       },
       {
         "id": 329,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_TREE_01",
         "type": 0
       },
       {
         "id": 330,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L7_TREE_02",
         "type": 0
       },
       {
         "id": 331,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "TREE_L7_BUSH_02",
         "type": 0
       },
       {
         "id": 332,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_DEAD_MAYAK",
         "type": 0
       },
       {
         "id": 333,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_ENTRANCE_TUBE",
         "type": 0
       },
       {
         "id": 334,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_POLIPSTONE",
         "type": 0
       },
       {
         "id": 335,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_POLIPSTONE_2",
         "type": 0
       },
       {
         "id": 336,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_TORC",
         "type": 0
       },
       {
         "id": 337,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_TRIZUB",
         "type": 0
       },
       {
         "id": 338,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "RESPAWN_SUPPORT",
         "type": 0
       },
       {
         "id": 339,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_BODY",
         "type": 0
       },
       {
         "id": 340,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_BODY_02",
         "type": 0
       },
       {
         "id": 341,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_LIANA",
         "type": 0
       },
       {
         "id": 342,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_ROOTS_0001",
         "type": 0
       },
       {
         "id": 343,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_ROOTS_0001_??",
         "type": 0
       },
       {
         "id": 344,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHAPE_01",
         "type": 0
       },
       {
         "id": 345,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP",
         "type": 0
       },
       {
         "id": 346,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP11",
         "type": 0
       },
       {
         "id": 347,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUPACA_0001",
         "type": 0
       },
       {
         "id": 348,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP_02",
         "type": 0
       },
       {
         "id": 349,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP_02_01",
         "type": 0
       },
       {
         "id": 350,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP_03",
         "type": 0
       },
       {
         "id": 351,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP_04",
         "type": 0
       },
       {
         "id": 352,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_SHUP_05",
         "type": 0
       },
       {
         "id": 353,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "L8_WORM04_111",
         "type": 0
       },
       {
         "id": 354,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_CEILING_RUSTY",
         "type": 0
       },
       {
         "id": 355,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_CEILING_STONE",
         "type": 0
       },
       {
         "id": 356,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_POTOLOK2",
         "type": 0
       },
       {
         "id": 357,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_POTOLOK3",
         "type": 0
       },
       {
         "id": 358,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_1",
         "type": 0
       },
       {
         "id": 359,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_10",
         "type": 0
       },
       {
         "id": 360,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_2",
         "type": 0
       },
       {
         "id": 361,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_4",
         "type": 0
       },
       {
         "id": 362,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_4A",
         "type": 0
       },
       {
         "id": 363,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_4B",
         "type": 0
       },
       {
         "id": 364,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_CEILING_6",
         "type": 0
       },
       {
         "id": 365,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_BLD_UG_DEVICE",
         "type": 0
       },
       {
         "id": 366,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_FX_SPARKS",
         "type": 0
       },
       {
         "id": 367,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_BIG_5",
         "type": 0
       },
       {
         "id": 368,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_L1_FSTONE12",
         "type": 0
       },
       {
         "id": 369,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "STN_UG_BROKEN_TRANSPORT",
         "type": 0
       },
       {
         "id": 370,
-        "name_id": 1,
+        "name_id": 0,
         "resource": "",
         "text_id": "LMP_LAMP_UNDER6",
         "type": 0
