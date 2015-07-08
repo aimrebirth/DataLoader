@@ -1,18 +1,7 @@
 {
   "Buildings": {
-    "fks": [
-      {
-        "from": "name_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Strings",
-        "to": "id"
-      }
-    ],
-    "sql": "CREATE TABLE \"Buildings\" (\r\r\n\"id\" INTEGER NOT NULL,\r\r\n\"text_id\" TEXT,\r\r\n\"resource\" TEXT,\r\r\n\"name_id\" INTEGER,\r\r\nPRIMARY KEY (\"id\") ,\r\r\nFOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\")\r\r\n)",
+    "fks": [],
+    "sql": "CREATE TABLE \"Buildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, PRIMARY KEY (\"id\") )",
     "values": [
       {
         "id": 1,
@@ -51,7 +40,7 @@
       },
       {
         "id": 8,
-        "resource": "",
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_MAIN_BASE_SHAPE.MOD_BLD_MAIN_BASE_SHAPE'",
         "text_id": "BLD_MAINBASE"
       },
       {

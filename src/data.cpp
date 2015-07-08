@@ -16,9 +16,28 @@ const map<string, string> objectNames =
     { "ScriptVariables", "variable" },
     { "ClanReputations", "clan.id < clan2.id ? (to_string(clan).wstring() + L\" - \" + to_string(clan2).wstring()) : (to_string(clan2).wstring() + L\" - \" + to_string(clan).wstring())" },
     { "MapBuildings", "to_string(building)" },
+    { "MapObjects", "to_string(object)" },
+    { "MapGoods", "to_string(good)" },
     { "Coordinates", "to_string(*this)" },
     { "QuestRewards", "to_string(quest)" },
     { "Maps", "text_id" },
+};
+
+enum class ObjectName
+{
+    onText,
+    onName,
+    onParent,
+    onCustom,
+};
+
+const map<string, vector<ObjectName>> objectNamesOrder = 
+{
+    { "", { ObjectName::onCustom, ObjectName::onName, ObjectName::onText, ObjectName::onParent } },
+    { "Maps", { ObjectName::onText, ObjectName::onName, ObjectName::onCustom, ObjectName::onParent } },
+    { "MapBuildings", { ObjectName::onText, ObjectName::onName, ObjectName::onCustom, ObjectName::onParent } },
+    { "MapObjects", { ObjectName::onText, ObjectName::onName, ObjectName::onCustom, ObjectName::onParent } },
+    { "MapGoods", { ObjectName::onText, ObjectName::onName, ObjectName::onCustom, ObjectName::onParent } },
 };
 
 string splitWords(string s)
@@ -148,6 +167,26 @@ string Column::printLoad() const
     return s;
 }
 
+string Column::printLoadSqlite3(string var) const
+{
+    string s;
+    s += var + "->" + (fk ? removeId(name) + ".id" : name) + " = ";
+    switch (type)
+    {
+    case ColumnType::Integer:
+        s += "sqlite3_column_int";
+        break;
+    case ColumnType::Real:
+        s += "sqlite3_column_double";
+        break;
+    case ColumnType::Text:
+        s += "(const char *)sqlite3_column_text";
+        break;
+    }
+    s += "(stmt, " + to_string(id) + ")";
+    return s;
+}
+
 string Column::printSet() const
 {
     string s;
@@ -201,6 +240,32 @@ string Column::printSave(string var) const
             break;
         case ColumnType::Text:
             s += var + "->" + name + ".string()";
+            break;
+        }
+    }
+    return s;
+}
+
+string Column::printSaveSqlite3(string var) const
+{
+    string s;
+    if (fk)
+    {
+        s += "sqlite3_bind_int(stmt, " + to_string(id + 1) + ", " + var + "->" + removeId(name) + ".id)";
+    }
+    else
+    {
+        switch (type)
+        {
+        case ColumnType::Integer:
+            s += "sqlite3_bind_int(stmt, " + to_string(id + 1) + ", " + var + "->" + name + ")";
+            break;
+        case ColumnType::Real:
+            s += "sqlite3_bind_double(stmt, " + to_string(id + 1) + ", " + var + "->" + name + ")";
+            break;
+        case ColumnType::Text:
+            s += "sqlite3_bind_text(stmt, " + to_string(id + 1) + ", " + var + "->" + name + 
+                ".string().c_str()" + ", -1, SQLITE_TRANSIENT)";
             break;
         }
     }
@@ -429,47 +494,62 @@ string Table::print(const Tables &tables, string &si) const
         si += "{\n";
         si += space + "Text n;\n";
 
-        // predefined name
-        auto iter_object_name = objectNames.find(this->name);
-        if (iter_object_name != objectNames.end())
+        string return_add;
+        auto iter = objectNamesOrder.find(getName());
+        if (iter == objectNamesOrder.end())
+            iter = objectNamesOrder.find("");
+        for (auto &nameType : iter->second)
         {
-            si += space + "n = " + iter_object_name->second + ";\n";
-            si += space + "if (!n.empty())\n";
-            si += space + space + "return n;\n";
+            switch (nameType)
+            {
+            case ObjectName::onCustom:
+            {
+                // predefined name
+                auto iter_object_name = objectNames.find(this->name);
+                if (iter_object_name != objectNames.end())
+                {
+                    si += space + "n = " + iter_object_name->second + ";\n";
+                    si += space + "if (!n.empty())\n";
+                    si += space + space + "return n" + return_add + ";\n";
+                }
+                break;
+            }            
+            case ObjectName::onName:
+                // name from Name
+                if (c = getNameColumn())
+                {
+                    if (c->getType() == ColumnType::Text)
+                        si += space + "n = " + c->printVarName() + ";\n";
+                    else
+                        si += space + "n = to_string(" + c->printVarName() + ");\n";
+                    si += space + "if (!n.empty())\n";
+                    si += space + space + "return n" + return_add + ";\n";
+                }
+                break;                
+            case ObjectName::onText:
+                if (c = getTextColumn())
+                {
+                    if (c->getType() == ColumnType::Text)
+                        si += space + "n = " + c->printVarName() + ";\n";
+                    else
+                        si += space + "n = to_string(" + c->printVarName() + ");\n";
+                    si += space + "if (!n.empty())\n";
+                    si += space + space + "return n" + return_add + ";\n";
+                }
+                break;                
+            case ObjectName::onParent:
+                if (isProxy)
+                {
+                    string var = getChildVariableName(getParentName());
+                    si += space + "n = to_string(" + var + ");\n";
+                    si += space + "if (!n.empty())\n";
+                    si += space + space + "return n" + return_add + ";\n";
+                }
+                break;
+            }
         }
 
-        // name from String
-        if (c = getNameColumn())
-        {
-            if (c->getType() == ColumnType::Text)
-                si += space + "n = " + c->printVarName() + ";\n";
-            else
-                si += space + "n = to_string(" + c->printVarName() + ");\n";
-            si += space + "if (!n.empty())\n";
-            si += space + space + "return n;\n";
-        }
-
-        // name from Text
-        if (c = getTextColumn())
-        {
-            if (c->getType() == ColumnType::Text)
-                si += space + "n = " + c->printVarName() + ";\n";
-            else
-                si += space + "n = to_string(" + c->printVarName() + ");\n";
-            si += space + "if (!n.empty())\n";
-            si += space + space + "return n;\n";
-        }
-
-        // name from parent
-        if (isProxy)
-        {
-            string var = getChildVariableName(getParentName());
-            si += space + "n = to_string(" + var + ");\n";
-            si += space + "if (!n.empty())\n";
-            si += space + space + "return n;\n";
-        }
-
-        si += space + "return IObject::getName();\n";
+        si += space + "return IObject::getName()" + return_add + ";\n";
         si += "}\n\n";
     }
     else
@@ -530,7 +610,7 @@ string Table::print(const Tables &tables, string &si) const
     s += "private:\n";
     
     // loadFromSqlite3()
-    s += space + "int loadFromSqlite3(int, char**, char**);\n";
+    /*s += space + "int loadFromSqlite3(int, char**, char**);\n";
     si += "int " + getCppName() + "::loadFromSqlite3(int ncols, char **cols, char **names)\n";
     si += "{\n";
     for (auto &col : cols)
@@ -538,7 +618,7 @@ string Table::print(const Tables &tables, string &si) const
     si += "\n";
     si += space + "return 0;" + "\n";
     si += "}\n\n";
-    s += "\n";
+    s += "\n";*/
 
     //
     // friends
@@ -580,24 +660,26 @@ string Table::printLoad(string &si)
     s += space + "void _load" + name + "();\n";
     si += "void " + storageImpl + "::_load" + name + "()\n";
     si += "{\n";
+    si += space + "int ret = 0;\n";
+    si += space + "const std::string query = \"select * from " + name + ";\"" + ";\n";
+    si += space + "auto db3 = db->getDb();\n";
+    si += space + "sqlite3_stmt *stmt;\n";
+    si += space + "ret = sqlite3_prepare_v2(db3, query.c_str(), query.size() + 1, &stmt, 0)" + ";\n";
+    si += space + "while (sqlite3_step(stmt) == SQLITE_ROW)\n";
+    si += space + "{\n";
     {
-        si += space + "auto callback = [this](int ncols, char **cols, char **names)" + "\n";
-        si += space + "{" + "\n";
-        {
-            string space = ::space + ::space;
-            string name = getCppName();
-            string var = getVariableName();
-            si += space + "Ptr<" + name + "> " + var + " = std::make_shared<" + name + ">();" + "\n";
-            si += space + "int ret = " + var + "->" + "loadFromSqlite3(ncols, cols, names);" + "\n";
-            if (hasIdField)
-                si += space + getVariableArrayName() + "[" + var + "->id] = " + var + ";" + "\n";
-            else
-                si += space + getVariableArrayName() + ".push_back(" + var + ");" + "\n";
-            si += space + "return ret;" + "\n";
-        }
-        si += space + "};" + "\n";
-        si += space + "db->execute(\"select * from " + name + ";\", callback);\n";
+        string space = ::space + ::space;
+        si += space + "auto v = std::make_shared<" + getCppName() + ">();" + "\n";
+        auto cols = mapToSet(columns);
+        for (auto &col : cols)
+            si += space + col.printLoadSqlite3("v") + ";\n";
+        if (hasIdField)
+            si += space + getVariableArrayName() + "[v->id] = v;\n";
+        else
+            si += space + getVariableArrayName() + ".push_back(v);\n";
     }
+    si += space + "}\n";
+    si += space + "ret = sqlite3_finalize(stmt);" + "\n";
     si += "}\n\n";
     return s;
 }
@@ -684,28 +766,31 @@ string Table::printSave(string &si)
     si += "void " + storageImpl + "::_save" + name + "() const\n";
     si += "{\n";
     {
-        si += space + "std::string query;" + "\n";
-        si += space + "query += \"delete from " + name + ";\"" + ";\n";
-        si += space + "db->execute(query.c_str());\n";
-        si += space + "query.clear();\n";
-        si += space + "if (" + toVarName(name) + ".empty())" + "\n";
-        si += space + ::space + "return;\n";
-        si += space + "query += \"insert or replace into " + name + " values\\n\"" + ";\n";
+        si += space + "db->execute(\"BEGIN;\");\n";
+        si += space + "db->execute(\"delete from " + name + ";\");\n";
+        si += space + "const std::string query = \"insert into " + name + " values (";
+        for (int i = 0; i < columns.size(); ++i)
+            si += "?, ";
+        si.resize(si.size() - 2);
+        si += ");\";\n";
+        si += space + "int ret = 0;\n";
+        si += space + "auto db3 = db->getDb();\n";
+        si += space + "sqlite3_stmt *stmt;\n";
+        si += space + "ret = sqlite3_prepare_v2(db3, query.c_str(), query.size() + 1, &stmt, 0)" + ";\n";
         si += space + "for (auto &" + getVariableName() + " : " + toVarName(name) + ")" + "\n";
         si += space + "{\n";
         {
             string space = ::space + ::space;
-            si += space + "query += \"(\";\n";
+            si += space + "auto &v = " + getVariableName() + (hasIdField ? ".second" : "") + ";\n";
             auto cols = mapToSet(columns);
             for (auto &col : cols)
-                si += space + "query += \"'\" + " + col.printSave(getVariableName() + (hasIdField ? ".second" : "")) + " + \"',\";\n";
-            si += space + "query.resize(query.size() - 1);\n";
-            si += space + "query += \"),\\n\";\n";
+                si += space + "ret = " + col.printSaveSqlite3("v") + ";\n";
+            si += space + "ret = sqlite3_step(stmt);\n";
+            si += space + "ret = sqlite3_reset(stmt);\n";
         }
         si += space + "}\n";
-        si += space + "query.resize(query.size() - 2);\n";
-        si += space + "query += \";\";\n";
-        si += space + "db->execute(query.c_str());\n";
+        si += space + "ret = sqlite3_finalize(stmt);" + "\n";
+        si += space + "db->execute(\"COMMIT;\");\n";
     }
     si += "}\n\n";
     return s;
@@ -872,7 +957,7 @@ string Database::printStorage(string &si)
     s += space + "virtual void deleteRecord(QTreeWidgetItem *item) = 0;\n";
     s += "#endif\n";
     s += "\n";
-    s += space + "virtual OrderedObjectMap getOrderedMap(EObjectType type) const = 0;\n";
+    s += space + "virtual OrderedObjectMap getOrderedMap(EObjectType type, IObject *parent = 0) const = 0;\n";
     s += "\n";
     s += printAddDeleteRecordVirtual();
     s += "};\n\n";
@@ -1205,8 +1290,8 @@ string Database::printHelpers(string &si)
 string Database::printGetOrderedMap(string &si)
 {
     string s;
-    s += space + "virtual OrderedObjectMap getOrderedMap(EObjectType type) const;\n";
-    si += "OrderedObjectMap " + storageImpl + "::getOrderedMap(EObjectType type) const\n";
+    s += space + "virtual OrderedObjectMap getOrderedMap(EObjectType type, IObject *parent = 0) const;\n";
+    si += "OrderedObjectMap " + storageImpl + "::getOrderedMap(EObjectType type, IObject *parent) const\n";
     si += "{\n";
     si += space + "switch (type)\n";
     si += space + "{\n";
@@ -1214,7 +1299,24 @@ string Database::printGetOrderedMap(string &si)
     {
         string space = ::space + ::space;
         si += ::space + "case EObjectType::" + table.second.getCppName() + ":" + "\n";
-        si += space + "return ::getOrderedMap(" + table.second.getVariableArrayName() + ");\n";
+        if (table.second.isMap())
+        {
+            si += ::space + "{\n";
+            si += space + "std::function<bool(Ptr<" + table.second.getCppName() + ">)> f = [parent](Ptr<" + table.second.getCppName() + "> o)\n";
+            si += space + "{\n";
+            {
+                string space = ::space + ::space + ::space;
+                si += space + "if (!parent || parent->getType() != EObjectType::Mechanoid)\n";
+                si += space + ::space + "return true;\n";
+                si += space + "Mechanoid *m = (Mechanoid *)parent;\n";
+                si += space + "return m->map == o->map;\n";
+            }
+            si += space + "};\n";
+            si += space + "return ::getOrderedMap(" + table.second.getVariableArrayName() + ", f);\n";
+            si += ::space + "}\n";
+        }
+        else
+            si += space + "return ::getOrderedMap(" + table.second.getVariableArrayName() + ");\n";
     }
     si += space + "default:" + "\n";
     si += space + space + "return OrderedObjectMap();\n";

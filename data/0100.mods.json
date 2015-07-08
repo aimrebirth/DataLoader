@@ -1,4 +1,157 @@
 {
+  "ModificationClans": {
+    "fks": [
+      {
+        "from": "clan_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Clans",
+        "to": "id"
+      },
+      {
+        "from": "modification_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Modifications",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ModificationClans\" ( \"modification_id\" INTEGER NOT NULL, \"clan_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"clan_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\") )",
+    "values": [
+      {
+        "clan_id": 1,
+        "modification_id": 1
+      },
+      {
+        "clan_id": 21,
+        "modification_id": 1
+      },
+      {
+        "clan_id": 13,
+        "modification_id": 1
+      },
+      {
+        "clan_id": 4,
+        "modification_id": 1
+      }
+    ]
+  },
+  "ModificationMaps": {
+    "fks": [
+      {
+        "from": "map_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Maps",
+        "to": "id"
+      },
+      {
+        "from": "modification_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Modifications",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ModificationMaps\" ( \"modification_id\" INTEGER NOT NULL, \"map_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"map_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\") )",
+    "values": [
+      {
+        "map_id": 9,
+        "modification_id": 1
+      },
+      {
+        "map_id": 1,
+        "modification_id": 1
+      },
+      {
+        "map_id": 2,
+        "modification_id": 1
+      },
+      {
+        "map_id": 3,
+        "modification_id": 1
+      },
+      {
+        "map_id": 4,
+        "modification_id": 1
+      },
+      {
+        "map_id": 5,
+        "modification_id": 1
+      },
+      {
+        "map_id": 6,
+        "modification_id": 1
+      },
+      {
+        "map_id": 18,
+        "modification_id": 1
+      },
+      {
+        "map_id": 8,
+        "modification_id": 1
+      },
+      {
+        "map_id": 10,
+        "modification_id": 1
+      },
+      {
+        "map_id": 11,
+        "modification_id": 1
+      },
+      {
+        "map_id": 13,
+        "modification_id": 2
+      },
+      {
+        "map_id": 16,
+        "modification_id": 2
+      }
+    ]
+  },
+  "ModificationMechanoids": {
+    "fks": [
+      {
+        "from": "mechanoid_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Mechanoids",
+        "to": "id"
+      },
+      {
+        "from": "modification_id",
+        "id": 1,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Modifications",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"ModificationMechanoids\" ( \"modification_id\" INTEGER NOT NULL, \"mechanoid_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"mechanoid_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
+    "values": [
+      {
+        "mechanoid_id": 1,
+        "modification_id": 1
+      }
+    ]
+  },
   "Modifications": {
     "fks": [
       {
@@ -35,84 +188,46 @@
     "sql": "CREATE TABLE \"Modifications\" ( \"id\" INTEGER NOT NULL, \"name_id\" INTEGER, \"directory\" TEXT NOT NULL, \"author\" TEXT, \"date_created\" TEXT, \"date_modified\" TEXT, \"comment\" TEXT, \"version\" TEXT, \"script_language\" TEXT, \"script_main\" TEXT, \"player_mechanoid_id\" INTEGER, \"cooperative_player_configuration_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"player_mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\"), FOREIGN KEY (\"cooperative_player_configuration_id\") REFERENCES \"Configurations\" (\"id\") )",
     "values": [
       {
-        "author": "",
-        "comment": "",
-        "cooperative_player_configuration_id": 0,
-        "date_created": "",
-        "date_modified": "",
+        "author": "lzwdgc",
+        "comment": "A.I.M. game",
+        "cooperative_player_configuration_id": 1,
+        "date_created": "12.04.2015",
+        "date_modified": "08.07.2015",
         "directory": "AIM",
         "id": 1,
-        "name_id": 1,
-        "player_mechanoid_id": 0,
+        "name_id": 268,
+        "player_mechanoid_id": 1,
         "script_language": "lua",
         "script_main": "start.lua",
-        "version": ""
+        "version": "0.05"
       },
       {
-        "author": "",
-        "comment": "",
+        "author": "lzwdgc",
+        "comment": "A.I.M. 2 game",
         "cooperative_player_configuration_id": 0,
-        "date_created": "",
-        "date_modified": "",
+        "date_created": "15.04.2015",
+        "date_modified": "15.04.2015",
         "directory": "AIM2",
         "id": 2,
-        "name_id": 2,
+        "name_id": 269,
         "player_mechanoid_id": 0,
         "script_language": "lua",
         "script_main": "start.lua",
-        "version": ""
+        "version": "0.01"
       },
       {
-        "author": "",
-        "comment": "",
+        "author": "lzwdgc",
+        "comment": "Test purposes only",
         "cooperative_player_configuration_id": 0,
         "date_created": "",
         "date_modified": "",
         "directory": "Test",
         "id": 3,
-        "name_id": 3,
+        "name_id": 270,
         "player_mechanoid_id": 0,
-        "script_language": "",
-        "script_main": "",
-        "version": ""
-      }
-    ]
-  },
-  "Strings": {
-    "fks": [
-      {
-        "from": "table_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Tables",
-        "to": "id"
-      }
-    ],
-    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
-    "values": [
-      {
-        "en": "AIM",
-        "id": 1,
-        "ru": "",
-        "table_id": 30,
-        "text_id": ""
-      },
-      {
-        "en": "AIM2",
-        "id": 2,
-        "ru": "",
-        "table_id": 30,
-        "text_id": ""
-      },
-      {
-        "en": "Test Mod",
-        "id": 3,
-        "ru": "",
-        "table_id": 30,
-        "text_id": ""
+        "script_language": "lua",
+        "script_main": "start.lua",
+        "version": "0.01"
       }
     ]
   }

@@ -63,10 +63,14 @@ public:
 
     string printVar() const;
     string printVarName() const;
-    string printLoad() const;
     string printSet() const;
     string printSetPtr() const;
+    
+    string printLoad() const;
+    string printLoadSqlite3(string var) const;
+
     string printSave(string var) const;
+    string printSaveSqlite3(string var) const;
 
     bool operator<(const Column &rhs) const
     {
@@ -154,6 +158,7 @@ public:
     string printUsing();
 
     bool isVisibleInTreeView() const;
+    bool isMap() const { return isMapTable; }
 
     bool operator<(const Table &rhs) const
     {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+    <!-- Polygon-4 Visualizers -->
+    <!-- Copy this into c:\Users\<Your user folder>\My Documents\Visual Studio 2012\Visualizers -->
+
+    <!-- polygon4::String visualizer -->
+    <Type Name="polygon4::String">
+        <DisplayString Condition="length == 0">Empty</DisplayString>
+        <DisplayString Condition="length != 0 &amp;&amp; multiplier == 1">{data._Ptr,s8}</DisplayString>
+        <DisplayString Condition="length != 0 &amp;&amp; multiplier == 2">{data._Ptr,su}</DisplayString>
+        <StringView Condition="length != 0 &amp;&amp; multiplier == 1">data._Ptr,s8</StringView>
+        <StringView Condition="length != 0 &amp;&amp; multiplier == 2">data._Ptr,su</StringView>
+    </Type>
+
+    <!-- polygon4::detail::String visualizer -->
+    <Type Name="polygon4::detail::String">
+        <DisplayString Condition="ru.data._Ptr">{ru}</DisplayString>
+        <DisplayString Condition="ru.data._Ptr == 0 &amp;&amp; en.data._Ptr">{en}</DisplayString>
+        <DisplayString Condition="ru.data._Ptr == 0 &amp;&amp; en.data._Ptr == 0 &amp;&amp; text_id.data._Ptr">{text_id}</DisplayString>
+    </Type>
+
+    <!-- shared_ptr<*> visualizer -->
+    <Type Name="std::shared_ptr&lt;*&gt;">
+        <DisplayString Condition="_Ptr == 0">empty</DisplayString>
+        <DisplayString Condition="_Ptr != 0">{*_Ptr}</DisplayString>
+        <Expand>
+            <ExpandedItem Condition="_Ptr != 0">_Ptr</ExpandedItem>
+        </Expand>
+    </Type>
+
+    <!-- shared_ptr<Storage> visualizer -->
+    <Type Name="std::shared_ptr&lt;polygon4::detail::Storage&gt;">
+        <Expand>
+            <ExpandedItem Condition="_Ptr != 0">_Ptr</ExpandedItem>
+        </Expand>
+    </Type>
+
+    <!-- IdPtr<*> visualizer -->
+    <Type Name="polygon4::detail::IdPtr&lt;*&gt;">
+        <DisplayString Condition="ptr._Ptr == 0">{{id={id} ptr=empty}}</DisplayString>
+        <DisplayString Condition="ptr._Ptr != 0">{*ptr._Ptr}</DisplayString>
+        <Expand>
+            <ExpandedItem Condition="ptr._Ptr != 0">ptr._Ptr</ExpandedItem>
+        </Expand>
+    </Type>
+    
+</AutoVisualizer>
