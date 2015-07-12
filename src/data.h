@@ -36,6 +36,8 @@ enum class ColumnType
     Blob
 };
 
+typedef vector<string> PrimaryKeys;
+
 struct ForeignKey
 {
     string table_name;
@@ -57,19 +59,21 @@ public:
     bool isId() const { return name == "id" && type == ColumnType::Integer; }
 
     ColumnType getType() const { return type; }
-
+    string getCppType() const;
+    
+    void setPk() { pk = true; }
     void setFk(ForeignKey *fk) { this->fk = fk; }
     ForeignKey *getFk() const { return fk; }
+
+    string getDefaultValue() const;
 
     string printVar() const;
     string printVarName() const;
     string printSet() const;
     string printSetPtr() const;
     
-    string printLoad() const;
     string printLoadSqlite3(string var) const;
 
-    string printSave(string var) const;
     string printSaveSqlite3(string var) const;
 
     bool operator<(const Column &rhs) const
@@ -82,6 +86,7 @@ private:
     string name;
     ColumnType type;
     string defaultValue;
+    bool pk = false;
     ForeignKey *fk = 0;
 
     static string removeId(string s)
@@ -143,22 +148,22 @@ public:
     const Column *getNameColumn() const { return getColumn("name"); }
     const Column *getTextColumn() const { return getColumn("text"); }
 
-    string getArrayType() const { return hasIdField ? "CMap" : "CVector"; }
-
     const Columns &getColumns() const { return columns; }
 
     string printForward() const;
     string print(const Tables &tables, string &impl) const;
-    string printIo(const Tables &tables, string &impl);
-    string printLoad(string &impl);
-    string printLoadPtrs(string &impl);
-    string printLoadArrays(const Tables &tables, string &impl);
-    string printSave(string &impl);
-    string printAddDeleteRecord(string &impl);
-    string printUsing();
+    string printIo(const Tables &tables, string &impl) const;
+    string printLoad(string &impl) const;
+    string printLoadPtrs(string &impl) const;
+    string printLoadArrays(const Tables &tables, string &impl) const;
+    string printSave(string &impl) const;
+    string printAddDeleteRecord(string &impl) const;
+    string printAddDeleteRecordVirtual() const;
+    string printUsing() const;
 
     bool isVisibleInTreeView() const;
     bool isMap() const { return isMapTable; }
+    bool hasParentTable() const { return hasParent; }
 
     bool operator<(const Table &rhs) const
     {
@@ -174,6 +179,7 @@ public:
 private:
     string name;
     Columns columns;
+    PrimaryKeys pks;
     ForeignKeys fks;
     string sql;
     set<string> linksToThisTable;

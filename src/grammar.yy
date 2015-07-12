@@ -14,6 +14,7 @@ void yyerror(const std::string &msg);
 Database db;
 Columns columns;
 int col_id = 0;
+PrimaryKeys pks;
 ForeignKeys fks;
 
 std::string sqlColumn;
@@ -58,11 +59,13 @@ table:
         Table t;
         t.name = $3;
         t.columns = columns;
+        t.pks = pks;
         t.fks = fks;
         t.sql = sqlTable;
         db.tables[$3] = t;
 
         columns.clear();
+        pks.clear();
         fks.clear();
         col_id = 0;
         sqlTable.clear();
@@ -138,6 +141,7 @@ primary_keys: primary_key
 primary_key: quoted_string
     {
         sqlColumn += string("\"") + $1 + "\", ";
+        pks.push_back($1);
     }
     ;
 

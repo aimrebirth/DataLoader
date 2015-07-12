@@ -17,9 +17,9 @@ extern Database db;
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc < 2)
     {
-        printf("Usage: %s file.sql", argv[0]);
+        printf("Usage: %s file.sql out_dir", argv[0]);
         return 1;
     }
     FILE *f = fopen(argv[1], "r");
@@ -40,6 +40,8 @@ int main(int argc, char *argv[])
     db.init();
 
     fs::path p = "DatabaseManager";
+    if (argc == 3)
+        p = argv[2] / p;
     auto header = p / "include" / "Polygon4" / "detail";
     auto src = p / "src" / "detail";
 
@@ -54,7 +56,7 @@ int main(int argc, char *argv[])
     //ofstream(fs::path(header / "TypesUsing.h").string()) << db.printTypesUsing();
 
     ofstream(fs::path(header / "Storage.h").string()) << db.printStorage(impl);
-    //ofstream(fs::path(src / "Storage.cpp").string()) << impl;
+    ofstream(fs::path(src / "Storage.cpp").string()) << impl;
     impl.clear();
 
     ofstream(fs::path(header / "StorageImpl.h").string()) << db.printStorageImpl(impl);

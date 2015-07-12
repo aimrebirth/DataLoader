@@ -491,7 +491,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"building_id\" INTEGER NOT NULL, \"name_id\" INTEGER, \"interactive\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"roll\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"building_id\") REFERENCES \"Buildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"building_id\" INTEGER NOT NULL, \"name_id\" INTEGER, \"interactive\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"building_id\") REFERENCES \"Buildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "MapGoods": {
@@ -517,7 +517,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapGoods\" ( \"id\" INTEGER NOT NULL, \"text_id\" INTEGER, \"map_id\" INTEGER, \"good_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"roll\" REAL, \"scale\" REAL, \"scale_x\" REAL, \"scale_y\" REAL, \"scale_z\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapGoods\" ( \"id\" INTEGER NOT NULL, \"text_id\" INTEGER, \"map_id\" INTEGER, \"good_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL, \"scale_x\" REAL, \"scale_y\" REAL, \"scale_z\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
     "values": []
   },
   "MapObjects": {
@@ -543,7 +543,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapObjects\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"object_id\" INTEGER NOT NULL, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"roll\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"object_id\") REFERENCES \"Objects\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapObjects\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"object_id\" INTEGER NOT NULL, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"object_id\") REFERENCES \"Objects\" (\"id\") )",
     "values": []
   },
   "Maps": {
@@ -651,7 +651,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Mechanoids\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"generation\" INTEGER, \"rating\" REAL, \"money\" REAL, \"configuration_id\" INTEGER, \"group_id\" INTEGER, \"clan_id\" INTEGER, \"rating_fight\" REAL, \"rating_courier\" REAL, \"rating_trade\" REAL, \"map_id\" INTEGER, \"mapBuilding_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"roll\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\") )",
+    "sql": "CREATE TABLE \"Mechanoids\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"generation\" INTEGER, \"rating\" REAL, \"money\" REAL, \"configuration_id\" INTEGER, \"group_id\" INTEGER, \"clan_id\" INTEGER, \"rating_fight\" REAL, \"rating_courier\" REAL, \"rating_trade\" REAL, \"map_id\" INTEGER, \"mapBuilding_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\") )",
     "values": []
   },
   "ModificationClans": {
@@ -1068,7 +1068,7 @@
   },
   "ScriptVariables": {
     "fks": [],
-    "sql": "CREATE TABLE \"ScriptVariables\" ( \"variable\" TEXT NOT NULL, \"value\" TEXT, PRIMARY KEY (\"variable\") )",
+    "sql": "CREATE TABLE \"ScriptVariables\" ( \"id\" INTEGER NOT NULL, \"variable\" TEXT, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, PRIMARY KEY (\"id\") )",
     "values": []
   },
   "Settings": {
@@ -1084,7 +1084,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Settings\" ( \"player_id\" INTEGER NOT NULL, PRIMARY KEY (\"player_id\"), FOREIGN KEY (\"player_id\") REFERENCES \"Players\" (\"id\") )",
+    "sql": "CREATE TABLE \"Settings\" ( \"id\" INTEGER NOT NULL, \"player_id\" INTEGER NOT NULL, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, \"value_blob\" BLOB, PRIMARY KEY (\"id\"), FOREIGN KEY (\"player_id\") REFERENCES \"Players\" (\"id\") )",
     "values": []
   },
   "Strings": {
