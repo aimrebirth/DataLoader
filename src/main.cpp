@@ -53,8 +53,6 @@ int main(int argc, char *argv[])
     ofstream(fs::path(src / "Types.cpp").string()) << impl;
     impl.clear();
 
-    //ofstream(fs::path(header / "TypesUsing.h").string()) << db.printTypesUsing();
-
     ofstream(fs::path(header / "Storage.h").string()) << db.printStorage(impl);
     ofstream(fs::path(src / "Storage.cpp").string()) << impl;
     impl.clear();
@@ -65,8 +63,6 @@ int main(int argc, char *argv[])
 
     ofstream(fs::path(header / "Helpers.h").string()) << db.printHelpers(impl);
     ofstream(fs::path(src / "Helpers.cpp").string()) << impl;
-
-    //ofstream("dbmgr_data.py") << db.printPy();
 
     return 0;
 }

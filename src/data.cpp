@@ -162,7 +162,7 @@ string Column::printLoadSqlite3(string var) const
         s += "sqlite3_column_int";
         break;
     case ColumnType::Real:
-        s += "sqlite3_column_double";
+        s += "(float)sqlite3_column_double";
         break;
     case ColumnType::Text:
         s += "(const char *)sqlite3_column_text";

@@ -167,12 +167,6 @@ public:
 
     bool operator<(const Table &rhs) const
     {
-        //if (linksToThisTable.find(rhs.name) != linksToThisTable.end())
-        //    return true;
-        //if (rhs.linksToThisTable.find(name) != rhs.linksToThisTable.end())
-        //    return false;
-        //if (linksToThisTable.size() != rhs.linksToThisTable.size())
-        //    return linksToThisTable.size() > rhs.linksToThisTable.size();
         return name < rhs.name;
     }
 
