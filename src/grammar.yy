@@ -11,7 +11,7 @@
 
 void yyerror(const std::string &msg);
 
-Database db;
+extern Database db;
 Columns columns;
 int col_id = 0;
 PrimaryKeys pks;

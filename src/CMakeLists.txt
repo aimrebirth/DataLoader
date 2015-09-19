@@ -21,12 +21,9 @@ set(parser_src
     ${FLEX_lexer_OUTPUTS}
 )
 
-set(data_gen_src
-    main.cpp
+file(GLOB data_gen_src "*.cpp" "*.h")
 
-    data.cpp
-    data.h
-
+set(data_gen_src ${data_gen_src}
     grammar.yy
     lexer.ll
     ${parser_src}

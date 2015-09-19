@@ -13,7 +13,7 @@ namespace fs = boost::filesystem;
 int yyparse();
 extern int yydebug;
 
-extern Database db;
+Database db;
 
 int main(int argc, char *argv[])
 {
@@ -37,8 +37,6 @@ int main(int argc, char *argv[])
         return 3;
     }
 
-    db.init();
-
     fs::path p = "DatabaseManager";
     if (argc == 3)
         p = argv[2] / p;
@@ -48,21 +46,22 @@ int main(int argc, char *argv[])
     fs::create_directories(header);
     fs::create_directories(src);
 
-    std::string impl;
-    ofstream(fs::path(header / "Types.h").string()) << db.printTypes(impl);
-    ofstream(fs::path(src / "Types.cpp").string()) << impl;
-    impl.clear();
+    auto printModule = [&header, &src](const std::string &name, const auto &module)
+    {
+        auto t = module.hpp.getText();
+        if (!t.empty())
+            ofstream(fs::path(header / (name + ".h")).string()) << t;
+        t = module.cpp.getText();
+        if (!t.empty())
+            ofstream(fs::path(src / (name + ".cpp")).string()) << t;
+    };
 
-    ofstream(fs::path(header / "Storage.h").string()) << db.printStorage(impl);
-    ofstream(fs::path(src / "Storage.cpp").string()) << impl;
-    impl.clear();
-
-    ofstream(fs::path(header / "StorageImpl.h").string()) << db.printStorageImpl(impl);
-    ofstream(fs::path(src / "StorageImpl.cpp").string()) << impl;
-    impl.clear();
-
-    ofstream(fs::path(header / "Helpers.h").string()) << db.printHelpers(impl);
-    ofstream(fs::path(src / "Helpers.cpp").string()) << impl;
+    db.init();
+    printModule("ObjectTypes", db.printObjectTypes());
+    printModule("Types", db.printTypes());
+    printModule("Storage", db.printStorage());
+    printModule("StorageImpl", db.printStorageImpl());
+    printModule("Helpers", db.printHelpers());
 
     return 0;
 }
