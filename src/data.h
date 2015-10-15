@@ -158,7 +158,7 @@ public:
     bool isMap() const { return isMapTable; }
     bool hasParentTable() const { return hasParent; }
 
-    bool operator<(const Table &rhs) const { return name < rhs.name; }
+    bool operator<(const Table &rhs) const { return getCppName() < rhs.getCppName(); }
 
 private:
     string name;
@@ -191,6 +191,7 @@ public:
     void init();
 
     ModuleContext printObjectTypes();
+    ModuleContext printObjectInterfaces();
     ModuleContext printTypes();
     ModuleContext printStorage();
     ModuleContext printStorageImpl();

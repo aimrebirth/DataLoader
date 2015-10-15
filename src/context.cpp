@@ -67,6 +67,31 @@ void Context::endFunction()
     addLine();
 }
 
+void Context::beginNamespace(const std::string &s)
+{
+    addLineNoSpace("namespace " + s);
+    addLineNoSpace("{");
+    addLine();
+    namespaces.push(s);
+}
+
+void Context::endNamespace()
+{
+    auto s = namespaces.top();
+    namespaces.pop();
+    addLineNoSpace("} // namespace " + s);
+}
+
+void Context::ifdef(const std::string &s)
+{
+    addLineNoSpace("#ifdef " + s);
+}
+
+void Context::endif()
+{
+    addLineNoSpace("#endif");
+}
+
 void Context::trimEnd(size_t n)
 {
     auto sz = text.size();

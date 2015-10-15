@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <stack>
 
 class Context
 {
@@ -20,6 +21,11 @@ public:
     void endBlock(bool semicolon = false);
     void beginFunction(const std::string &s = "");
     void endFunction();
+    void beginNamespace(const std::string &s);
+    void endNamespace();
+
+    void ifdef(const std::string &s);
+    void endif();
 
     void trimEnd(size_t n);
 
@@ -36,6 +42,7 @@ private:
     std::string space;
     std::string indent;
     std::string newline;
+    std::stack<std::string> namespaces;
 };
 
 struct ModuleContext

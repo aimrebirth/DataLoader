@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 
     db.init();
     printModule("ObjectTypes", db.printObjectTypes());
+    printModule("ObjectInterfaces", db.printObjectInterfaces());
     printModule("Types", db.printTypes());
     printModule("Storage", db.printStorage());
     printModule("StorageImpl", db.printStorageImpl());

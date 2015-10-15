@@ -9,12 +9,15 @@ const string storageImpl = "StorageImpl";
 const string anyTable = "AnyTable";
 const string anyType = "Any";
 const string arrayType = "CTable";
+const string dataClassPtr = "Ptr";
+const string idAccess = "->id";
+const string iObject = "IObjectBase";
 
 const map<string, string> objectNames = 
 {
     { "Players", "to_string(mechanoid)" },
     { "ScriptVariables", "variable" },
-    { "ClanReputations", "clan.id < clan2.id ? (to_string(clan).wstring() + L\" - \" + to_string(clan2).wstring()) : (to_string(clan2).wstring() + L\" - \" + to_string(clan).wstring())" },
+    { "ClanReputations", "clan->getId() < clan2->getId() ? (to_wstring(clan) + L\" - \" + to_wstring(clan2)) : (to_wstring(clan2) + L\" - \" + to_wstring(clan))" },
     { "MapBuildings", "to_string(building)" },
     { "MapObjects", "to_string(object)" },
     { "MapGoods", "to_string(good)" },
@@ -55,6 +58,11 @@ string splitWords(string s)
 string tr(string s)
 {
     return "QCoreApplication::translate(\"DB\", \"" + s + "\")";
+}
+
+string trUE4(string s)
+{
+    return "LOCTEXT(\"DB\", \"" + s + "\")";
 }
 
 template<typename T, typename K>
@@ -112,7 +120,9 @@ string Column::printVar() const
     string s;
     if (fk)
     {
-        s += "IdPtr<" + fk->table->getCppName() + "> " + printVarName();
+        s += "" + dataClassPtr + "<" + fk->table->getCppName() + "> " + printVarName() + 
+            " = std::make_shared<" + fk->table->getCppName() + ">()";
+        //s += "" + dataClassPtr + "<" + fk->table->getCppName() + "> " + printVarName();
     }
     else
     {
@@ -136,7 +146,7 @@ string Column::printVarName() const
 string Column::printLoadSqlite3(string var) const
 {
     string s;
-    s += var + "->" + (fk ? removeId(name) + ".id" : name) + " = ";
+    s += var + "->" + (fk ? removeId(name) + idAccess : name) + " = ";
     switch (type)
     {
     case ColumnType::Integer:
@@ -162,7 +172,7 @@ string Column::printSet() const
     string s;
     if (fk)
     {
-        s += getCleanName() + ".id = std::stoi(text.string())";
+        s += getCleanName() + idAccess + " = std::stoi(to_string(text))";
     }
     else
     {
@@ -170,13 +180,13 @@ string Column::printSet() const
         switch (type)
         {
         case ColumnType::Integer:
-            s += "std::stoi(text.string())";
+            s += "std::stoi(to_string(text))";
             break;
         case ColumnType::Real:
-            s += "std::stof(text.string())";
+            s += "std::stof(to_string(text))";
             break;
         case ColumnType::Text:
-            s += "text.string()";
+            s += "to_string(text)";
             break;
         case ColumnType::Blob:
             s += "text";
@@ -201,7 +211,7 @@ string Column::printSaveSqlite3(string var) const
     string s;
     if (fk)
     {
-        s += "sqlite3_bind_int(stmt, " + to_string(id + 1) + ", " + var + "->" + removeId(name) + ".id)";
+        s += "sqlite3_bind_int(stmt, " + to_string(id + 1) + ", " + var + "->" + removeId(name) + idAccess + ")";
     }
     else
     {
@@ -214,8 +224,8 @@ string Column::printSaveSqlite3(string var) const
             s += "sqlite3_bind_double(stmt, " + to_string(id + 1) + ", " + var + "->" + name + ")";
             break;
         case ColumnType::Text:
-            s += "sqlite3_bind_text(stmt, " + to_string(id + 1) + ", " + var + "->" + name + 
-                ".string().c_str()" + ", -1, SQLITE_TRANSIENT)";
+            s += "sqlite3_bind_text(stmt, " + to_string(id + 1) + ", to_string(" + var + "->" + name + 
+                ").c_str()" + ", -1, SQLITE_TRANSIENT)";
             break;
         case ColumnType::Blob:
             s += "sqlite3_bind_blob(stmt, " + to_string(id + 1) + ", " +
@@ -319,14 +329,13 @@ ModuleContext Table::print() const
 
     // class
     {
-        mc.hpp.beginBlock("class " + getCppName() + " : public IObject");
+        mc.hpp.beginBlock("class DLL_EXPORT " + getCppName() + " : public I" + getCppName());
         mc.hpp.addLine("// data");
-        mc.hpp.addLineNoSpace(hasIdField ? "private:" : "public:");
+        mc.hpp.addLineNoSpace("public:");
         for (auto &col : cols)
         {
-            mc.hpp.addLine(col.printVar() + ";");
-            if (col.isId())
-                mc.hpp.addLineNoSpace("public:");
+            if (!col.isId())
+                mc.hpp.addLine(col.printVar() + ";");
         }
         mc.hpp.decreaseIndent();
     }
@@ -338,34 +347,44 @@ ModuleContext Table::print() const
         mc.hpp.increaseIndent();
         for (auto &t : contains)
             mc.hpp.addLine(arrayType + "<" + t->getCppName() + "> " + t->getChildVariableArrayName(getCppName()) + ";");
-        mc.hpp.decreaseIndent();
         mc.hpp.addLine();
-        mc.hpp.increaseIndent();
-        mc.hpp.addLine("// functions");
-        mc.hpp.addLineNoSpace("public:");
     }
 
-    // getId(), setId()
+    mc.hpp.addLine("// constructors");
+    mc.hpp.addLineNoSpace("public:");
+
+    // constructors
     {
-        if (hasIdField)
-        {
-            mc.hpp.addLine("int getId() const;");
-            mc.hpp.addLine("void setId(int id);");
-            mc.hpp.addLine();
+        mc.hpp.addLine(getCppName() + "() = default;");
+        mc.hpp.addLine(getCppName() + "(const " + getCppName() + " &);");
+        mc.hpp.addLine(getCppName() + " &operator=(const " + getCppName() + " &);");
+        mc.hpp.addLine(getCppName() + "(" + getCppName() + " &&) = default;");
+        mc.hpp.addLine(getCppName() + " &operator=(" + getCppName() + " &&) = default;");
+        mc.hpp.addLine("virtual ~" + getCppName() + "();");
 
-            mc.cpp.beginFunction("int " + getCppName() + "::getId() const");
-            mc.cpp.addLine("return id;");
-            mc.cpp.endFunction();
+        // copy ctor
+        mc.cpp.beginFunction(getCppName() + "::" + getCppName() + "(const " + getCppName() + " &rhs)");
+        mc.cpp.addLine("copyFrom(rhs);");
+        mc.cpp.endFunction();
 
-            mc.cpp.beginFunction("void " + getCppName() + "::setId(int id)");
-            mc.cpp.addLine("this->id = id;");
-            mc.cpp.endFunction();
-        }
+        // copy assign
+        mc.cpp.beginFunction(getCppName() + " &" + getCppName() + "::operator=(const " + getCppName() + " &rhs)");
+        mc.cpp.addLine("copyFrom(rhs);");
+        mc.cpp.addLine("return *this;");
+        mc.cpp.endFunction();
+
+        // dtor
+        mc.cpp.beginFunction(getCppName() + "::~" + getCppName() + "()");
+        mc.cpp.endFunction();
     }
 
+    mc.hpp.addLine();
+    mc.hpp.addLine("// functions");
+    mc.hpp.addLineNoSpace("public:");
+    
     // getType()
     {
-        mc.hpp.addLine("virtual EObjectType getType() const;");
+        mc.hpp.addLine("virtual EObjectType getType() const override;");
 
         mc.cpp.beginFunction("EObjectType " + getCppName() + "::getType() const");
         mc.cpp.addLine("return object_type;");
@@ -374,7 +393,7 @@ ModuleContext Table::print() const
 
     // getVariableString()
     {
-        mc.hpp.addLine("virtual Text getVariableString(int columnId) const;");
+        mc.hpp.addLine("virtual Text getVariableString(int columnId) const override;");
 
         mc.cpp.beginFunction("Text " + getCppName() + "::getVariableString(int columnId) const");
         mc.cpp.beginBlock("switch (columnId)", false);
@@ -397,9 +416,9 @@ ModuleContext Table::print() const
 
     // setVariableString()
     {
-        mc.hpp.addLine("virtual void setVariableString(int columnId, Text text, Ptr<IObject> ptr = Ptr<IObject>());");
+        mc.hpp.addLine("virtual void setVariableString(int columnId, Text text, " + dataClassPtr + "<" + iObject + "> ptr = " + dataClassPtr + "<" + iObject + ">()) override;");
 
-        mc.cpp.beginFunction("void " + getCppName() + "::setVariableString(int columnId, Text text, Ptr<IObject> ptr)");
+        mc.cpp.beginFunction("void " + getCppName() + "::setVariableString(int columnId, Text text, " + dataClassPtr + "<" + iObject + "> ptr)");
         mc.cpp.beginBlock("switch (columnId)", false);
         for (auto &col : cols)
         {
@@ -422,12 +441,12 @@ ModuleContext Table::print() const
     // printQtTreeView()
     {
         mc.hpp.addLineNoSpace("#ifdef USE_QT");
-        mc.hpp.addLine("virtual QTreeWidgetItem *printQtTreeView(QTreeWidgetItem *parent) const;");
+        mc.hpp.addLine("virtual QTreeWidgetItem *printQtTreeView(QTreeWidgetItem *parent) const override;");
         mc.hpp.addLineNoSpace("#endif");
 
         mc.cpp.addLineNoSpace("#ifdef USE_QT");
         mc.cpp.beginFunction("QTreeWidgetItem *" + getCppName() + "::printQtTreeView(QTreeWidgetItem *parent) const");
-        mc.cpp.addLine("auto item = new QTreeWidgetItem(parent, QStringList(QString::fromStdWString(getName())));");
+        mc.cpp.addLine("auto item = new QTreeWidgetItem(parent, QStringList(getName().toQString()));");
         mc.cpp.addLine("item->setData(0, Qt::UserRole, (uint64_t)this);");
         if (container)
         {
@@ -453,9 +472,43 @@ ModuleContext Table::print() const
         mc.cpp.addLine();
     }
 
+    // printUE4TreeView()
+    {
+        mc.hpp.ifdef("USE_UNREAL_EDITOR");
+        mc.hpp.beginFunction("virtual UE4SPtrTreeViewItem printUE4TreeView() const override");
+        mc.hpp.addLine("UE4SPtrTreeViewItem item = MakeShareable(new UE4TreeViewItem);");
+        mc.hpp.addLine("item->Name = FText::FromString(std::to_wstring(getName()).c_str());");
+        mc.hpp.addLine("item->Type = EObjectType::" + getCppName() + ";");
+        mc.hpp.addLine("item->Object = const_cast<" + getCppName() + "*>(this);");
+        if (container)
+        {
+            mc.hpp.addLine();
+            mc.hpp.addLine("UE4SPtrTreeViewItem root;");
+            for (auto &t : contains)
+            {
+                mc.hpp.addLine();
+                mc.hpp.addLine("root = MakeShareable(new UE4TreeViewItem);");
+                mc.hpp.addLine("item->Children.Add(root);");
+                mc.hpp.addLine("root->Name = " + trUE4(splitWords(t->getChildArrayName(getCppName()))) + ";");
+                mc.hpp.addLine("root->Type = EObjectType::" + t->getCppName() + ";");
+                mc.hpp.addLine("for (auto &" + t->getChildVariableName(getCppName()) + " : " + t->getChildVariableArrayName(getCppName()) + ")");
+                mc.hpp.increaseIndent();
+                mc.hpp.addLine("root->Children.Add(" + t->getChildVariableName(getCppName()) + "->" + "printUE4TreeView());");
+                mc.hpp.decreaseIndent();
+                mc.hpp.addLine("root->Children.Sort([](const auto &i1, const auto &i2){ return i1->Name.CompareTo(i2->Name) < 0; });");
+            }
+            mc.hpp.addLine();
+        }
+        mc.hpp.addLine("item->Children.Sort([](const auto &i1, const auto &i2){ return i1->Name.CompareTo(i2->Name) < 0; });");
+        mc.hpp.addLine("return item;");
+        mc.hpp.endBlock();
+        mc.hpp.endif();
+        mc.hpp.addLine();
+    }
+
     // getName()
     {
-        mc.hpp.addLine("virtual Text getName() const;");
+        mc.hpp.addLine("virtual Text getName() const override;");
         mc.hpp.addLine();
 
         mc.cpp.beginFunction("Text " + getCppName() + "::getName() const");
@@ -514,7 +567,7 @@ ModuleContext Table::print() const
                     break;
                 }
             }
-            mc.cpp.addLine("return IObject::getName()" + return_add + ";");
+            mc.cpp.addLine("return " + iObject + "::getName()" + return_add + ";");
         }
         else
         {
@@ -563,9 +616,9 @@ ModuleContext Table::print() const
     {
         if (isProxy)
         {
-            mc.hpp.addLine("IdPtr<" + getParentName() + "> operator->() const;");
+            mc.hpp.addLine("" + dataClassPtr + "<" + getParentName() + "> operator->() const;");
 
-            mc.cpp.beginFunction("IdPtr<" + getParentName() + "> " + getCppName() + "::operator->() const");
+            mc.cpp.beginFunction("" + dataClassPtr + "<" + getParentName() + "> " + getCppName() + "::operator->() const");
             mc.cpp.addLine("if (" + getParentVariableName() + ")");
             mc.cpp.increaseIndent();
             mc.cpp.addLine("return " + getParentVariableName() + ";");
@@ -575,23 +628,59 @@ ModuleContext Table::print() const
         }
     }
 
-    //
-    // private functions
-    //
+    // protected
+    if (!contains.empty())
+    {
+        mc.hpp.addLine();
+        mc.hpp.addLineNoSpace("protected:");
+
+        // init children
+        {
+            for (auto t : contains)
+            {
+                mc.hpp.addLine("template <class T, class... Args>");
+                mc.hpp.beginFunction("void init" + t->getChildArrayName(t->getCppName()) + "(Args&&... args)");
+                mc.hpp.addLine("for (auto &v : " + t->getChildVariableArrayName(t->getCppName()) + ")");
+                mc.hpp.beginBlock();
+                if (t->isProxy)
+                    mc.hpp.addLine("auto p = v->" + t->getChildVariableName(t->getCppName()) + ".get();");
+                else
+                    mc.hpp.addLine("auto p = v.second.get();");
+                mc.hpp.addLine("p->replace<T>(p, std::forward<Args>(args)...);");
+                mc.hpp.endBlock();
+                mc.hpp.endFunction();
+            }
+        }
+    }
+    else
+        mc.hpp.addLine();
+
+    // private
+    mc.hpp.addLineNoSpace("private:");
+
+    // copyFrom()
+    {
+        mc.hpp.addLine("void copyFrom(const " + getCppName() + " &rhs);");
+
+        mc.cpp.beginFunction("void " + getCppName() + "::copyFrom(const " + getCppName() + " &rhs)");
+        for (auto &c : columns)
+            mc.cpp.addLine(c.second.printVarName() + " = rhs." + c.second.printVarName() + ";");
+        mc.cpp.addLine();
+        for (auto &c : contains)
+            mc.cpp.addLine(c->getChildVariableArrayName(c->getVariableArrayName()) + " = rhs." + c->getChildVariableArrayName(c->getVariableArrayName()) + ";");
+        mc.cpp.endFunction();
+    }
+
+    // private
     mc.hpp.addLine();
     mc.hpp.addLineNoSpace("private:");
 
-    //
     // friends
-    //
     mc.hpp.addLine("friend class " + storageImpl + ";");
-    mc.hpp.addLine("template <class T> friend struct IdPtr;");
     mc.hpp.addLine("template <class T> friend class CTable;");
     mc.hpp.addLine();
 
-    //
     // static functions & data
-    //
     mc.hpp.addLineNoSpace("public:");
 
     // type
@@ -666,22 +755,11 @@ ModuleContext Table::printIo() const
                 if (fk)
                 {
                     string name2 = toVarName(fk->table_name);
-                    if (hasIdField)
-                    {
-                        mc.cpp.addLine("if (" + name2 + ".find(" + var + ".second->" + col.getCleanName() + ".id) != " + name2 + ".end())");
-                        mc.cpp.increaseIndent();
-                        mc.cpp.addLine(toVarName(name) + ".second->" + col.getCleanName() + ".ptr = " +
-                            name2 + "[" + var + ".second->" + col.getCleanName() + ".id];");
-                        mc.cpp.decreaseIndent();
-                    }
-                    else
-                    {
-                        mc.cpp.addLine("if (" + name2 + ".find(" + var + "->" + col.getCleanName() + ".id) != " + name2 + ".end())");
-                        mc.cpp.increaseIndent();
-                        mc.cpp.addLine(var + "->" + col.getCleanName() + ".ptr = " +
-                            name2 + "[" + var + "->" + col.getCleanName() + ".id];");
-                        mc.cpp.decreaseIndent();
-                    }
+                    mc.cpp.addLine("if (" + name2 + ".find(" + var + "->" + col.getCleanName() + idAccess + ") != " + name2 + ".end())");
+                    mc.cpp.increaseIndent();
+                    mc.cpp.addLine(var + "->" + col.getCleanName() + " = " +
+                        name2 + "[" + var + "->" + col.getCleanName() + idAccess + "];");
+                    mc.cpp.decreaseIndent();
                 }
             }
             mc.cpp.endBlock();
@@ -701,7 +779,7 @@ ModuleContext Table::printIo() const
             {
                 mc.cpp.addLine("for (auto &" + table->getVariableName() + " : " + table->getVariableArrayName() + ")");
                 mc.cpp.increaseIndent();
-                mc.cpp.addLine("if (" + getVariableName() + ".first == " + table->getVariableName() + "->" + getVariableName() + ".id)");
+                mc.cpp.addLine("if (" + getVariableName() + ".first == " + table->getVariableName() + "->" + getVariableName() + idAccess + ")");
                 mc.cpp.increaseIndent();
                 mc.cpp.addLine(getVariableName() + "->" + table->getChildVariableArrayName(table->getParentName()) + ".insert(" + table->getVariableName() + ");");
                 mc.cpp.decreaseIndent();
@@ -745,19 +823,17 @@ ModuleContext Table::printIo() const
 
 ModuleContext Table::printAddDeleteRecordVirtual() const
 {
-    string param_h;
     string param;
     string param_name;
     if (hasParent)
     {
         param_name = "parent";
-        param_h = "IObject *" + param_name + " = 0";
-        param = "IObject *" + param_name + "";
+        param = "" + iObject + " *" + param_name + " = nullptr";
     }
     ModuleContext mc;
     mc.hpp.increaseIndent();
-    mc.hpp.addLine("virtual Ptr<" + getCppName() + "> add" + getCppName() + "(" + param_h + ") = 0;");
-    mc.hpp.addLine("virtual void delete" + getCppName() + "(" + getCppName() + " *object) = 0;");
+    mc.hpp.addLine("virtual " + dataClassPtr + "<" + getCppName() + "> add" + getCppName() + "(" + param + ") = 0;");
+    mc.hpp.addLine("virtual void delete" + getCppName() + "(" + iObject + " *object) = 0;");
     mc.hpp.decreaseIndent();
     return mc;
 }
@@ -767,28 +843,28 @@ ModuleContext Table::printAddDeleteRecord() const
     ModuleContext mc;
     mc.hpp.increaseIndent();
 
-    string param_h;
-    string param;
+    string param, param_h;
     string param_name;
 
     if (hasParent)
     {
         param_name = "parent";
-        param_h = "IObject *" + param_name + " = 0";
-        param = "IObject *" + param_name + "";
+        param_h = "" + iObject + " *" + param_name + " = nullptr";
+        param = "" + iObject + " *" + param_name;
     }
 
     // add record
     {
-        mc.hpp.addLine("virtual Ptr<" + getCppName() + "> add" + getCppName() + "(" + param_h + ");");
+        mc.hpp.addLine("virtual " + dataClassPtr + "<" + getCppName() + "> add" + getCppName() + "(" + param_h + ") override;");
 
-        mc.cpp.beginFunction("Ptr<" + getCppName() + "> " + storageImpl + "::add" + getCppName() + "(" + param + ")");
+        mc.cpp.beginFunction("" + dataClassPtr + "<" + getCppName() + "> " + storageImpl + "::add" + getCppName() + "(" + param + ")");
         if (isMapTable)
         {
             string var = getParentVariableName();
             mc.cpp.addLine("auto v = " + getVariableArrayName() + ".createAtEnd();");
             mc.cpp.addLine(getParentName() + " *" + var + " = (" + getParentName() + " *)" + param_name + ";");
             mc.cpp.addLine(var + "->" + getChildVariableArrayName(getParentName()) + ".insert(v);");
+            //mc.cpp.addLine(var + idAccess + " = " + var + "->id;");
             mc.cpp.addLine("v->" + var + " = " + var + "s[" + var + "->id];");
             mc.cpp.addLine("return v;");
         }
@@ -804,6 +880,7 @@ ModuleContext Table::printAddDeleteRecord() const
                 mc.cpp.addLine("auto v = " + getVariableArrayName() + ".createAtEnd();");
                 mc.cpp.addLine(getParentName() + " *" + var + " = (" + getParentName() + " *)" + param_name + ";");
                 mc.cpp.addLine(var + "->" + getChildVariableArrayName(getParentName()) + ".insert(v);");
+                //mc.cpp.addLine(var + idAccess + " = " + var + "->id;");
                 mc.cpp.addLine("v->" + var + " = " + getParentVariableArrayName() + "[" + var + "->id];");
                 mc.cpp.addLine("return v;");
             }
@@ -813,13 +890,14 @@ ModuleContext Table::printAddDeleteRecord() const
 
     // delete record
     {
-        mc.hpp.addLine("virtual void delete" + getCppName() + "(" + getCppName() + " *object);");
+        mc.hpp.addLine("virtual void delete" + getCppName() + "(" + iObject + " *object) override;");
 
-        mc.cpp.beginFunction("void " + storageImpl + "::delete" + getCppName() + "(" + getCppName() + " *v)");
+        mc.cpp.beginFunction("void " + storageImpl + "::delete" + getCppName() + "(" + iObject + " *v)");
         if (container || hasIdField)
             mc.cpp.addLine(getVariableArrayName() + ".erase(v->id);");
         else
-            mc.cpp.addLine(getVariableArrayName() + ".erase(v);");
+            mc.cpp.addLine(getVariableArrayName() + ".erase(v->id);");
+            //mc.cpp.addLine(getVariableArrayName() + ".erase(v);");
         mc.cpp.endFunction();
     }
 
@@ -833,10 +911,8 @@ ModuleContext Database::printObjectTypes()
     mc.hpp.addLine();
     mc.hpp.addLine(pragma_once);
     mc.hpp.addLine();
-    mc.hpp.beginBlock("namespace polygon4", false);
-    mc.hpp.addLine();
-    mc.hpp.beginBlock("namespace detail", false);
-    mc.hpp.addLine();
+    mc.hpp.beginNamespace("polygon4");
+    mc.hpp.beginNamespace("detail");
     mc.hpp.beginBlock("enum class EObjectType : int");
     mc.hpp.addLine("None,");
     mc.hpp.addLine();
@@ -846,9 +922,31 @@ ModuleContext Database::printObjectTypes()
     mc.hpp.addLine(anyType + ",");
     mc.hpp.endBlock(true);
     mc.hpp.addLine();
-    mc.hpp.addLine("} // namespace detail");
+    mc.hpp.endNamespace();
     mc.hpp.addLine();
-    mc.hpp.addLine("} // namespace polygon4");
+    mc.hpp.endNamespace();
+    return mc;
+}
+
+ModuleContext Database::printObjectInterfaces()
+{
+    ModuleContext mc;
+    mc.hpp.addLine(autogenerated_warning);
+    mc.hpp.addLine();
+    mc.hpp.addLine(pragma_once);
+    mc.hpp.addLine();
+    mc.hpp.beginNamespace("polygon4");
+    for (auto &t : tables)
+    {
+        auto name = t.second.getCppName();
+        auto nameUpper = name;
+        std::transform(name.begin(), name.end(), nameUpper.begin(), ::toupper);
+        mc.hpp.addLineNoSpace("#ifndef POLYGON4_" + nameUpper + "_INTERFACE");
+        mc.hpp.addLineNoSpace("DECLARE_INTERFACE_STUB(" + name + ");");
+        mc.hpp.addLineNoSpace("#endif");
+        mc.hpp.addLine();
+    }
+    mc.hpp.endNamespace();
     return mc;
 }
 
@@ -862,10 +960,8 @@ ModuleContext Database::printTypes()
     mc.hpp.addLine("#include \"../Table.h\"");
     mc.hpp.addLine("#include \"../Types.h\"");
     mc.hpp.addLine();
-    mc.hpp.beginBlock("namespace polygon4", false);
-    mc.hpp.addLine();
-    mc.hpp.beginBlock("namespace detail", false);
-    mc.hpp.addLine();
+    mc.hpp.beginNamespace("polygon4");
+    mc.hpp.beginNamespace("detail");
     for (auto &table : tables)
         mc.hpp.addLine("class " + table.second.getCppName() + ";");
     mc.hpp.addLine();
@@ -875,9 +971,9 @@ ModuleContext Database::printTypes()
     for (auto &table : tables)
         mc += table.second.print();
 
-    mc.hpp.addLine("} // namespace detail");
+    mc.hpp.endNamespace();
     mc.hpp.addLine();
-    mc.hpp.addLine("} // namespace polygon4");
+    mc.hpp.endNamespace();
     return mc;
 }
 
@@ -904,13 +1000,16 @@ ModuleContext Database::printStorage()
     mc.hpp.addLine("virtual void load(ProgressCallback callback = ProgressCallback()) = 0;");
     mc.hpp.addLine("virtual void save(ProgressCallback callback = ProgressCallback()) const = 0;");
     mc.hpp.addLine();
-    mc.hpp.addLineNoSpace("#ifdef USE_QT");
+    mc.hpp.ifdef("USE_QT");
     mc.hpp.addLine("virtual void printQtTreeView(QTreeWidgetItem *root) const = 0;");
     mc.hpp.addLine("virtual QTreeWidgetItem *addRecord(QTreeWidgetItem *item) = 0;");
     mc.hpp.addLine("virtual void deleteRecord(QTreeWidgetItem *item) = 0;");
-    mc.hpp.addLineNoSpace("#endif");
+    mc.hpp.endif();
+    mc.hpp.ifdef("USE_UNREAL_EDITOR");
+    mc.hpp.addLine("virtual UE4SPtrTreeViewItem printUE4TreeView() const = 0;");
+    mc.hpp.endif();
     mc.hpp.addLine();
-    mc.hpp.addLine("virtual OrderedObjectMap getOrderedMap(EObjectType type, std::function<bool(Ptr<IObject>)> f = std::function<bool(Ptr<IObject>)>()) const = 0;");
+    mc.hpp.addLine("virtual OrderedObjectMap getOrderedMap(EObjectType type, std::function<bool(" + iObject + " *)> f = std::function<bool(" + iObject + " *)>()) const = 0;");
     mc.hpp.addLine();
 
     // printAddDeleteRecordVirtual()
@@ -918,8 +1017,8 @@ ModuleContext Database::printStorage()
         for (auto &table : tables)
             mc += table.second.printAddDeleteRecordVirtual();
         mc.hpp.addLine();
-        mc.hpp.addLine("virtual Ptr<IObject> addRecord(IObject *parent = 0) = 0;");
-        mc.hpp.addLine("virtual void deleteRecord(IObject *data) = 0;");
+        mc.hpp.addLine("virtual " + dataClassPtr + "<" + iObject + "> addRecord(" + iObject + " *parent = nullptr) = 0;");
+        mc.hpp.addLine("virtual void deleteRecord(" + iObject + " *data) = 0;");
     }
     mc.hpp.endBlock(true);
 
@@ -927,7 +1026,7 @@ ModuleContext Database::printStorage()
     mc.cpp.addLine();
     mc.cpp.beginFunction("Storage::Storage()");
     for (auto &table : tables)
-        mc.cpp.addLine(table.second.getVariableArrayName() + ".name = \"" + table.second.getCppName() + "\";");
+        mc.cpp.addLine(table.second.getVariableArrayName() + ".setName(\"" + table.second.getCppName() + "\");");
     mc.cpp.endFunction();
     mc.cpp.beginFunction("Storage::~Storage()");
     mc.cpp.endBlock();
@@ -947,7 +1046,7 @@ ModuleContext Database::printStorageImpl()
     mc.hpp.addLineNoSpace("#endif");
     mc.hpp.addLine();
     mc.hpp.addLineNoSpace("private:");
-    mc.hpp.addLine("Ptr<Database> db;");
+    mc.hpp.addLine("std::shared_ptr<Database> db;");
     mc.hpp.addLine();
     mc.hpp.addLineNoSpace("private:");
 
@@ -960,14 +1059,14 @@ ModuleContext Database::printStorageImpl()
     }
 
     mc.hpp.addLineNoSpace("public:");
-    mc.hpp.addLine("StorageImpl(Ptr<Database> db) : db(db) {}");
+    mc.hpp.addLine("StorageImpl(std::shared_ptr<Database> db) : db(db) {}");
     mc.hpp.addLine();
-    mc.hpp.addLine("void setDb(Ptr<Database> db) { this->db = db; }");
+    mc.hpp.addLine("void setDb(std::shared_ptr<Database> db) { this->db = db; }");
     mc.hpp.addLine();
 
     // create()
     {
-        mc.hpp.addLine("virtual void create() const;");
+        mc.hpp.addLine("virtual void create() const override;");
 
         mc.cpp.beginFunction("void " + storageImpl + "::create() const");
         for (auto &table : tables)
@@ -977,7 +1076,7 @@ ModuleContext Database::printStorageImpl()
 
     // clear()
     {
-        mc.hpp.addLine("virtual void clear();");
+        mc.hpp.addLine("virtual void clear() override;");
 
         mc.cpp.beginFunction("void " + storageImpl + "::clear()");
         for (auto &table : tables)
@@ -990,7 +1089,7 @@ ModuleContext Database::printStorageImpl()
         double step = 100.0 / (tables.size() * 3.0);
         double progress = 0;
 
-        mc.hpp.addLine("virtual void load(ProgressCallback callback = ProgressCallback());");
+        mc.hpp.addLine("virtual void load(ProgressCallback callback = ProgressCallback()) override;");
 
         mc.cpp.beginFunction("void " + storageImpl + "::load(ProgressCallback callback)");
         for (auto &table : tables)
@@ -1018,7 +1117,7 @@ ModuleContext Database::printStorageImpl()
         double step = 100.0 / tables.size();
         double progress = 0;
 
-        mc.hpp.addLine("virtual void save(ProgressCallback callback = ProgressCallback()) const;");
+        mc.hpp.addLine("virtual void save(ProgressCallback callback = ProgressCallback()) const override;");
 
         mc.cpp.beginFunction("void " + storageImpl + "::save(ProgressCallback callback) const");
         for (auto &table : tables)
@@ -1038,37 +1137,40 @@ ModuleContext Database::printStorageImpl()
 
         // addRecord()
         {
-            mc.hpp.addLine("virtual Ptr<IObject> addRecord(IObject *parent = 0);");
+            mc.hpp.addLine("virtual " + dataClassPtr + "<" + iObject + "> addRecord(" + iObject + " *parent = nullptr) override;");
 
-            mc.cpp.beginFunction("Ptr<IObject> " + storageImpl + "::addRecord(IObject *parent)");
+            mc.cpp.beginFunction("" + dataClassPtr + "<" + iObject + "> " + storageImpl + "::addRecord(" + iObject + " *parent)");
+            mc.cpp.addLine("" + dataClassPtr + "<" + iObject + "> p;");
             mc.cpp.addLine("EObjectType type = parent->getType();");
             mc.cpp.beginBlock("switch (type)", false);
             for (auto &table : tables)
             {
                 mc.cpp.addLine("case EObjectType::" + table.second.getCppName() + ":");
                 mc.cpp.increaseIndent();
-                mc.cpp.addLine("return add" + table.second.getCppName() + "(" + (table.second.hasParentTable() ? "parent" : "") + ");");
+                mc.cpp.addLine("p = add" + table.second.getCppName() + "(" + (table.second.hasParentTable() ? "parent" : "") + ");");
+                mc.cpp.addLine("break;");
                 mc.cpp.decreaseIndent();
             }
             mc.cpp.addLine("default:");
             mc.cpp.increaseIndent();
-            mc.cpp.addLine("return Ptr<IObject>(0);");
+            mc.cpp.addLine("break;");
             mc.cpp.endBlock();
+            mc.cpp.addLine("return p;");
             mc.cpp.endFunction();
         }
 
         // deleteRecord()
         {
-            mc.hpp.addLine("virtual void deleteRecord(IObject *data);");
+            mc.hpp.addLine("virtual void deleteRecord(" + iObject + " *data) override;");
 
-            mc.cpp.beginFunction("void " + storageImpl + "::deleteRecord(IObject *data)");
+            mc.cpp.beginFunction("void " + storageImpl + "::deleteRecord(" + iObject + " *data)");
             mc.cpp.addLine("EObjectType type = data->getType();");
             mc.cpp.beginBlock("switch (type)", false);
             for (auto &table : tables)
             {
                 mc.cpp.addLine("case EObjectType::" + table.second.getCppName() + ":");
                 mc.cpp.increaseIndent();
-                mc.cpp.addLine("delete" + table.second.getCppName() + "((" + table.second.getCppName() + " *)data);");
+                mc.cpp.addLine("delete" + table.second.getCppName() + "(data);");
                 mc.cpp.addLine("break;");
                 mc.cpp.decreaseIndent();
             }
@@ -1088,7 +1190,7 @@ ModuleContext Database::printStorageImpl()
 
         // printQtTreeView()
         {
-            mc.hpp.addLine("virtual void printQtTreeView(QTreeWidgetItem *root) const;");
+            mc.hpp.addLine("virtual void printQtTreeView(QTreeWidgetItem *root) const override;");
 
             mc.cpp.beginFunction("void " + storageImpl + "::printQtTreeView(QTreeWidgetItem *root) const");
             mc.cpp.addLine("QTreeWidgetItem *item;");
@@ -1100,9 +1202,9 @@ ModuleContext Database::printStorageImpl()
                 mc.cpp.addLine("item = new QTreeWidgetItem(root, QStringList(" + tr(splitWords(table.second.getName())) + "));");
                 mc.cpp.addLine("item->setData(0, Qt::UserRole, static_cast<int>(EObjectType::" + table.second.getCppName() + "));");
                 mc.cpp.addLine("auto " + table.second.getVariableArrayName() + " = getOrderedMap(EObjectType::" + table.second.getCppName() + ");");
-                mc.cpp.addLine("for (auto &" + table.second.getVariableName() + " : " + table.second.getVariableArrayName() + ")");
+                mc.cpp.addLine("for (auto &v : " + table.second.getVariableArrayName() + ")");
                 mc.cpp.increaseIndent();
-                mc.cpp.addLine(table.second.getVariableName() + ".second->printQtTreeView(item);");
+                mc.cpp.addLine("v.second->printQtTreeView(item);");
                 mc.cpp.decreaseIndent();
             }
             mc.cpp.endFunction();
@@ -1110,15 +1212,15 @@ ModuleContext Database::printStorageImpl()
 
         // addRecord()
         {
-            mc.hpp.addLine("virtual QTreeWidgetItem *addRecord(QTreeWidgetItem *item);");
+            mc.hpp.addLine("virtual QTreeWidgetItem *addRecord(QTreeWidgetItem *item) override;");
 
             mc.cpp.beginFunction("QTreeWidgetItem *" + storageImpl + "::addRecord(QTreeWidgetItem *item)");
             mc.cpp.addLine("EObjectType type = static_cast<EObjectType>(item->data(0, Qt::UserRole).toInt());");
-            mc.cpp.addLine("IObject *parent = 0;");
+            mc.cpp.addLine("" + iObject + " *parent = nullptr;");
             mc.cpp.addLine("auto parentItem = item->parent();");
             mc.cpp.addLine("if (parentItem)");
             mc.cpp.increaseIndent();
-            mc.cpp.addLine("parent = (IObject *)parentItem->data(0, Qt::UserRole).toULongLong();");
+            mc.cpp.addLine("parent = (" + iObject + " *)parentItem->data(0, Qt::UserRole).toULongLong();");
             mc.cpp.decreaseIndent();
             mc.cpp.beginBlock("switch (type)", false);
             for (auto &table : tables)
@@ -1137,17 +1239,17 @@ ModuleContext Database::printStorageImpl()
 
         // deleteRecord()
         {
-            mc.hpp.addLine("virtual void deleteRecord(QTreeWidgetItem *item);");
+            mc.hpp.addLine("virtual void deleteRecord(QTreeWidgetItem *item) override;");
 
             mc.cpp.beginFunction("void " + storageImpl + "::deleteRecord(QTreeWidgetItem *item)");
-            mc.cpp.addLine("IObject *data = (IObject *)item->data(0, Qt::UserRole).toULongLong();");
+            mc.cpp.addLine("auto data = (" + iObject + " *)item->data(0, Qt::UserRole).toULongLong();");
             mc.cpp.addLine("EObjectType type = data->getType();");
             mc.cpp.beginBlock("switch (type)", false);
             for (auto &table : tables)
             {
                 mc.cpp.addLine("case EObjectType::" + table.second.getCppName() + ":");
                 mc.cpp.increaseIndent();
-                mc.cpp.addLine("delete" + table.second.getCppName() + "((" + table.second.getCppName() + " *)data);");
+                mc.cpp.addLine("delete" + table.second.getCppName() + "(data);");
                 mc.cpp.addLine("break;");
                 mc.cpp.decreaseIndent();
             }
@@ -1163,13 +1265,96 @@ ModuleContext Database::printStorageImpl()
         mc.cpp.addLineNoSpace("#endif");
     }
 
+    // printUE4TreeView()
+    {
+        mc.hpp.addLine();
+        mc.hpp.ifdef("USE_UNREAL_EDITOR");
+
+        // printUE4TreeView()
+        {
+            mc.hpp.beginFunction("virtual UE4SPtrTreeViewItem printUE4TreeView() const override");
+            mc.hpp.addLine("UE4SPtrTreeViewItem root = MakeShareable(new UE4TreeViewItem);");
+            mc.hpp.addLine("UE4SPtrTreeViewItem item;");
+            for (auto &table : tables)
+            {
+                if (!table.second.isVisibleInTreeView())
+                    continue;
+                mc.hpp.addLine();
+                mc.hpp.addLine("item = MakeShareable(new UE4TreeViewItem);");
+                mc.hpp.addLine("root->Children.Add(item);");
+                mc.hpp.addLine("item->Name = " + trUE4(splitWords(table.second.getName())) + ";");
+                mc.hpp.addLine("item->Type = EObjectType::" + table.second.getCppName() + ";");
+                mc.hpp.addLine("auto " + table.second.getVariableArrayName() + " = getOrderedMap(EObjectType::" + table.second.getCppName() + ");");
+                mc.hpp.addLine("for (auto &v : " + table.second.getVariableArrayName() + ")");
+                mc.hpp.increaseIndent();
+                mc.hpp.addLine("item->Children.Add(v.second->printUE4TreeView());");
+                mc.hpp.decreaseIndent();
+            }
+            mc.hpp.addLine("return root;");
+            mc.hpp.endFunction();
+        }
+
+        /*// addRecord()
+        {
+            mc.hpp.addLine("virtual QTreeWidgetItem *addRecord(QTreeWidgetItem *item) override;");
+
+            mc.cpp.beginFunction("QTreeWidgetItem *" + storageImpl + "::addRecord(QTreeWidgetItem *item)");
+            mc.cpp.addLine("EObjectType type = static_cast<EObjectType>(item->data(0, Qt::UserRole).toInt());");
+            mc.cpp.addLine("" + iObject + " *parent = nullptr;");
+            mc.cpp.addLine("auto parentItem = item->parent();");
+            mc.cpp.addLine("if (parentItem)");
+            mc.cpp.increaseIndent();
+            mc.cpp.addLine("parent = (" + iObject + " *)parentItem->data(0, Qt::UserRole).toULongLong();");
+            mc.cpp.decreaseIndent();
+            mc.cpp.beginBlock("switch (type)", false);
+            for (auto &table : tables)
+            {
+                mc.cpp.addLine("case EObjectType::" + table.second.getCppName() + ":");
+                mc.cpp.increaseIndent();
+                mc.cpp.addLine("return add" + table.second.getCppName() + "(" + (table.second.hasParentTable() ? "parent" : "") + ")->printQtTreeView(item);");
+                mc.cpp.decreaseIndent();
+            }
+            mc.cpp.addLine("default:");
+            mc.cpp.increaseIndent();
+            mc.cpp.addLine("return 0;");
+            mc.cpp.endBlock();
+            mc.cpp.endFunction();
+        }
+
+        // deleteRecord()
+        {
+            mc.hpp.addLine("virtual void deleteRecord(QTreeWidgetItem *item) override;");
+
+            mc.cpp.beginFunction("void " + storageImpl + "::deleteRecord(QTreeWidgetItem *item)");
+            mc.cpp.addLine("auto data = (" + iObject + " *)item->data(0, Qt::UserRole).toULongLong();");
+            mc.cpp.addLine("EObjectType type = data->getType();");
+            mc.cpp.beginBlock("switch (type)", false);
+            for (auto &table : tables)
+            {
+                mc.cpp.addLine("case EObjectType::" + table.second.getCppName() + ":");
+                mc.cpp.increaseIndent();
+                mc.cpp.addLine("delete" + table.second.getCppName() + "(data);");
+                mc.cpp.addLine("break;");
+                mc.cpp.decreaseIndent();
+            }
+            mc.cpp.addLine("default:");
+            mc.cpp.increaseIndent();
+            mc.cpp.addLine("break;");
+            mc.cpp.endBlock();
+            mc.cpp.addLine("item->parent()->removeChild(item);");
+            mc.cpp.endBlock();
+        }*/
+
+        mc.hpp.endif();
+    }
+
     // printGetOrderedMap()
     {
         mc.hpp.addLine();
-        mc.hpp.addLine("virtual OrderedObjectMap getOrderedMap(EObjectType type, std::function<bool(Ptr<IObject>)> f = std::function<bool(Ptr<IObject>)>()) const;");
+        mc.hpp.addLine("virtual OrderedObjectMap getOrderedMap(EObjectType type, std::function<bool(" + iObject + " *)> f = std::function<bool(" + iObject + " *)>()) const override;");
 
         mc.cpp.addLine();
-        mc.cpp.beginFunction("OrderedObjectMap " + storageImpl + "::getOrderedMap(EObjectType type, std::function<bool(Ptr<IObject>)> f) const");
+        mc.cpp.beginFunction("OrderedObjectMap " + storageImpl + "::getOrderedMap(EObjectType type, std::function<bool(" + iObject + " *)> f) const");
         mc.cpp.beginBlock("switch (type)", false);
         for (auto &table : tables)
         {
