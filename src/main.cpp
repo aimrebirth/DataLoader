@@ -37,10 +37,10 @@ int main(int argc, char *argv[])
         return 3;
     }
 
-    fs::path p = "DatabaseManager";
+    fs::path p = "DataManager";
     if (argc == 3)
         p = argv[2] / p;
-    auto header = p / "include" / "Polygon4" / "detail";
+    auto header = p / "include" / "Polygon4" / "DataManager" / "detail";
     auto src = p / "src" / "detail";
 
     fs::create_directories(header);
