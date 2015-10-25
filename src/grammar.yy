@@ -36,7 +36,7 @@ std::string sqlTable;
 %token EOQ 0 "end of file"
 %token ERROR_SYMBOL
 %token L_BRACKET R_BRACKET COMMA QUOTE SEMICOLON
-%token PRIMARY FOREIGN DEFAULT
+%token PRIMARY FOREIGN DEFAULT UNIQUE
 %token <strVal> STRING
 
 %type <strVal> quoted_string bracket_quoted_string var_end
@@ -121,7 +121,7 @@ var: quoted_string STRING var_end
         fk.column_name = $6;
         fks[$3] = fk;
     }
-    | STRING bracket_quoted_string /* UNIQUE */
+    | UNIQUE bracket_quoted_strings
     ;
 
 var_end: not_null
@@ -152,10 +152,15 @@ not_null: /* empty */
     }
     ;
 
+bracket_quoted_strings: L_BRACKET quoted_strings R_BRACKET
+    ;
+quoted_strings: quoted_string
+    | quoted_string COMMA quoted_strings
+    ;
+
 bracket_quoted_string: L_BRACKET quoted_string R_BRACKET
     { $$ = $2; }
     ;
-
 quoted_string: QUOTE STRING QUOTE
     { $$ = $2; }
     ;

@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        printf("Usage: %s file.sql out_dir", argv[0]);
+        printf("Usage: %s file.sql out_dir\n", argv[0]);
         return 1;
     }
     FILE *f = fopen(argv[1], "r");
     if (!f)
     {
-        printf("Cannot open file %s", argv[1]);
+        printf("Cannot open file %s\n", argv[1]);
         return 2;
     }
     yyset_in(f);
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     int ret = yyparse();
     if (ret)
     {
-        printf("Error during parsing sql file");
+        printf("Error during parsing sql file\n");
         return 3;
     }
 

@@ -32,6 +32,7 @@
 DEFAULT                 return DEFAULT;
 PRIMARY                 return PRIMARY;
 FOREIGN                 return FOREIGN;
+UNIQUE                  return UNIQUE;
 
 [A-Za-z_0-9][A-Za-z_0-9]*  { CREATE_STRING; return STRING; }
 

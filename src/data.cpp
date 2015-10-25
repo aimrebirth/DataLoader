@@ -123,7 +123,7 @@ string Column::printVar() const
     string s;
     if (fk)
     {
-        s += "" + dataClassPtr + "<" + fk->table->getCppName() + "> " + printVarName() + 
+        s += "" + dataClassPtr + "<" + fk->table->getCppName() + "> " + printVarName() +
             " = std::make_shared<" + fk->table->getCppName() + ">()";
         //s += "" + dataClassPtr + "<" + fk->table->getCppName() + "> " + printVarName();
     }
