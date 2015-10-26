@@ -1,8 +1,12 @@
 %{
 #include <assert.h>
 #include <iostream>
+#include <string>
+#include <type_traits>
 
+#include <parser_mm.h>
 #include <data.h>
+#include <ast.h>
 
 // Prevent using <unistd.h> because of bug in flex.
 #define YY_NO_UNISTD_H 1
@@ -11,14 +15,23 @@
 
 void yyerror(const std::string &msg);
 
-extern Database db;
-Columns columns;
-int col_id = 0;
-PrimaryKeys pks;
-ForeignKeys fks;
+extern Schema *schema;
+ParserMemoryManager *mm;
 
-std::string sqlColumn;
-std::string sqlTable;
+#define CREATE(type, ...) mm->create<type>(__VA_ARGS__)
+#define CREATE_IF_NULL(v, type, ...) if (v == nullptr) v = mm->create<type>(__VA_ARGS__)
+#define SET_NULL(v) v = nullptr
+
+//
+// variables
+//
+
+//Database database;
+//Databases databases;
+
+//
+// variables
+//
 %}
 
 %require "2.3"
@@ -30,139 +43,286 @@ std::string sqlTable;
 %error-verbose
 
 %union {
-    const char *strVal;
+    int intVal;
+    char *rawStrVal;
+    std::string *strVal;
+    struct t
+    {
+        char _[1024]; // gap
+        Type *type;
+        Types *types;
+        Database *database;
+        Databases *databases;
+        Property *property;
+        Properties *properties;
+        Specifier *specifier;
+        Specifiers *specifiers;
+        Variable *variable;
+        Variables *variables;
+        ClassSpecifier *classSpecifier;
+        ClassSpecifiers *classSpecifiers;
+        Class *class_;
+        Classes *classes;
+    } complexVal;
 }
 
 %token EOQ 0 "end of file"
 %token ERROR_SYMBOL
-%token L_BRACKET R_BRACKET COMMA QUOTE SEMICOLON
-%token PRIMARY FOREIGN DEFAULT UNIQUE
-%token <strVal> STRING
+%token  L_BRACKET R_BRACKET COMMA QUOTE SEMICOLON COLON POINT
+        L_CURLY_BRACKET R_CURLY_BRACKET SHARP R_ARROW
+%token VERSION CLASS FIELD TYPES PROPERTIES DATABASE
+%token <rawStrVal> STRING
+%token <intVal> INTEGER
 
-%type <strVal> quoted_string bracket_quoted_string var_end
+%type <strVal> string name type key value specifier
+
+%type <complexVal.type> type_decl
+%type <complexVal.types> type_decls
+%type <complexVal.database> database database_content database_contents
+%type <complexVal.databases> databases
+%type <complexVal.class_> class class_content class_contents field
+%type <complexVal.classes> classes
+%type <complexVal.property> key_value_pair class_property field_content
+%type <complexVal.properties> class_properties field_contents
+%type <complexVal.specifiers> specifiers specifiers1 names
 
 %%
 
-file: EOQ
-    | tables EOQ
+file: file_contents EOQ
     ;
 
-tables: table
-    | table tables 
-    ;
-
-table:
-    STRING STRING quoted_string L_BRACKET vars R_BRACKET SEMICOLON
+file_contents: /* empty */
+    | globals
+    | globals classes
     {
-        sqlTable = "create table \"" + string($3) + "\" (\n" + sqlTable.substr(0, sqlTable.size() - 2) + "\n);";
-
-        Table t;
-        t.name = $3;
-        t.columns = columns;
-        t.pks = pks;
-        t.fks = fks;
-        t.sql = sqlTable;
-        db.tables[$3] = t;
-
-        columns.clear();
-        pks.clear();
-        fks.clear();
-        col_id = 0;
-        sqlTable.clear();
+        schema->classes = *$2;
+        SET_NULL($2);
     }
     ;
 
-vars: var
-    | var COMMA vars
-    ;
-    
-var: quoted_string STRING var_end
-    {
-        sqlColumn = string("\"") + $1 + "\" " + $2 + (sqlColumn.empty() ? "" : " " + sqlColumn) + ",\n";
-        sqlTable += sqlColumn;
-        sqlColumn.clear();
-
-        Column column;
-        column.id = col_id++;
-        column.name = $1;
-        column.defaultValue = $3;
-        if ($2 == string("INTEGER"))
-        {
-            column.type = ColumnType::Integer;
-        }
-        else if ($2 == string("REAL"))
-        {
-            column.type = ColumnType::Real;
-        }
-        else if ($2 == string("TEXT"))
-        {
-            column.type = ColumnType::Text;
-        }
-        else if ($2 == string("BLOB"))
-            column.type = ColumnType::Blob;
-        else
-            assert(false);
-        columns[$1] = column;
-    }
-    | PRIMARY STRING L_BRACKET primary_keys R_BRACKET
-    {
-        sqlColumn = string("PRIMARY ") + $2 + " (" + sqlColumn.substr(0, sqlColumn.size() - 2) + "),\n";
-        sqlTable += sqlColumn;
-        sqlColumn.clear();
-    }
-    | FOREIGN STRING bracket_quoted_string STRING quoted_string bracket_quoted_string /* FK */
-    {
-        sqlColumn = string("FOREIGN ") + $2 + " (\"" + $3 + "\") " + $4 + " \"" + $5 + "\"" + " (\"" + $6 + "\"),\n";
-        sqlTable += sqlColumn;
-        sqlColumn.clear();
-
-        ForeignKey fk;
-        fk.table_name = $5;
-        fk.column_name = $6;
-        fks[$3] = fk;
-    }
-    | UNIQUE bracket_quoted_strings
+globals: global
+    | global globals
     ;
 
-var_end: not_null
+global: VERSION COLON INTEGER POINT INTEGER POINT INTEGER
     {
-        $$ = "";
+        schema->version.major = $3;
+        schema->version.minor = $5;
+        schema->version.patch = $7;
     }
-    | DEFAULT STRING
+    | TYPES L_CURLY_BRACKET type_decls R_CURLY_BRACKET SEMICOLON
+    {
+        schema->types = *$3;
+        SET_NULL($3);
+    }
+    | databases
+    {
+        schema->databases = *$1;
+        SET_NULL($1);
+    }
+    ;
+
+databases: database
+    {
+        CREATE_IF_NULL($$, Databases);
+        $$->push_back(*$1);
+    }
+    | database databases
     {
         $$ = $2;
-        sqlColumn = string("DEFAULT ") + $2;
+        $$->push_back(*$1);
     }
     ;
-
-primary_keys: primary_key
-    | primary_key COMMA primary_keys
-    ;
-primary_key: quoted_string
+database: DATABASE name L_CURLY_BRACKET database_contents R_CURLY_BRACKET SEMICOLON
     {
-        sqlColumn += string("\"") + $1 + "\", ";
-        pks.push_back($1);
+        $$ = $4;
+        $$->name = *$2;
+        SET_NULL($4);
     }
     ;
-
-not_null: /* empty */
-    | STRING STRING
+database_contents: database_content
+    | database_content database_contents
     {
-        sqlColumn = string($1) + " " + $2;
+        $$ = $2;
+    }
+    ;
+database_content: TYPES L_CURLY_BRACKET type_decls R_CURLY_BRACKET
+    {
+        CREATE_IF_NULL($$, Database);
+        $$->types = *$3;
+        SET_NULL($3);
     }
     ;
 
-bracket_quoted_strings: L_BRACKET quoted_strings R_BRACKET
+type_decls: type_decl
+    {
+        CREATE_IF_NULL($$, Types);
+        $$->insert(*$1);
+    }
+    | type_decl type_decls
+    {
+        $$ = $2;
+        $$->insert(*$1);
+    }
     ;
-quoted_strings: quoted_string
-    | quoted_string COMMA quoted_strings
+type_decl: key R_ARROW value SEMICOLON
+    {
+        $$ = CREATE(Type, *$1, *$3);
+    }
     ;
 
-bracket_quoted_string: L_BRACKET quoted_string R_BRACKET
-    { $$ = $2; }
+classes: class
+    {
+        CREATE_IF_NULL($$, Classes);
+        auto p = $$->insert(*$1);
+        assert(p.second);
+        SET_NULL($1);
+    }
+    | class classes
+    {
+        $$ = $2;
+        auto p = $$->insert(*$1);
+        assert(p.second);
+        SET_NULL($1);
+    }
     ;
-quoted_string: QUOTE STRING QUOTE
-    { $$ = $2; }
+class: CLASS name L_CURLY_BRACKET class_contents R_CURLY_BRACKET SEMICOLON
+    {
+        CREATE_IF_NULL($$, Class);
+        $$->name = *$2;
+        $$->merge(*$4);
+    }
+    ;
+class_contents: class_content
+    | class_content class_contents
+    {
+        $$->merge(*$2);
+    }
+    ;
+class_content: field
+    | specifier L_CURLY_BRACKET names R_CURLY_BRACKET
+    {
+        CREATE_IF_NULL($$, Class);
+        auto v = CREATE(ClassSpecifier);
+        v->name = *$1;
+        v->specifiers = *$3;
+        $$->classSpecifiers.push_back(*v);
+    }
+    ;
+
+field: FIELD L_CURLY_BRACKET field_contents R_CURLY_BRACKET
+    {
+        CREATE_IF_NULL($$, Class);
+        $$->properties = *$3;
+    }
+    | type name specifiers SEMICOLON
+    {
+        CREATE_IF_NULL($$, Class);
+        auto v = CREATE(Variable);
+        v->type = *$1;
+        v->name = *$2;
+        v->specifiers = *$3;
+        $$->variables.push_back(*v);
+    }
+    | PROPERTIES L_CURLY_BRACKET class_properties R_CURLY_BRACKET
+    {
+        CREATE_IF_NULL($$, Class);
+        $$->properties = *$3;
+    }
+    ;
+field_contents: field_content
+    {
+        CREATE_IF_NULL($$, Properties);
+        $$->push_back(*$1);
+    }
+    | field_content field_contents
+    {
+        $$ = $2;
+        $$->push_back(*$1);
+    }
+    ;
+field_content: key_value_pair SEMICOLON
+    {
+        $$ = $1;
+    }
+    ;
+
+class_properties: class_property
+    {
+        CREATE_IF_NULL($$, Properties);
+        $$->push_back(*$1);
+    }
+    | class_property class_properties
+    {
+        $$ = $2;
+        $$->push_back(*$1);
+    }
+    ;
+class_property: key SEMICOLON
+    {
+        $$ = CREATE(Property);
+        $$->key = *$1;
+    }
+    | key_value_pair SEMICOLON
+    {
+        $$ = $1;
+    }
+    ;
+
+specifiers: /* empty */
+    { 
+        CREATE_IF_NULL($$, Specifiers);
+    }
+    | specifiers1
+    ;
+specifiers1: specifier
+    {
+        CREATE_IF_NULL($$, Specifiers);
+        $$->insert(*$1);
+    }
+    | specifier specifiers1
+    {
+        $$ = $2;
+        $$->insert(*$1);
+    }
+    ;
+
+names: name
+    {
+        CREATE_IF_NULL($$, Specifiers);
+        $$->insert(*$1);
+    }
+    | name COMMA names
+    {
+        $$ = $3;
+        $$->insert(*$1);
+    }
+    ;
+
+key_value_pair: key COLON value
+    {
+        $$ = CREATE(Property);
+        $$->key = *$1;
+        $$->value = *$3;
+    }
+    ;
+
+specifier: string
+    ;
+name: string
+    ;
+type: string
+    ;
+key: string
+    ;
+value: string
+    ;
+string: STRING
+    {
+        auto p = CREATE(std::string, $1);
+        free($1);
+        $$ = p;
+    }
     ;
 
 %%
