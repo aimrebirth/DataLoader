@@ -21,13 +21,20 @@ ParserMemoryManager *mm;
 #define CREATE(type, ...) mm->create<type>(__VA_ARGS__)
 #define CREATE_IF_NULL(v, type, ...) if (v == nullptr) v = mm->create<type>(__VA_ARGS__)
 #define SET_NULL(v) v = nullptr
+#define RESET(v) v = decltype(v)()
 
 //
 // variables
 //
 
-//Database database;
-//Databases databases;
+Types types;
+Database database;
+Databases databases;
+Properties properties;
+Specifier specifier;
+Specifiers specifiers;
+Class class_;
+Classes classes;
 
 //
 // variables
@@ -46,24 +53,6 @@ ParserMemoryManager *mm;
     int intVal;
     char *rawStrVal;
     std::string *strVal;
-    struct t
-    {
-        char _[1024]; // gap
-        Type *type;
-        Types *types;
-        Database *database;
-        Databases *databases;
-        Property *property;
-        Properties *properties;
-        Specifier *specifier;
-        Specifiers *specifiers;
-        Variable *variable;
-        Variables *variables;
-        ClassSpecifier *classSpecifier;
-        ClassSpecifiers *classSpecifiers;
-        Class *class_;
-        Classes *classes;
-    } complexVal;
 }
 
 %token EOQ 0 "end of file"
@@ -76,16 +65,6 @@ ParserMemoryManager *mm;
 
 %type <strVal> string name type key value specifier
 
-%type <complexVal.type> type_decl
-%type <complexVal.types> type_decls
-%type <complexVal.database> database database_content database_contents
-%type <complexVal.databases> databases
-%type <complexVal.class_> class class_content class_contents field
-%type <complexVal.classes> classes
-%type <complexVal.property> key_value_pair class_property field_content
-%type <complexVal.properties> class_properties field_contents
-%type <complexVal.specifiers> specifiers specifiers1 names
-
 %%
 
 file: file_contents EOQ
@@ -95,8 +74,8 @@ file_contents: /* empty */
     | globals
     | globals classes
     {
-        schema->classes = *$2;
-        SET_NULL($2);
+        schema->classes = classes;
+        RESET(classes);
     }
     ;
 
@@ -112,202 +91,130 @@ global: VERSION COLON INTEGER POINT INTEGER POINT INTEGER
     }
     | TYPES L_CURLY_BRACKET type_decls R_CURLY_BRACKET SEMICOLON
     {
-        schema->types = *$3;
-        SET_NULL($3);
+        schema->types = types;
+        RESET(types);
     }
     | databases
     {
-        schema->databases = *$1;
-        SET_NULL($1);
+        schema->databases = databases;
+        RESET(databases);
     }
     ;
 
 databases: database
-    {
-        CREATE_IF_NULL($$, Databases);
-        $$->push_back(*$1);
-    }
     | database databases
-    {
-        $$ = $2;
-        $$->push_back(*$1);
-    }
     ;
 database: DATABASE name L_CURLY_BRACKET database_contents R_CURLY_BRACKET SEMICOLON
     {
-        $$ = $4;
-        $$->name = *$2;
-        SET_NULL($4);
+        database.name = *$2;
+        databases.push_back(database);
+        RESET(database);
     }
     ;
 database_contents: database_content
     | database_content database_contents
-    {
-        $$ = $2;
-    }
     ;
 database_content: TYPES L_CURLY_BRACKET type_decls R_CURLY_BRACKET
     {
-        CREATE_IF_NULL($$, Database);
-        $$->types = *$3;
-        SET_NULL($3);
+        database.types = types;
+        RESET(types);
     }
     ;
 
 type_decls: type_decl
-    {
-        CREATE_IF_NULL($$, Types);
-        $$->insert(*$1);
-    }
     | type_decl type_decls
-    {
-        $$ = $2;
-        $$->insert(*$1);
-    }
     ;
 type_decl: key R_ARROW value SEMICOLON
     {
-        $$ = CREATE(Type, *$1, *$3);
+        types.insert(Type(*$1, *$3));
     }
     ;
 
 classes: class
-    {
-        CREATE_IF_NULL($$, Classes);
-        auto p = $$->insert(*$1);
-        assert(p.second);
-        SET_NULL($1);
-    }
     | class classes
-    {
-        $$ = $2;
-        auto p = $$->insert(*$1);
-        assert(p.second);
-        SET_NULL($1);
-    }
     ;
 class: CLASS name L_CURLY_BRACKET class_contents R_CURLY_BRACKET SEMICOLON
     {
-        CREATE_IF_NULL($$, Class);
-        $$->name = *$2;
-        $$->merge(*$4);
+        class_.name = *$2;
+        auto p = classes.insert(class_);
+        RESET(class_);
+        assert(p.second);
     }
     ;
 class_contents: class_content
     | class_content class_contents
-    {
-        $$->merge(*$2);
-    }
     ;
 class_content: field
-    | specifier L_CURLY_BRACKET names R_CURLY_BRACKET
+    | specifier L_CURLY_BRACKET specifiers R_CURLY_BRACKET
     {
-        CREATE_IF_NULL($$, Class);
-        auto v = CREATE(ClassSpecifier);
-        v->name = *$1;
-        v->specifiers = *$3;
-        $$->classSpecifiers.push_back(*v);
+        ClassSpecifier v;
+        v.name = *$1;
+        v.specifiers = specifiers;
+        class_.classSpecifiers.push_back(v);
+        RESET(specifiers);
     }
     ;
 
 field: FIELD L_CURLY_BRACKET field_contents R_CURLY_BRACKET
     {
-        CREATE_IF_NULL($$, Class);
-        $$->properties = *$3;
+        Variable variable;
+        variable.properties = properties;
+        class_.variables.push_back(variable);
+        RESET(properties);
     }
     | type name specifiers SEMICOLON
     {
-        CREATE_IF_NULL($$, Class);
-        auto v = CREATE(Variable);
-        v->type = *$1;
-        v->name = *$2;
-        v->specifiers = *$3;
-        $$->variables.push_back(*v);
+        Variable variable;
+        variable.type = *$1;
+        variable.name = *$2;
+        variable.specifiers = specifiers;
+        class_.variables.push_back(variable);
+        RESET(specifiers);
     }
     | PROPERTIES L_CURLY_BRACKET class_properties R_CURLY_BRACKET
     {
-        CREATE_IF_NULL($$, Class);
-        $$->properties = *$3;
+        class_.properties.push_back(properties);
+        RESET(properties);
     }
     ;
 field_contents: field_content
-    {
-        CREATE_IF_NULL($$, Properties);
-        $$->push_back(*$1);
-    }
     | field_content field_contents
-    {
-        $$ = $2;
-        $$->push_back(*$1);
-    }
     ;
 field_content: key_value_pair SEMICOLON
-    {
-        $$ = $1;
-    }
     ;
 
 class_properties: class_property
-    {
-        CREATE_IF_NULL($$, Properties);
-        $$->push_back(*$1);
-    }
     | class_property class_properties
-    {
-        $$ = $2;
-        $$->push_back(*$1);
-    }
     ;
 class_property: key SEMICOLON
     {
-        $$ = CREATE(Property);
-        $$->key = *$1;
+        Property property;
+        property.key = *$1;
+        properties.push_back(property);
     }
     | key_value_pair SEMICOLON
-    {
-        $$ = $1;
-    }
     ;
 
 specifiers: /* empty */
-    { 
-        CREATE_IF_NULL($$, Specifiers);
-    }
     | specifiers1
     ;
 specifiers1: specifier
-    {
-        CREATE_IF_NULL($$, Specifiers);
-        $$->insert(*$1);
-    }
     | specifier specifiers1
-    {
-        $$ = $2;
-        $$->insert(*$1);
-    }
-    ;
-
-names: name
-    {
-        CREATE_IF_NULL($$, Specifiers);
-        $$->insert(*$1);
-    }
-    | name COMMA names
-    {
-        $$ = $3;
-        $$->insert(*$1);
-    }
     ;
 
 key_value_pair: key COLON value
     {
-        $$ = CREATE(Property);
-        $$->key = *$1;
-        $$->value = *$3;
+        Property property;
+        property.key = *$1;
+        property.value = *$3;
+        properties.push_back(property);
     }
     ;
 
 specifier: string
+    {
+        specifiers.insert(*$1);
+    }
     ;
 name: string
     ;
