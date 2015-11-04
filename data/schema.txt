@@ -1,0 +1,919 @@
+#
+# Polygon-4 Data Scheme
+#
+#  author: lzwdgc
+#
+
+################################################################################
+#
+# globals
+#
+################################################################################
+
+globals
+{
+    version: "0.1.0"
+};
+
+types
+{
+    i32 -> int32_t;
+    u32 -> uint32_t;
+    f32 -> float;
+
+    bool -> i32;
+
+    str -> Text;
+    blob -> Blob;
+
+    Quantity -> i32;
+
+    Price -> f32;
+    Money -> Price;
+    Weight -> f32;
+    Damage -> f32;
+    Rating -> f32;
+    Reputation -> f32;
+};
+
+database sqlite3
+{
+    types
+    {
+        int32_t -> Integer;
+        uint32_t -> Integer;
+        float -> Real;
+        Text -> Text;
+        Blob -> Blob;
+    }
+};
+
+################################################################################
+#
+# classes
+#
+################################################################################
+
+################################################################################
+# service
+################################################################################
+
+class None
+{
+    properties
+    {
+        enum_only;
+        first;
+    }
+};
+
+class Any
+{
+    properties
+    {
+        enum_only;
+        last;
+        name: "AnyTable";
+    }
+};
+
+########################################
+
+class Location
+{
+    f32 x;
+    f32 y;
+    f32 z;
+
+    properties
+    {
+        service;
+        inline;
+    }
+};
+
+########################################
+
+class Rotation
+{
+    f32 roll;
+    f32 pitch;
+    f32 yaw;
+
+    properties
+    {
+        service;
+        inline;
+    }
+};
+
+########################################
+
+class Scale
+{
+    f32 scale = 1;
+    f32 scale_x = 1;
+    f32 scale_y = 1;
+    f32 scale_z = 1;
+
+    properties
+    {
+        service;
+        inline;
+    }
+};
+
+########################################
+
+class Coordinate
+{
+    Location location;
+    Rotation rotation;
+
+    properties
+    {
+        service;
+        inline;
+    }
+};
+
+########################################
+
+class Table
+{
+    i32 id { pk; };
+    str text;
+
+    properties
+    {
+        service;
+    }
+};
+
+################################################################################
+# real
+################################################################################
+
+class String
+{
+    i32 id { pk; };
+    str text_id;
+    Table table;
+    str ru { enum; };
+    str en { enum; };
+
+    properties
+    {
+        create_enum;
+        enum_name: "LocalizationType";
+    }
+};
+
+########################################
+
+class Building
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+
+    Scale scale;
+};
+
+########################################
+
+class Equipment
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    i32 type;
+    i32 standard;
+    Weight weight;
+    f32 durability;
+    f32 power;
+    f32 value1;
+    f32 value2;
+    f32 value3;
+    bool manual;
+    Price price;
+    bool notrade;
+};
+
+########################################
+
+class Glider
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    i32 standard;
+    Weight weight;
+    Weight maxweight;
+    f32 armor;
+    Price price;
+    f32 restore;
+    f32 power;
+    bool special;
+    f32 rotatespeed;
+
+    f32 resfront;
+    f32 resstop;
+    f32 resside;
+
+    f32 stabfront;
+    f32 stabside;
+
+    f32 careen;
+    f32 delta_t;
+    f32 turbulence;
+};
+
+########################################
+
+class Good
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    str resource_drop;
+    String name;
+    Price price;
+    Weight weight;
+    bool notrade;
+    i32 type;
+};
+
+########################################
+
+class Object
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    i32 type;
+    Scale scale;
+};
+
+########################################
+
+class Player
+{
+    i32 id { pk; };
+    Mechanoid mechanoid;
+    
+    properties
+    {
+        object_name: "to_string(mechanoid)";
+    }
+};
+
+########################################
+
+class Setting
+{
+    i32 id { pk; };
+    str text_id;
+    Player player;
+    i32 value_int;
+    f32 value_float;
+    str value_text;
+    blob value_blob;
+};
+
+########################################
+
+class ScriptVariable
+{
+    i32 id { pk; };
+    str variable;
+    i32 value_int;
+    f32 value_float;
+    str value_text;
+
+    properties
+    {
+        object_name: "variable";
+    }
+};
+
+########################################
+
+class Projectile
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    i32 type;
+    i32 subtype;
+    Weight weight;
+    Damage damage;
+    f32 T;
+    f32 speed;
+    f32 scale;
+    i32 numstate;
+    f32 rotate;
+    f32 life_time;
+    f32 detonation_delay;
+    f32 distance_detonation;
+    f32 strength;
+    Price price;
+    bool notrade;
+};
+
+########################################
+
+class Weapon
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    Projectile projectile;
+    i32 type;
+    i32 standard;
+    Weight weight;
+    f32 power;
+    f32 firerate;
+    Damage damage;
+    Price price;
+    f32 fx;
+    i32 shoottype;
+    f32 shootscale;
+    i32 xstate;
+
+    f32 rcolor;
+    f32 gcolor;
+    f32 bcolor;
+
+    i32 typearms;
+    f32 tfire;
+    i32 vtype;
+    f32 spare;
+    f32 reconstruction;
+    f32 maxdistance;
+    f32 angle;
+    f32 fxtime;
+    i32 damagetype;
+    f32 fxmodeltime;
+
+    f32 inside_mul;
+    f32 inside_x;
+    f32 inside_y;
+    f32 inside_z;
+
+    bool notrade;
+};
+
+########################################
+
+class Mechanoid
+{
+    i32 id { pk; };
+    str text_id;
+    String name;
+
+    Modification modification;
+    ModificationMap map;
+    Clan clan;
+    MapBuilding building;
+    
+    Configuration configuration;
+    Group group;
+
+    i32 generation;
+    Money money;
+
+    Rating rating;
+    Rating rating_fight;
+    Rating rating_courier;
+    Rating rating_trade;
+
+    Coordinate coordinate;
+
+    MechanoidQuest quests { container; };
+};
+
+########################################
+
+class Map
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    f32 h_min;
+    f32 h_max;
+    f32 kx;
+    f32 bx;
+    f32 ky;
+    f32 by;
+    
+    MapBuilding buildings { container; };
+    MapGood goods { container; };
+    MapObject objects { container; };
+
+    properties
+    {
+        names_order: "text name custom parent";
+    }
+};
+
+########################################
+
+class Modification
+{
+    i32 id { pk; };
+    String name;
+
+    str directory;
+    str author;
+    str date_created;
+    str date_modified;
+    str comment;
+    str version;
+    str script_language;
+    str script_main;
+
+    Mechanoid player_mechanoid;
+    Configuration cooperative_player_configuration;
+
+    ModificationMap maps { container; };
+    Clan clans { container; };
+    Mechanoid mechanoids { container; };
+};
+
+########################################
+
+class Modificator
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+
+    f32 probability;
+    Price price;
+    f32 k_price;
+    f32 k_param1;
+    f32 k_param2;
+    i32 unicum_id;
+    i32 mask;
+};
+
+########################################
+# Configuration
+########################################
+
+class Configuration
+{
+    i32 id { pk; };
+    str text_id;
+    String name;
+    Glider glider;
+
+    ConfigurationEquipment equipments { container; };
+    ConfigurationGood goods { container; };
+    ConfigurationProjectile projectiles { container; };
+    ConfigurationWeapon weapons { container; };
+};
+
+class ConfigurationEquipment
+{
+    Configuration configuration;
+    Equipment equipment;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Equipment;
+        proxy;
+    }
+};
+
+class ConfigurationGood
+{
+    Configuration configuration;
+    Good good;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Good;
+        proxy;
+    }
+};
+
+class ConfigurationProjectile
+{
+    Configuration configuration;
+    Projectile projectile;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Projectile;
+        proxy;
+    }
+};
+
+class ConfigurationWeapon
+{
+    Configuration configuration;
+    Weapon weapon;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Weapon;
+        proxy;
+    }
+};
+
+########################################
+# Quest
+########################################
+
+class Quest
+{
+    i32 id { pk; };
+    String name;
+
+    String title;
+    String description;
+    i32 time;
+
+    QuestReward rewards { container; };
+};
+
+class QuestReward
+{
+    i32 id { pk; };
+    str text_id;
+
+    Quest quest;
+    Money money;
+    Rating rating;
+
+    QuestRewardEquipment equipments { container; };
+    QuestRewardGlider gliders { container; };
+    QuestRewardGood goods { container; };
+    QuestRewardModificator modificators { container; };
+    QuestRewardProjectile projectiles { container; };
+    QuestRewardReputation reputations { container; };
+    QuestRewardWeapon weapons { container; };
+
+    properties
+    {
+        object_name: "to_string(quest)";
+        parent: Quest;
+    }
+};
+
+class QuestRewardEquipment
+{
+    QuestReward quest_reward;
+    Equipment equipment;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Equipment;
+        proxy;
+    }
+};
+
+class QuestRewardGlider
+{
+    QuestReward quest_reward;
+    Glider glider;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Glider;
+        proxy;
+    }
+};
+
+class QuestRewardGood
+{
+    QuestReward quest_reward;
+    Good good;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Good;
+        proxy;
+    }
+};
+
+class QuestRewardModificator
+{
+    QuestReward quest_reward;
+    Modificator modificator;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Modificator;
+        proxy;
+    }
+};
+
+class QuestRewardProjectile
+{
+    QuestReward quest_reward;
+    Projectile projectile;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Projectile;
+        proxy;
+    }
+};
+
+class QuestRewardReputation
+{
+    QuestReward quest_reward;
+    Clan clan;
+    Reputation quantity;
+
+    properties
+    {
+        parent: Clan;
+        proxy;
+    }
+};
+
+class QuestRewardWeapon
+{
+    QuestReward quest_reward;
+    Weapon weapon;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Weapon;
+        proxy;
+    }
+};
+
+########################################
+
+class Clan
+{
+    i32 id { pk; };
+    str text_id;
+    str resource;
+    String name;
+    String member_name;
+
+    Modification modification;
+
+    i32 bonusexp;
+    i32 bonusrepair;
+    i32 bonustrade;
+
+    i32 helpness;
+    f32 Volatile;
+    f32 noblivion;
+    f32 playereffect;
+    i32 color;
+
+    Mechanoid mechanoids { container; };
+    ClanReputation reputations { container; };
+};
+
+class ClanReputation
+{
+    Clan clan1;
+    Clan clan2;
+    Reputation reputation;
+
+    properties
+    {
+        object_name: "
+            clan1->getId() < clan2->getId() ?
+            (to_wstring(clan1) + L\" - \" + to_wstring(clan2)) :
+            (to_wstring(clan2) + L\" - \" + to_wstring(clan1))";
+        parent: Clan;
+    }
+};
+
+########################################
+
+class Group
+{
+    i32 id { pk; };
+    str text_id;
+    String name;
+
+    GroupMechanoid mechanoids { container; };
+};
+
+class GroupMechanoid
+{
+    Group group;
+    Mechanoid mechanoid;
+
+    properties
+    {
+        parent: Mechanoid;
+        proxy;
+    }
+};
+
+########################################
+
+class ModificationMap
+{
+    i32 id { pk; };
+    Modification modification;
+    Map map;
+
+    properties
+    {
+        parent: Map;
+        proxy;
+    }
+};
+
+########################################
+
+class MechanoidQuest
+{
+    Mechanoid mechanoid;
+    Quest quest;
+    i32 state;
+
+    properties
+    {
+        parent: Quest;
+        proxy;
+    }
+};
+
+########################################
+
+class MapObject
+{
+    i32 id { pk; };
+    str text_id;
+
+    Map map;
+    Object object;
+
+    Coordinate coordinate;
+    Scale scale;
+
+    properties
+    {
+        names_order: "text name custom parent";
+        parent: Object;
+    }
+};
+
+########################################
+
+class MapGood
+{
+    i32 id { pk; };
+    str text_id;
+
+    Map map;
+    Good good;
+
+    Coordinate coordinate;
+    Scale scale;
+
+    properties
+    {
+        names_order: "text name custom parent";
+        object_name: "to_string(good)";
+        parent: Good;
+    }
+};
+
+########################################
+
+class MapBuilding
+{
+    i32 id { pk; };
+    str text_id;
+    String name;
+
+    Map map;
+    Building building;
+
+    Coordinate coordinate;
+    Scale scale;
+
+    bool interactive;
+
+    MapBuildingEquipment equipments { container; };
+    MapBuildingGlider gliders { container; };
+    MapBuildingGood goods { container; };
+    MapBuildingModificator modificators { container; };
+    MapBuildingProjectile projectiles { container; };
+    MapBuildingWeapon weapons { container; };
+
+    properties
+    {
+        names_order: "text name custom parent";
+        object_name: "to_string(building)";
+        parent: Building;
+    }
+};
+
+class MapBuildingEquipment
+{
+    MapBuilding map_building;
+    Equipment equipment;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Equipment;
+        proxy;
+    }
+};
+
+class MapBuildingGlider
+{
+    MapBuilding map_building;
+    Glider glider;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Glider;
+        proxy;
+    }
+};
+
+class MapBuildingGood
+{
+    MapBuilding map_building;
+    Good good;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Good;
+        proxy;
+    }
+};
+
+class MapBuildingModificator
+{
+    MapBuilding map_building;
+    Modificator modificator;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Modificator;
+        proxy;
+    }
+};
+
+class MapBuildingProjectile
+{
+    MapBuilding map_building;
+    Projectile projectile;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Projectile;
+        proxy;
+    }
+};
+
+class MapBuildingWeapon
+{
+    MapBuilding map_building;
+    Weapon weapon;
+    Quantity quantity;
+
+    properties
+    {
+        parent: Weapon;
+        proxy;
+    }
+};
+
+################################################################################

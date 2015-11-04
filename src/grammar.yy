@@ -5,8 +5,9 @@
 #include <type_traits>
 
 #include <parser_mm.h>
-#include <data.h>
 #include <ast.h>
+
+using namespace ast;
 
 // Prevent using <unistd.h> because of bug in flex.
 #define YY_NO_UNISTD_H 1
@@ -35,6 +36,7 @@ Specifier specifier;
 Specifiers specifiers;
 Class class_;
 Classes classes;
+int variable_id = 0;
 
 //
 // variables
@@ -51,6 +53,7 @@ Classes classes;
 
 %union {
     int intVal;
+    double doubleVal;
     char *rawStrVal;
     std::string *strVal;
 }
@@ -58,12 +61,13 @@ Classes classes;
 %token EOQ 0 "end of file"
 %token ERROR_SYMBOL
 %token  L_BRACKET R_BRACKET COMMA QUOTE SEMICOLON COLON POINT
-        L_CURLY_BRACKET R_CURLY_BRACKET SHARP R_ARROW
-%token VERSION CLASS FIELD TYPES PROPERTIES DATABASE
+        L_CURLY_BRACKET R_CURLY_BRACKET SHARP R_ARROW EQUAL
+%token GLOBALS CLASS FIELD TYPES PROPERTIES DATABASE
 %token <rawStrVal> STRING
 %token <intVal> INTEGER
+%token <doubleVal> FLOAT NUMBER
 
-%type <strVal> string name type key value specifier
+%type <strVal> string name type key value specifier quoted_string any_value
 
 %%
 
@@ -83,12 +87,7 @@ globals: global
     | global globals
     ;
 
-global: VERSION COLON INTEGER POINT INTEGER POINT INTEGER
-    {
-        schema->version.major = $3;
-        schema->version.minor = $5;
-        schema->version.patch = $7;
-    }
+global: GLOBALS L_CURLY_BRACKET globals1 R_CURLY_BRACKET SEMICOLON
     | TYPES L_CURLY_BRACKET type_decls R_CURLY_BRACKET SEMICOLON
     {
         schema->types = types;
@@ -98,6 +97,12 @@ global: VERSION COLON INTEGER POINT INTEGER POINT INTEGER
     {
         schema->databases = databases;
         RESET(databases);
+    }
+    ;
+
+globals1: string COLON value
+    {
+        schema->version = *$3;
     }
     ;
 
@@ -138,6 +143,7 @@ class: CLASS name L_CURLY_BRACKET class_contents R_CURLY_BRACKET SEMICOLON
         class_.name = *$2;
         auto p = classes.insert(class_);
         RESET(class_);
+        variable_id = 0;
         assert(p.second);
     }
     ;
@@ -162,16 +168,34 @@ field: FIELD L_CURLY_BRACKET field_contents R_CURLY_BRACKET
         class_.variables.push_back(variable);
         RESET(properties);
     }
-    | type name specifiers SEMICOLON
+    | type name SEMICOLON
     {
         Variable variable;
+        variable.id = variable_id++;
         variable.type = *$1;
         variable.name = *$2;
-        variable.specifiers = specifiers;
         class_.variables.push_back(variable);
-        RESET(specifiers);
     }
-    | PROPERTIES L_CURLY_BRACKET class_properties R_CURLY_BRACKET
+    | type name EQUAL any_value SEMICOLON
+    {
+        Variable variable;
+        variable.id = variable_id++;
+        variable.type = *$1;
+        variable.name = *$2;
+        variable.defaultValue = *$4;
+        class_.variables.push_back(variable);
+    }
+    | type name L_CURLY_BRACKET properties R_CURLY_BRACKET SEMICOLON
+    {
+        Variable variable;
+        variable.id = variable_id++;
+        variable.type = *$1;
+        variable.name = *$2;
+        variable.properties = properties;
+        RESET(properties);
+        class_.variables.push_back(variable);
+    }
+    | PROPERTIES L_CURLY_BRACKET properties R_CURLY_BRACKET
     {
         class_.properties.push_back(properties);
         RESET(properties);
@@ -183,14 +207,12 @@ field_contents: field_content
 field_content: key_value_pair SEMICOLON
     ;
 
-class_properties: class_property
-    | class_property class_properties
+properties: property
+    | property properties
     ;
-class_property: key SEMICOLON
+property: key SEMICOLON
     {
-        Property property;
-        property.key = *$1;
-        properties.push_back(property);
+        properties[*$1];
     }
     | key_value_pair SEMICOLON
     ;
@@ -204,10 +226,7 @@ specifiers1: specifier
 
 key_value_pair: key COLON value
     {
-        Property property;
-        property.key = *$1;
-        property.value = *$3;
-        properties.push_back(property);
+        properties[*$1] = *$3;
     }
     ;
 
@@ -222,7 +241,21 @@ type: string
     ;
 key: string
     ;
+any_value: value
+    | INTEGER
+    {
+        $$ = CREATE(std::string, std::to_string($1));
+    }
+    | FLOAT
+    {
+        $$ = CREATE(std::string, std::to_string($1));
+    }
+    ;
 value: string
+    | quoted_string
+    ;
+quoted_string: QUOTE string QUOTE
+    { $$ = $2; }
     ;
 string: STRING
     {

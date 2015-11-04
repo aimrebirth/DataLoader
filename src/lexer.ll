@@ -1,10 +1,21 @@
 %{
+#pragma warning(disable: 4005)
+#include <string>
+
+#include <parser_mm.h>
+#include <ast.h>
+
 #include "grammar.hpp"
 #define yyterminate() return EOQ 
 
 #define YY_USER_ACTION yylloc.first_column = yylloc.last_column; yylloc.last_column += yyleng;
 
-#define CREATE_STRING yylval.strVal = strdup(yytext)
+#define CREATE_STRING yylval.rawStrVal = strdup(yytext)
+
+//#define PUSH_STATE(x) yy_push_state(x)
+#define PUSH_STATE(x) BEGIN(x)
+//#define POP_STATE yy_pop_state
+#define POP_STATE() BEGIN(0)
 %}
 
 %option nounistd
@@ -13,34 +24,69 @@
 %option batch
 %option never-interactive
 
-%x USER_STRING
+
+DIGIT       [0-9]
+DIGITS      {DIGIT}{DIGIT}*
+INTEGER     [+-]?{DIGITS}
+FLOAT       [+-]?{DIGITS}*\.?{DIGITS}+
+NUMBER      {FLOAT}
+
+STRING      [[:alpha:]_][[:alnum:]_]*
+
+
+%x user_string
+
 
 %%
 
+#.*/\n                  ; // ignore comments
+
 [ \t]+                  ;
-\r                      |
+\r                      ;
 \n                      {
                             yylloc.first_line = ++yylloc.last_line; 
                             yylloc.first_column = yylloc.last_column = 1;
                         }
-
+                        
 ";"                     return SEMICOLON;
+":"                     return COLON;
 "("                     return L_BRACKET;
 ")"                     return R_BRACKET;
+"{"                     return L_CURLY_BRACKET;
+"}"                     return R_CURLY_BRACKET;
 ","                     return COMMA;
+"\."                    return POINT;
+"->"                    return R_ARROW;
+"="                     return EQUAL;
 
-DEFAULT                 return DEFAULT;
-PRIMARY                 return PRIMARY;
-FOREIGN                 return FOREIGN;
-UNIQUE                  return UNIQUE;
+globals                 { return GLOBALS; }
+types                   { return TYPES; }
+class                   { return CLASS; }
+database                { return DATABASE; }
 
-[A-Za-z_0-9][A-Za-z_0-9]*  { CREATE_STRING; return STRING; }
+field                   return FIELD;
+properties              return PROPERTIES;
 
-\"                      { BEGIN(USER_STRING); return QUOTE; }
-<USER_STRING>\"         { BEGIN(0);           return QUOTE; }
-<USER_STRING>[^"]*/\"   { CREATE_STRING;      return STRING; }
+{NUMBER}                | { yylval.doubleVal = std::stoi(yytext); return FLOAT; }
+{STRING}                { CREATE_STRING; return STRING;}
 
-.                       return ERROR_SYMBOL;
+\"                      { PUSH_STATE(user_string);  return QUOTE; }
+<user_string>\"         { POP_STATE();              return QUOTE; }
+<user_string>(?:[^"\\]|\\.)*/\" {
+    CREATE_STRING;
+    int n = 0;
+    char *p = yytext;
+    while ((p = strstr(p, "\n"))++ != 0)
+        n++;
+    if (n)
+    {
+        yylloc.last_line += n;
+        yylloc.first_line = yylloc.last_line;
+    }
+    return STRING;
+}
+
+.                       { /*ECHO;*/ return ERROR_SYMBOL; }
 
 %%
 
@@ -48,3 +94,4 @@ int yywrap()
 {
     return 1;
 }
+
