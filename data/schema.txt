@@ -496,7 +496,7 @@ class ConfigurationEquipment
 
     properties
     {
-        parent: Equipment;
+        parent: Configuration;
         proxy;
     }
 };
@@ -509,7 +509,7 @@ class ConfigurationGood
 
     properties
     {
-        parent: Good;
+        parent: Configuration;
         proxy;
     }
 };
@@ -522,7 +522,7 @@ class ConfigurationProjectile
 
     properties
     {
-        parent: Projectile;
+        parent: Configuration;
         proxy;
     }
 };
@@ -535,7 +535,7 @@ class ConfigurationWeapon
 
     properties
     {
-        parent: Weapon;
+        parent: Configuration;
         proxy;
     }
 };
@@ -588,7 +588,7 @@ class QuestRewardEquipment
 
     properties
     {
-        parent: Equipment;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -601,7 +601,7 @@ class QuestRewardGlider
 
     properties
     {
-        parent: Glider;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -614,7 +614,7 @@ class QuestRewardGood
 
     properties
     {
-        parent: Good;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -627,7 +627,7 @@ class QuestRewardModificator
 
     properties
     {
-        parent: Modificator;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -640,7 +640,7 @@ class QuestRewardProjectile
 
     properties
     {
-        parent: Projectile;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -653,7 +653,7 @@ class QuestRewardReputation
 
     properties
     {
-        parent: Clan;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -666,7 +666,7 @@ class QuestRewardWeapon
 
     properties
     {
-        parent: Weapon;
+        parent: QuestReward;
         proxy;
     }
 };
@@ -731,7 +731,7 @@ class GroupMechanoid
 
     properties
     {
-        parent: Mechanoid;
+        parent: Group;
         proxy;
     }
 };
@@ -761,7 +761,7 @@ class MechanoidQuest
 
     properties
     {
-        parent: Quest;
+        parent: Mechanoid;
         proxy;
     }
 };
@@ -846,7 +846,7 @@ class MapBuildingEquipment
 
     properties
     {
-        parent: Equipment;
+        parent: MapBuilding;
         proxy;
     }
 };
@@ -859,7 +859,7 @@ class MapBuildingGlider
 
     properties
     {
-        parent: Glider;
+        parent: MapBuilding;
         proxy;
     }
 };
@@ -872,7 +872,7 @@ class MapBuildingGood
 
     properties
     {
-        parent: Good;
+        parent: MapBuilding;
         proxy;
     }
 };
@@ -885,7 +885,7 @@ class MapBuildingModificator
 
     properties
     {
-        parent: Modificator;
+        parent: MapBuilding;
         proxy;
     }
 };
@@ -898,7 +898,7 @@ class MapBuildingProjectile
 
     properties
     {
-        parent: Projectile;
+        parent: MapBuilding;
         proxy;
     }
 };
@@ -911,7 +911,7 @@ class MapBuildingWeapon
 
     properties
     {
-        parent: Weapon;
+        parent: MapBuilding;
         proxy;
     }
 };

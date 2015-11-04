@@ -26,6 +26,7 @@ file(GLOB data_gen_src "*.cpp" "*.h")
 set(data_gen_src ${data_gen_src}
     grammar.yy
     lexer.ll
+    ../data/schema.txt
     ${parser_src}
 )
 
