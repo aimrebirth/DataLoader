@@ -156,6 +156,7 @@ struct Class
                 SET_PROPERTY("service", fService);
                 SET_PROPERTY("create_enum", fCreateEnum);
                 SET_PROPERTY("proxy", fProxy);
+                SET_PROPERTY("tree_view", fTreeView);
 #undef SET_PROPERTY
             }
         }

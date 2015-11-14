@@ -34,6 +34,7 @@ using Version = std::string;
 
 enum class DataType
 {
+    Bool,
     Integer,
     Real,
     Text,

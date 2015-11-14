@@ -20,8 +20,7 @@ types
     i32 -> int32_t;
     u32 -> uint32_t;
     f32 -> float;
-
-    bool -> i32;
+    bool -> bool;
 
     str -> Text;
     blob -> Blob;
@@ -40,6 +39,7 @@ database sqlite3
 {
     types
     {
+        bool -> Integer;
         int32_t -> Integer;
         uint32_t -> Integer;
         float -> Real;
@@ -178,6 +178,11 @@ class Building
     str resource;
 
     Scale scale;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -200,6 +205,11 @@ class Equipment
     bool manual;
     Price price;
     bool notrade;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -231,6 +241,11 @@ class Glider
     f32 careen;
     f32 delta_t;
     f32 turbulence;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -246,6 +261,11 @@ class Good
     Weight weight;
     bool notrade;
     i32 type;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -259,6 +279,11 @@ class Object
 
     i32 type;
     Scale scale;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -285,6 +310,11 @@ class Setting
     f32 value_float;
     str value_text;
     blob value_blob;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -300,6 +330,7 @@ class ScriptVariable
     properties
     {
         object_name: "variable";
+        tree_view;
     }
 };
 
@@ -327,6 +358,11 @@ class Projectile
     f32 strength;
     Price price;
     bool notrade;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -372,6 +408,11 @@ class Weapon
     f32 inside_z;
 
     bool notrade;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -401,6 +442,11 @@ class Mechanoid
     Coordinate coordinate;
 
     MechanoidQuest quests { container; };
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -426,6 +472,7 @@ class Map
     properties
     {
         names_order: "text name custom parent";
+        tree_view;
     }
 };
 
@@ -451,6 +498,11 @@ class Modification
     ModificationMap maps { container; };
     Clan clans { container; };
     Mechanoid mechanoids { container; };
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -469,6 +521,11 @@ class Modificator
     f32 k_param2;
     i32 unicum_id;
     i32 mask;
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 ########################################
@@ -486,6 +543,11 @@ class Configuration
     ConfigurationGood goods { container; };
     ConfigurationProjectile projectiles { container; };
     ConfigurationWeapon weapons { container; };
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 class ConfigurationEquipment
@@ -554,6 +616,11 @@ class Quest
     i32 time;
 
     QuestReward rewards { container; };
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 class QuestReward
@@ -740,13 +807,13 @@ class GroupMechanoid
 
 class ModificationMap
 {
-    i32 id { pk; };
-    Modification modification;
-    Map map;
+    Modification modification { pk; };
+    Map map { pk; };
 
     properties
     {
-        parent: Map;
+        parent: Modification;
+        object_name: "to_string(map)";
         proxy;
     }
 };
@@ -781,7 +848,8 @@ class MapObject
 
     properties
     {
-        names_order: "text name custom parent";
+        #names_order: "text name custom parent";
+        object_name: "to_string(object)";
         parent: Object;
     }
 };
@@ -801,7 +869,7 @@ class MapGood
 
     properties
     {
-        names_order: "text name custom parent";
+        #names_order: "text name custom parent";
         object_name: "to_string(good)";
         parent: Good;
     }
@@ -832,7 +900,7 @@ class MapBuilding
 
     properties
     {
-        names_order: "text name custom parent";
+        #names_order: "text name custom parent";
         object_name: "to_string(building)";
         parent: Building;
     }
