@@ -19,6 +19,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(parser_src
     ${BISON_grammar_OUTPUTS}
     ${FLEX_lexer_OUTPUTS}
+    ${CMAKE_CURRENT_BINARY_DIR}/lexer.h
 )
 
 file(GLOB data_gen_src "*.cpp" "*.h")

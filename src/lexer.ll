@@ -16,6 +16,8 @@
 #define PUSH_STATE(x) BEGIN(x)
 //#define POP_STATE yy_pop_state
 #define POP_STATE() BEGIN(0)
+
+#define YY_DECL int yylex (yyscan_t yyscanner, YYSTYPE &yylval, YYLTYPE &yylloc)
 %}
 
 %option nounistd
@@ -23,6 +25,8 @@
 %option nounput
 %option batch
 %option never-interactive
+%option reentrant
+%option noyywrap
 
 
 DIGIT       [0-9]
@@ -89,9 +93,3 @@ properties              return PROPERTIES;
 .                       { /*ECHO;*/ return ERROR_SYMBOL; }
 
 %%
-
-int yywrap()
-{
-    return 1;
-}
-

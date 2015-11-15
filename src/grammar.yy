@@ -14,10 +14,10 @@ using namespace ast;
 #include "lexer.h"
 #include "grammar.hpp"
 
-void yyerror(const std::string &msg);
+void yyerror(const YYLTYPE *yylloc, const std::string &msg);
 
 extern Schema *schema;
-ParserMemoryManager *mm;
+extern ParserMemoryManager *mm;
 
 #define CREATE(type, ...) mm->create<type>(__VA_ARGS__)
 #define CREATE_IF_NULL(v, type, ...) if (v == nullptr) v = mm->create<type>(__VA_ARGS__)
@@ -51,10 +51,16 @@ int variable_id = 0;
 //%no-lines
 %error-verbose
 
+%define api.pure full
+%define api.push-pull push
+
 %union {
+    // lexer vars
     int intVal;
     double doubleVal;
     char *rawStrVal;
+
+    // parser vars
     std::string *strVal;
 }
 
@@ -267,7 +273,7 @@ string: STRING
 
 %%
 
-void yyerror(const std::string &msg)
+void yyerror(const YYLTYPE *yylloc, const std::string &msg)
 {
-    std::cerr << yylloc.first_line << ":" << yylloc.first_column << " " << msg << std::endl;
+    std::cerr << yylloc->first_line << ":" << yylloc->first_column << " " << msg << std::endl;
 }
