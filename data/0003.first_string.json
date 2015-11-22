@@ -1,0 +1,15 @@
+{
+  "Strings": {
+    "fks": [],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"object\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\") )",
+    "values": [
+      {
+        "en": "Unnamed",
+        "id": 1,
+        "object": 1000,
+        "ru": "\u0411\u0435\u0437 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f",
+        "text_id": ""
+      }
+    ]
+  }
+}

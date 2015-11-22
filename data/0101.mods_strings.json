@@ -1,0 +1,29 @@
+{
+  "Strings": {
+    "fks": [],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"object\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\") )",
+    "values": [
+      {
+        "en": "AIM",
+        "id": 1,
+        "object": 26,
+        "ru": "",
+        "text_id": ""
+      },
+      {
+        "en": "AIM2",
+        "id": 2,
+        "object": 26,
+        "ru": "",
+        "text_id": ""
+      },
+      {
+        "en": "Test Mod",
+        "id": 3,
+        "object": 26,
+        "ru": "",
+        "text_id": ""
+      }
+    ]
+  }
+}

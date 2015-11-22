@@ -1,39 +1,24 @@
 {
   "Buildings": {
-    "fks": [],
-    "sql": "CREATE TABLE \"Buildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, PRIMARY KEY (\"id\") )",
-    "values": []
-  },
-  "ClanMechanoids": {
     "fks": [
       {
-        "from": "mechanoid_id",
+        "from": "name_id",
         "id": 0,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
-        "table": "Mechanoids",
-        "to": "id"
-      },
-      {
-        "from": "clan_id",
-        "id": 1,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Clans",
+        "table": "Strings",
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ClanMechanoids\" ( \"clan_id\" INTEGER NOT NULL, \"mechanoid_id\" INTEGER NOT NULL, PRIMARY KEY (\"mechanoid_id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
+    "sql": "CREATE TABLE \"Buildings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "ClanReputations": {
     "fks": [
       {
-        "from": "clan_id2",
+        "from": "clan2_id",
         "id": 0,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -43,7 +28,7 @@
         "to": "id"
       },
       {
-        "from": "clan_id",
+        "from": "clan1_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -53,14 +38,24 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ClanReputations\" ( \"clan_id\" INTEGER NOT NULL, \"clan_id2\" INTEGER NOT NULL, \"reputation\" REAL, PRIMARY KEY (\"clan_id\", \"clan_id2\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"clan_id2\") REFERENCES \"Clans\" (\"id\") )",
+    "sql": "CREATE TABLE \"ClanReputations\" ( \"clan1_id\" INTEGER, \"clan2_id\" INTEGER, \"reputation\" REAL, FOREIGN KEY (\"clan1_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"clan2_id\") REFERENCES \"Clans\" (\"id\") )",
     "values": []
   },
   "Clans": {
     "fks": [
       {
-        "from": "member_name_id",
+        "from": "modification_id",
         "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Modifications",
+        "to": "id"
+      },
+      {
+        "from": "member_name_id",
+        "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
@@ -70,7 +65,7 @@
       },
       {
         "from": "name_id",
-        "id": 1,
+        "id": 2,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
@@ -79,7 +74,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"member_name_id\" INTEGER, \"bonusexp\" INTEGER, \"bonusrepair\" INTEGER, \"bonustrade\" INTEGER, \"helpness\" INTEGER, \"Volatile\" REAL, \"noblivion\" REAL, \"playereffect\" REAL, \"color\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"member_name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Clans\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"member_name_id\" INTEGER, \"modification_id\" INTEGER, \"bonusexp\" INTEGER, \"bonusrepair\" INTEGER, \"bonustrade\" INTEGER, \"helpness\" INTEGER, \"Volatile\" REAL, \"noblivion\" REAL, \"playereffect\" REAL, \"color\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"member_name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\") )",
     "values": []
   },
   "ConfigurationEquipments": {
@@ -105,7 +100,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ConfigurationEquipments\" ( \"configuration_id\" INTEGER NOT NULL, \"equipment_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"equipment_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
+    "sql": "CREATE TABLE \"ConfigurationEquipments\" ( \"configuration_id\" INTEGER, \"equipment_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
     "values": []
   },
   "ConfigurationGoods": {
@@ -131,7 +126,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ConfigurationGoods\" ( \"configuration_id\" INTEGER NOT NULL, \"good_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"good_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "sql": "CREATE TABLE \"ConfigurationGoods\" ( \"configuration_id\" INTEGER, \"good_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
     "values": []
   },
   "ConfigurationProjectiles": {
@@ -157,7 +152,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ConfigurationProjectiles\" ( \"configuration_id\" INTEGER NOT NULL, \"projectile_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"projectile_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "sql": "CREATE TABLE \"ConfigurationProjectiles\" ( \"configuration_id\" INTEGER, \"projectile_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
     "values": []
   },
   "ConfigurationWeapons": {
@@ -183,7 +178,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ConfigurationWeapons\" ( \"configuration_id\" INTEGER NOT NULL, \"weapon_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"configuration_id\", \"weapon_id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
+    "sql": "CREATE TABLE \"ConfigurationWeapons\" ( \"configuration_id\" INTEGER, \"weapon_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
     "values": []
   },
   "Configurations": {
@@ -209,7 +204,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Configurations\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"glider_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
+    "sql": "CREATE TABLE \"Configurations\" ( \"id\" INTEGER, \"text_id\" TEXT, \"name_id\" INTEGER, \"glider_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
     "values": []
   },
   "Equipments": {
@@ -225,7 +220,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Equipments\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"durability\" REAL, \"power\" REAL, \"value1\" REAL, \"value2\" REAL, \"value3\" REAL, \"manual\" INTEGER, \"price\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Equipments\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"durability\" REAL, \"power\" REAL, \"value1\" REAL, \"value2\" REAL, \"value3\" REAL, \"manual\" INTEGER, \"price\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "Gliders": {
@@ -241,7 +236,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Gliders\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"maxweight\" REAL, \"armor\" REAL, \"price\" INTEGER, \"restore\" REAL, \"power\" REAL, \"special\" INTEGER, \"rotatespeed\" REAL, \"resfront\" REAL, \"restop\" REAL, \"resside\" REAL, \"stabfront\" REAL, \"stabside\" REAL, \"careen\" REAL, \"delta_t\" REAL, \"turbulence\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Gliders\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"maxweight\" REAL, \"armor\" REAL, \"price\" REAL, \"restore\" REAL, \"power\" REAL, \"special\" INTEGER, \"rotatespeed\" REAL, \"resfront\" REAL, \"resstop\" REAL, \"resside\" REAL, \"stabfront\" REAL, \"stabside\" REAL, \"careen\" REAL, \"delta_t\" REAL, \"turbulence\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "Goods": {
@@ -257,7 +252,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Goods\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"resource_drop\" TEXT, \"name_id\" INTEGER, \"price\" INTEGER, \"weight\" REAL, \"notrade\" INTEGER, \"type\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Goods\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"resource_drop\" TEXT, \"name_id\" INTEGER, \"price\" REAL, \"weight\" REAL, \"notrade\" INTEGER, \"type\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "GroupMechanoids": {
@@ -283,7 +278,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"GroupMechanoids\" ( \"group_id\" INTEGER NOT NULL, \"mechanoid_id\" INTEGER NOT NULL, PRIMARY KEY (\"mechanoid_id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
+    "sql": "CREATE TABLE \"GroupMechanoids\" ( \"group_id\" INTEGER, \"mechanoid_id\" INTEGER, FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
     "values": []
   },
   "Groups": {
@@ -299,7 +294,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Groups\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Groups\" ( \"id\" INTEGER, \"text_id\" TEXT, \"name_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "MapBuildingEquipments": {
@@ -315,7 +310,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -325,7 +320,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingEquipments\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"equipment_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"equipment_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingEquipments\" ( \"map_building_id\" INTEGER, \"equipment_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
     "values": []
   },
   "MapBuildingGliders": {
@@ -341,7 +336,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -351,7 +346,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingGliders\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"glider_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"glider_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingGliders\" ( \"map_building_id\" INTEGER, \"glider_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
     "values": []
   },
   "MapBuildingGoods": {
@@ -367,7 +362,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -377,7 +372,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingGoods\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"good_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"good_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingGoods\" ( \"map_building_id\" INTEGER, \"good_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
     "values": []
   },
   "MapBuildingModificators": {
@@ -393,7 +388,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -403,7 +398,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingModificators\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"modificator_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"modificator_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"modificator_id\") REFERENCES \"Modificators\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingModificators\" ( \"map_building_id\" INTEGER, \"modificator_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"modificator_id\") REFERENCES \"Modificators\" (\"id\") )",
     "values": []
   },
   "MapBuildingProjectiles": {
@@ -419,7 +414,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -429,7 +424,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingProjectiles\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"projectile_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"projectile_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingProjectiles\" ( \"map_building_id\" INTEGER, \"projectile_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
     "values": []
   },
   "MapBuildingWeapons": {
@@ -445,7 +440,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "map_building_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -455,24 +450,14 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildingWeapons\" ( \"mapBuilding_id\" INTEGER NOT NULL, \"weapon_id\" INTEGER NOT NULL, \"quantity\" INTEGER, PRIMARY KEY (\"mapBuilding_id\", \"weapon_id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildingWeapons\" ( \"map_building_id\" INTEGER, \"weapon_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"map_building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
     "values": []
   },
   "MapBuildings": {
     "fks": [
       {
-        "from": "name_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Strings",
-        "to": "id"
-      },
-      {
         "from": "building_id",
-        "id": 1,
+        "id": 0,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
@@ -482,16 +467,26 @@
       },
       {
         "from": "map_id",
-        "id": 2,
+        "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
         "table": "Maps",
         "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 2,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapBuildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"building_id\" INTEGER NOT NULL, \"name_id\" INTEGER, \"interactive\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"building_id\") REFERENCES \"Buildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapBuildings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"name_id\" INTEGER, \"map_id\" INTEGER, \"building_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", \"interactive\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"building_id\") REFERENCES \"Buildings\" (\"id\") )",
     "values": []
   },
   "MapGoods": {
@@ -517,7 +512,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapGoods\" ( \"id\" INTEGER NOT NULL, \"text_id\" INTEGER, \"map_id\" INTEGER, \"good_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL, \"scale_x\" REAL, \"scale_y\" REAL, \"scale_z\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapGoods\" ( \"id\" INTEGER, \"text_id\" TEXT, \"map_id\" INTEGER, \"good_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
     "values": []
   },
   "MapObjects": {
@@ -543,7 +538,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MapObjects\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"map_id\" INTEGER NOT NULL, \"object_id\" INTEGER NOT NULL, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT 1, \"scale_x\" REAL DEFAULT 1, \"scale_y\" REAL DEFAULT 1, \"scale_z\" REAL DEFAULT 1, PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"object_id\") REFERENCES \"Objects\" (\"id\") )",
+    "sql": "CREATE TABLE \"MapObjects\" ( \"id\" INTEGER, \"text_id\" TEXT, \"map_id\" INTEGER, \"object_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", PRIMARY KEY (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"object_id\") REFERENCES \"Objects\" (\"id\") )",
     "values": []
   },
   "Maps": {
@@ -559,7 +554,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Maps\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT NOT NULL, \"resource\" TEXT NOT NULL, \"name_id\" INTEGER, \"h_min\" REAL, \"h_max\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Maps\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"h_min\" REAL, \"h_max\" REAL, \"kx\" REAL, \"bx\" REAL, \"ky\" REAL, \"by\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "MechanoidQuests": {
@@ -585,7 +580,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"MechanoidQuests\" ( \"mechanoid_id\" INTEGER NOT NULL, \"quest_id\" INTEGER NOT NULL, \"state\" INTEGER, PRIMARY KEY (\"mechanoid_id\", \"quest_id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\"), FOREIGN KEY (\"quest_id\") REFERENCES \"Quests\" (\"id\") )",
+    "sql": "CREATE TABLE \"MechanoidQuests\" ( \"mechanoid_id\" INTEGER, \"quest_id\" INTEGER, \"state\" INTEGER, FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\"), FOREIGN KEY (\"quest_id\") REFERENCES \"Quests\" (\"id\") )",
     "values": []
   },
   "Mechanoids": {
@@ -601,17 +596,17 @@
         "to": "id"
       },
       {
-        "from": "name_id",
+        "from": "configuration_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
-        "table": "Strings",
+        "table": "Configurations",
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "building_id",
         "id": 2,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -621,63 +616,47 @@
         "to": "id"
       },
       {
-        "from": "map_id",
+        "from": "clan_id",
         "id": 3,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
-        "table": "Maps",
+        "table": "Clans",
         "to": "id"
       },
       {
-        "from": "clan_id",
+        "from": "map_id",
         "id": 4,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
-        "table": "Clans",
-        "to": "id"
-      },
-      {
-        "from": "configuration_id",
-        "id": 5,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Configurations",
-        "to": "id"
-      }
-    ],
-    "sql": "CREATE TABLE \"Mechanoids\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"generation\" INTEGER, \"rating\" REAL, \"money\" REAL, \"configuration_id\" INTEGER, \"group_id\" INTEGER, \"clan_id\" INTEGER, \"rating_fight\" REAL, \"rating_courier\" REAL, \"rating_trade\" REAL, \"map_id\" INTEGER, \"mapBuilding_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\") )",
-    "values": []
-  },
-  "ModificationClans": {
-    "fks": [
-      {
-        "from": "clan_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Clans",
+        "table": "ModificationMaps",
         "to": "id"
       },
       {
         "from": "modification_id",
-        "id": 1,
+        "id": 5,
         "match": "NONE",
         "on_delete": "NO ACTION",
         "on_update": "NO ACTION",
         "seq": 0,
         "table": "Modifications",
         "to": "id"
+      },
+      {
+        "from": "name_id",
+        "id": 6,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ModificationClans\" ( \"modification_id\" INTEGER NOT NULL, \"clan_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"clan_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\") )",
+    "sql": "CREATE TABLE \"Mechanoids\" ( \"id\" INTEGER, \"text_id\" TEXT, \"name_id\" INTEGER, \"modification_id\" INTEGER, \"map_id\" INTEGER, \"clan_id\" INTEGER, \"building_id\" INTEGER, \"configuration_id\" INTEGER, \"group_id\" INTEGER, \"generation\" INTEGER, \"money\" REAL, \"rating\" REAL, \"rating_fight\" REAL, \"rating_courier\" REAL, \"rating_trade\" REAL, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"ModificationMaps\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"building_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\") )",
     "values": []
   },
   "ModificationMaps": {
@@ -703,33 +682,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"ModificationMaps\" ( \"modification_id\" INTEGER NOT NULL, \"map_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"map_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\") )",
-    "values": []
-  },
-  "ModificationMechanoids": {
-    "fks": [
-      {
-        "from": "mechanoid_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Mechanoids",
-        "to": "id"
-      },
-      {
-        "from": "modification_id",
-        "id": 1,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Modifications",
-        "to": "id"
-      }
-    ],
-    "sql": "CREATE TABLE \"ModificationMechanoids\" ( \"modification_id\" INTEGER NOT NULL, \"mechanoid_id\" INTEGER NOT NULL, PRIMARY KEY (\"modification_id\", \"mechanoid_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
+    "sql": "CREATE TABLE \"ModificationMaps\" ( \"modification_id\" INTEGER, \"map_id\" INTEGER, PRIMARY KEY (\"modification_id\", \"map_id\"), FOREIGN KEY (\"modification_id\") REFERENCES \"Modifications\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\") )",
     "values": []
   },
   "Modifications": {
@@ -765,7 +718,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Modifications\" ( \"id\" INTEGER NOT NULL, \"name_id\" INTEGER, \"directory\" TEXT NOT NULL, \"author\" TEXT, \"date_created\" TEXT, \"date_modified\" TEXT, \"comment\" TEXT, \"version\" TEXT, \"script_language\" TEXT, \"script_main\" TEXT, \"player_mechanoid_id\" INTEGER, \"cooperative_player_configuration_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"player_mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\"), FOREIGN KEY (\"cooperative_player_configuration_id\") REFERENCES \"Configurations\" (\"id\") )",
+    "sql": "CREATE TABLE \"Modifications\" ( \"id\" INTEGER, \"name_id\" INTEGER, \"directory\" TEXT, \"author\" TEXT, \"date_created\" TEXT, \"date_modified\" TEXT, \"comment\" TEXT, \"version\" TEXT, \"script_language\" TEXT, \"script_main\" TEXT, \"player_mechanoid_id\" INTEGER, \"cooperative_player_configuration_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"player_mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\"), FOREIGN KEY (\"cooperative_player_configuration_id\") REFERENCES \"Configurations\" (\"id\") )",
     "values": []
   },
   "Modificators": {
@@ -781,7 +734,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Modificators\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"probability\" REAL, \"price\" REAL, \"k_price\" REAL, \"k_param1\" REAL, \"k_param2\" REAL, \"unicum_id\" INTEGER, \"mask\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Modificators\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"probability\" REAL, \"price\" REAL, \"k_price\" REAL, \"k_param1\" REAL, \"k_param2\" REAL, \"unicum_id\" INTEGER, \"mask\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "Objects": {
@@ -797,7 +750,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Objects\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Objects\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "Players": {
@@ -813,7 +766,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Players\" ( \"id\" INTEGER NOT NULL, \"mechanoid_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
+    "sql": "CREATE TABLE \"Players\" ( \"id\" INTEGER, \"mechanoid_id\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"mechanoid_id\") REFERENCES \"Mechanoids\" (\"id\") )",
     "values": []
   },
   "Projectiles": {
@@ -829,7 +782,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Projectiles\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"weight\" REAL, \"damage\" REAL, \"T\" TEXT, \"speed\" REAL, \"scale\" REAL, \"numstate\" INTEGER, \"rotate\" REAL, \"subtype\" INTEGER, \"life_time\" REAL, \"detonation_delay\" REAL, \"distance_detonation\" REAL, \"strength\" REAL, \"price\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Projectiles\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"type\" INTEGER, \"subtype\" INTEGER, \"weight\" REAL, \"damage\" REAL, \"T\" REAL, \"speed\" REAL, \"scale\" REAL, \"numstate\" INTEGER, \"rotate\" REAL, \"life_time\" REAL, \"detonation_delay\" REAL, \"distance_detonation\" REAL, \"strength\" REAL, \"price\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "QuestRewardEquipments": {
@@ -845,7 +798,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -855,7 +808,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardEquipments\" ( \"questReward_id\" INTEGER NOT NULL, \"equipment_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"equipment_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardEquipments\" ( \"quest_reward_id\" INTEGER, \"equipment_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"equipment_id\") REFERENCES \"Equipments\" (\"id\") )",
     "values": []
   },
   "QuestRewardGliders": {
@@ -871,7 +824,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -881,7 +834,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardGliders\" ( \"questReward_id\" INTEGER NOT NULL, \"glider_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"glider_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardGliders\" ( \"quest_reward_id\" INTEGER, \"glider_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"glider_id\") REFERENCES \"Gliders\" (\"id\") )",
     "values": []
   },
   "QuestRewardGoods": {
@@ -897,7 +850,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -907,7 +860,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardGoods\" ( \"questReward_id\" INTEGER NOT NULL, \"good_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"good_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardGoods\" ( \"quest_reward_id\" INTEGER, \"good_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"good_id\") REFERENCES \"Goods\" (\"id\") )",
     "values": []
   },
   "QuestRewardModificators": {
@@ -923,7 +876,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -933,7 +886,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardModificators\" ( \"questReward_id\" INTEGER NOT NULL, \"modificator_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"modificator_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"modificator_id\") REFERENCES \"Modificators\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardModificators\" ( \"quest_reward_id\" INTEGER, \"modificator_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"modificator_id\") REFERENCES \"Modificators\" (\"id\") )",
     "values": []
   },
   "QuestRewardProjectiles": {
@@ -949,7 +902,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -959,7 +912,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardProjectiles\" ( \"questReward_id\" INTEGER NOT NULL, \"projectile_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"projectile_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardProjectiles\" ( \"quest_reward_id\" INTEGER, \"projectile_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
     "values": []
   },
   "QuestRewardReputations": {
@@ -975,7 +928,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -985,7 +938,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardReputations\" ( \"questReward_id\" INTEGER NOT NULL, \"clan_id\" INTEGER NOT NULL, \"reputation\" REAL DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"clan_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardReputations\" ( \"quest_reward_id\" INTEGER, \"clan_id\" INTEGER, \"quantity\" REAL, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\") )",
     "values": []
   },
   "QuestRewardWeapons": {
@@ -1001,7 +954,7 @@
         "to": "id"
       },
       {
-        "from": "questReward_id",
+        "from": "quest_reward_id",
         "id": 1,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -1011,7 +964,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewardWeapons\" ( \"questReward_id\" INTEGER NOT NULL, \"weapon_id\" INTEGER NOT NULL, \"quantity\" INTEGER DEFAULT 1, PRIMARY KEY (\"questReward_id\", \"weapon_id\"), FOREIGN KEY (\"questReward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewardWeapons\" ( \"quest_reward_id\" INTEGER, \"weapon_id\" INTEGER, \"quantity\" INTEGER, FOREIGN KEY (\"quest_reward_id\") REFERENCES \"QuestRewards\" (\"id\"), FOREIGN KEY (\"weapon_id\") REFERENCES \"Weapons\" (\"id\") )",
     "values": []
   },
   "QuestRewards": {
@@ -1027,7 +980,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"QuestRewards\" ( \"id\" INTEGER NOT NULL, \"quest_id\" INTEGER, \"text_id\" TEXT, \"money\" INTEGER, \"rating\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"quest_id\") REFERENCES \"Quests\" (\"id\") )",
+    "sql": "CREATE TABLE \"QuestRewards\" ( \"id\" INTEGER, \"text_id\" TEXT, \"quest_id\" INTEGER, \"money\" REAL, \"rating\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"quest_id\") REFERENCES \"Quests\" (\"id\") )",
     "values": []
   },
   "Quests": {
@@ -1063,12 +1016,12 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Quests\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"title_id\" INTEGER, \"description_id\" INTEGER, \"time\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"title_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"description_id\") REFERENCES \"Strings\" (\"id\") )",
+    "sql": "CREATE TABLE \"Quests\" ( \"id\" INTEGER, \"name_id\" INTEGER, \"title_id\" INTEGER, \"description_id\" INTEGER, \"time\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"title_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"description_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": []
   },
   "ScriptVariables": {
     "fks": [],
-    "sql": "CREATE TABLE \"ScriptVariables\" ( \"id\" INTEGER NOT NULL, \"variable\" TEXT, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, PRIMARY KEY (\"id\") )",
+    "sql": "CREATE TABLE \"ScriptVariables\" ( \"id\" INTEGER, \"variable\" TEXT, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, PRIMARY KEY (\"id\") )",
     "values": []
   },
   "Settings": {
@@ -1084,32 +1037,13 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Settings\" ( \"id\" INTEGER NOT NULL, \"player_id\" INTEGER NOT NULL, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, \"value_blob\" BLOB, PRIMARY KEY (\"id\"), FOREIGN KEY (\"player_id\") REFERENCES \"Players\" (\"id\") )",
+    "sql": "CREATE TABLE \"Settings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"player_id\" INTEGER, \"value_int\" INTEGER, \"value_float\" REAL, \"value_text\" TEXT, \"value_blob\" BLOB, PRIMARY KEY (\"id\"), FOREIGN KEY (\"player_id\") REFERENCES \"Players\" (\"id\") )",
     "values": []
   },
   "Strings": {
-    "fks": [
-      {
-        "from": "table_id",
-        "id": 0,
-        "match": "NONE",
-        "on_delete": "NO ACTION",
-        "on_update": "NO ACTION",
-        "seq": 0,
-        "table": "Tables",
-        "to": "id"
-      }
-    ],
-    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
-    "values": [
-      {
-        "en": "",
-        "id": 1,
-        "ru": "\u0411\u0435\u0437 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f",
-        "table_id": 49,
-        "text_id": ""
-      }
-    ]
+    "fks": [],
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"object\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\") )",
+    "values": []
   },
   "Weapons": {
     "fks": [
@@ -1134,7 +1068,7 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Weapons\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"projectile_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"power\" REAL, \"firerate\" REAL, \"damage\" REAL, \"price\" REAL, \"fx\" REAL, \"shoottype\" INTEGER, \"shootscale\" REAL, \"xstate\" INTEGER, \"rcolor\" REAL, \"gcolor\" REAL, \"bcolor\" REAL, \"typearms\" INTEGER, \"tfire\" REAL, \"vtype\" INTEGER, \"spare\" REAL, \"reconstruction\" REAL, \"maxdistance\" REAL, \"angle\" REAL, \"fxtime\" REAL, \"damagetype\" INTEGER, \"fxmodeltime\" REAL, \"inside_mul\" REAL, \"inside_x\" REAL, \"inside_y\" REAL, \"inside_z\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
+    "sql": "CREATE TABLE \"Weapons\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"projectile_id\" INTEGER, \"type\" INTEGER, \"standard\" INTEGER, \"weight\" REAL, \"power\" REAL, \"firerate\" REAL, \"damage\" REAL, \"price\" REAL, \"fx\" REAL, \"shoottype\" INTEGER, \"shootscale\" REAL, \"xstate\" INTEGER, \"rcolor\" REAL, \"gcolor\" REAL, \"bcolor\" REAL, \"typearms\" INTEGER, \"tfire\" REAL, \"vtype\" INTEGER, \"spare\" REAL, \"reconstruction\" REAL, \"maxdistance\" REAL, \"angle\" REAL, \"fxtime\" REAL, \"damagetype\" INTEGER, \"fxmodeltime\" REAL, \"inside_mul\" REAL, \"inside_x\" REAL, \"inside_y\" REAL, \"inside_z\" REAL, \"notrade\" INTEGER, PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"projectile_id\") REFERENCES \"Projectiles\" (\"id\") )",
     "values": []
   }
 }

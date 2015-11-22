@@ -50,6 +50,62 @@ database sqlite3
 
 ################################################################################
 #
+# enums
+#
+################################################################################
+
+enum EObjectType
+{
+    None = 0 { not_in_table },
+    Building,
+    Clan = 4,
+    ClanReputation,
+    Configuration,
+    ConfigurationEquipment,
+    ConfigurationGood,
+    ConfigurationProjectile,
+    ConfigurationWeapon,
+    Equipment = 10,
+    Glider = 11,
+    Good = 12,
+    Group = 14,
+    GroupMechanoid,
+    Map = 24,
+    MapBuilding,
+    MapBuildingEquipment,
+    MapBuildingGlider,
+    MapBuildingGood,
+    MapBuildingModificator,
+    MapBuildingProjectile,
+    MapBuildingWeapon,
+    MapGood,
+    MapObject,
+    Mechanoid,
+    MechanoidQuest,
+    Modification = 26,
+    ModificationMap,
+    Modificator,
+    Object,
+    Player,
+    Projectile = 34,
+    Quest,
+    QuestReward,
+    QuestRewardEquipment,
+    QuestRewardGlider,
+    QuestRewardGood,
+    QuestRewardModificator,
+    QuestRewardProjectile,
+    QuestRewardReputation,
+    QuestRewardWeapon,
+    ScriptVariable,
+    Setting,
+    String,
+    Weapon = 48,
+    Any = 1000,
+};
+
+################################################################################
+#
 # classes
 #
 ################################################################################
@@ -139,14 +195,31 @@ class Coordinate
 
 ########################################
 
-class Table
+class Common
 {
     i32 id { pk; };
-    str text;
+    str text_id;
+    str resource;
+    String name;
 
     properties
     {
         service;
+        inline;
+    }
+};
+
+########################################
+
+class LocalizedString
+{
+    str ru;
+    str en;
+
+    properties
+    {
+        service;
+        prefixed;
     }
 };
 
@@ -158,14 +231,13 @@ class String
 {
     i32 id { pk; };
     str text_id;
-    Table table;
-    str ru { enum; };
-    str en { enum; };
+    EObjectType object;
+    LocalizedString string;
 
     properties
     {
-        create_enum;
-        enum_name: "LocalizationType";
+        tree_view;
+        object_name: "to_string(string)";
     }
 };
 
@@ -173,9 +245,7 @@ class String
 
 class Building
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
+    Common common;
 
     Scale scale;
 
@@ -189,10 +259,7 @@ class Building
 
 class Equipment
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     i32 type;
     i32 standard;
@@ -216,10 +283,7 @@ class Equipment
 
 class Glider
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     i32 standard;
     Weight weight;
@@ -232,7 +296,7 @@ class Glider
     f32 rotatespeed;
 
     f32 resfront;
-    f32 resstop;
+    f32 restop;
     f32 resside;
 
     f32 stabfront;
@@ -257,6 +321,7 @@ class Good
     str resource;
     str resource_drop;
     String name;
+
     Price price;
     Weight weight;
     bool notrade;
@@ -272,10 +337,7 @@ class Good
 
 class Object
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     i32 type;
     Scale scale;
@@ -338,10 +400,7 @@ class ScriptVariable
 
 class Projectile
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     i32 type;
     i32 subtype;
@@ -369,10 +428,7 @@ class Projectile
 
 class Weapon
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     Projectile projectile;
     i32 type;
@@ -453,10 +509,7 @@ class Mechanoid
 
 class Map
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     f32 h_min;
     f32 h_max;
@@ -509,10 +562,7 @@ class Modification
 
 class Modificator
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
 
     f32 probability;
     Price price;
@@ -742,10 +792,7 @@ class QuestRewardWeapon
 
 class Clan
 {
-    i32 id { pk; };
-    str text_id;
-    str resource;
-    String name;
+    Common common;
     String member_name;
 
     Modification modification;
@@ -789,6 +836,11 @@ class Group
     String name;
 
     GroupMechanoid mechanoids { container; };
+
+    properties
+    {
+        tree_view;
+    }
 };
 
 class GroupMechanoid
@@ -814,6 +866,7 @@ class ModificationMap
     {
         parent: Modification;
         object_name: "to_string(map)";
+        names_order: "custom none";
         proxy;
     }
 };

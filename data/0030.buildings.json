@@ -1,242 +1,508 @@
 {
   "Buildings": {
-    "fks": [],
-    "sql": "CREATE TABLE \"Buildings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"resource\" TEXT, PRIMARY KEY (\"id\") )",
+    "fks": [
+      {
+        "from": "name_id",
+        "id": 0,
+        "match": "NONE",
+        "on_delete": "NO ACTION",
+        "on_update": "NO ACTION",
+        "seq": 0,
+        "table": "Strings",
+        "to": "id"
+      }
+    ],
+    "sql": "CREATE TABLE \"Buildings\" ( \"id\" INTEGER, \"text_id\" TEXT, \"resource\" TEXT, \"name_id\" INTEGER, \"scale\" REAL DEFAULT \"1\", \"scale_x\" REAL DEFAULT \"1\", \"scale_y\" REAL DEFAULT \"1\", \"scale_z\" REAL DEFAULT \"1\", PRIMARY KEY (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\") )",
     "values": [
       {
         "id": 1,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_CHARGE.MOD_BLD_CHARGE'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_CHARGE"
       },
       {
         "id": 2,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_DOBUST_KACHALKA_SHAPE.MOD_BLD_DOBUST_KACHALKA_SHAPE'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_DOBUST_KACHALKA"
       },
       {
         "id": 3,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_DOB_UST_SHAPE.MOD_BLD_DOB_UST_SHAPE'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_DOBUST_MAIN"
       },
       {
         "id": 4,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_DOBUST_VENT.MOD_BLD_DOBUST_VENT'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_DOBUST_VENT"
       },
       {
         "id": 5,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_KA_EFFECTOR.MOD_BLD_KA_EFFECTOR'",
+        "scale": 10.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_EFFECTOR"
       },
       {
         "id": 6,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_KONC"
       },
       {
         "id": 7,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_KA_MAIN.MOD_BLD_KA_MAIN'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_MAIN"
       },
       {
         "id": 8,
+        "name_id": null,
         "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_MAIN_BASE_SHAPE.MOD_BLD_MAIN_BASE_SHAPE'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_MAINBASE"
       },
       {
         "id": 9,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_MINI_SHAPE.MOD_BLD_MINI_SHAPE'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_MINI"
       },
       {
         "id": 10,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_PFZ.MOD_BLD_PFZ'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_PFZ"
       },
       {
         "id": 11,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_PRZ.MOD_BLD_PRZ'",
+        "scale": 0.15000000596046448,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_PRZ"
       },
       {
         "id": 12,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_RAWBASE.MOD_BLD_RAWBASE'",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_RAWBASE"
       },
       {
         "id": 13,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_TUNNEL.MOD_BLD_TUNNEL'",
+        "scale": 0.25,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_TUNNEL"
       },
       {
         "id": 14,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_TUNNEL_01"
       },
       {
         "id": 15,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_ZRM_SHAPE.MOD_BLD_ZRM_SHAPE'",
+        "scale": 0.25,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_ZRM"
       },
       {
         "id": 16,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_BUNKER_FIRST"
       },
       {
         "id": 17,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_OBELISK"
       },
       {
         "id": 18,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_IK_ARENA_INSIDE"
       },
       {
         "id": 19,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_IK_ARENA"
       },
       {
         "id": 20,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_ISP_KOMP"
       },
       {
         "id": 21,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_KOND_PIPE"
       },
       {
         "id": 22,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_SENSOR"
       },
       {
         "id": 23,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_UNDERGROUND"
       },
       {
         "id": 24,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_ISP_ANGAR"
       },
       {
         "id": 25,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_GKP"
       },
       {
         "id": 26,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KA_KONDER"
       },
       {
         "id": 27,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_MAINBASE_LIFT"
       },
       {
         "id": 28,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_BUNKER_SUPER"
       },
       {
         "id": 29,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_KEEPER"
       },
       {
         "id": 30,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_OBSERVER_SHIP"
       },
       {
         "id": 31,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_DIAFRAGM"
       },
       {
         "id": 32,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_DIAFRAGM_1111"
       },
       {
         "id": 33,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_IK"
       },
       {
         "id": 34,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_MAYAK"
       },
       {
         "id": 35,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_EXIT"
       },
       {
         "id": 36,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_HEALER"
       },
       {
         "id": 37,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_SERVICE"
       },
       {
         "id": 38,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_PLATFORM_CONTROL"
       },
       {
         "id": 39,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_LAB_ARLINGS"
       },
       {
         "id": 40,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_U_ENTER"
       },
       {
         "id": 41,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_U_FACTORY"
       },
       {
         "id": 42,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_U_TRANSFER_GATE"
       },
       {
         "id": 43,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "B_L12_U_BASE"
       },
       {
         "id": 44,
-        "resource": "",
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_TUNNEL.MOD_BLD_TUNNEL'",
+        "scale": 0.25,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_TUNNEL_L7"
       },
       {
         "id": 45,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_NEW_SPHERE"
       },
       {
         "id": 46,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_U_TUNNEL_DOOR"
       },
       {
         "id": 47,
+        "name_id": null,
         "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
         "text_id": "BLD_U_LOCK_GATE_TMNL"
+      },
+      {
+        "id": 48,
+        "name_id": null,
+        "resource": "StaticMesh'/Game/Mods/Common/Buildings/MOD_BLD_BIG_GUN_1.MOD_BLD_BIG_GUN_1'",
+        "scale": 0.20000000298023224,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
+        "text_id": "TWR_MAIN"
+      },
+      {
+        "id": 49,
+        "name_id": null,
+        "resource": "",
+        "scale": 1.0,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "scale_z": 1.0,
+        "text_id": "TWR_FLIGHTING"
       }
     ]
   }

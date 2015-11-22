@@ -20,6 +20,7 @@ def main():
     parser.add_argument('--tables', dest='tables', nargs='*', help='load only these tables: table1.json table2.json ... tableN.json')
     parser.add_argument('--clear', dest='clear', action='store_true', help='clear the database first')
     parser.add_argument('--clearfield', dest='clearfield', nargs=2, help='clear table field: table field')
+    parser.add_argument('--renamefield', dest='renamefield', nargs=3, help='rename table field: table old_field_name new_field_name')
     parser.add_argument('--enums', dest='enums', nargs=1, help='make enums using db: output.h')
     parser.add_argument('--exclude_tables', dest='exclude_tables', nargs='*', help='exclude these tables: table1.json table2.json ... tableN.json')
     pargs = parser.parse_args()
@@ -46,6 +47,9 @@ def main():
     if pargs.enums:
         make_enums(pargs.db, pargs.enums[0], pargs.tables, pargs.exclude_tables)
 
+    if pargs.renamefield:
+        renamefield(pargs.json, pargs.renamefield[0], pargs.renamefield[1], pargs.renamefield[2])
+
 def clearfield(fn, table, field):
     data = json.load(open(fn))
     for t in sorted(data):
@@ -57,6 +61,29 @@ def clearfield(fn, table, field):
             for k in row:
                 if k.lower() != field.lower():
                     r[k] = row[k]
+            d.append(r)
+        data[t][values_key] = d
+    json.dump(data, open(fn, 'w'), sort_keys = True, indent = 2)
+
+def renamefield(fn, table, old, new):
+    data = json.load(open(fn))
+    for t in sorted(data):
+        if t.lower() != table.lower():
+            continue
+        # rename fk
+        for fk in data[t][fks_key]:
+            if fk['from'].lower() == old.lower():
+                fk['from'] = new
+                break
+        # copy values
+        d = []
+        for row in data[t][values_key]:
+            r = dict()
+            for k in row:
+                if k.lower() != old.lower():
+                    r[k] = row[k]
+                else:
+                    r[new] = row[k]
             d.append(r)
         data[t][values_key] = d
     json.dump(data, open(fn, 'w'), sort_keys = True, indent = 2)
@@ -156,7 +183,8 @@ def merge(fn, files):
     if len(files) < 2:
         print('Supply two or more input files')
         return
-
+    
+    print('loading: ' + files[0])
     first = json.load(open(files[0]))
     for i in range(1, len(files)):
         print('merging: ' + files[i])

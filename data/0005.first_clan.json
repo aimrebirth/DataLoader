@@ -44,7 +44,7 @@
   "Strings": {
     "fks": [
       {
-        "from": "table_id",
+        "from": "object",
         "id": 0,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -54,20 +54,20 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"object\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"object\") REFERENCES \"Tables\" (\"id\") )",
     "values": [
       {
         "en": "",
         "id": 7,
         "ru": "\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0435",
-        "table_id": 4,
+        "object": 4,
         "text_id": ""
       },
       {
         "en": "",
         "id": 8,
         "ru": "\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439",
-        "table_id": 4,
+        "object": 4,
         "text_id": ""
       }
     ]

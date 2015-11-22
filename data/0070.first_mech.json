@@ -22,7 +22,7 @@
         "to": "id"
       },
       {
-        "from": "mapBuilding_id",
+        "from": "building_id",
         "id": 2,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -65,12 +65,12 @@
     "sql": "CREATE TABLE \"Mechanoids\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"name_id\" INTEGER, \"generation\" INTEGER, \"rating\" REAL, \"money\" REAL, \"configuration_id\" INTEGER, \"group_id\" INTEGER, \"clan_id\" INTEGER, \"rating_fight\" REAL, \"rating_courier\" REAL, \"rating_trade\" REAL, \"map_id\" INTEGER, \"mapBuilding_id\" INTEGER, \"x\" REAL, \"y\" REAL, \"z\" REAL, \"roll\" REAL, \"pitch\" REAL, \"yaw\" REAL, PRIMARY KEY (\"id\"), FOREIGN KEY (\"configuration_id\") REFERENCES \"Configurations\" (\"id\"), FOREIGN KEY (\"clan_id\") REFERENCES \"Clans\" (\"id\"), FOREIGN KEY (\"map_id\") REFERENCES \"Maps\" (\"id\"), FOREIGN KEY (\"mapBuilding_id\") REFERENCES \"MapBuildings\" (\"id\"), FOREIGN KEY (\"name_id\") REFERENCES \"Strings\" (\"id\"), FOREIGN KEY (\"group_id\") REFERENCES \"Groups\" (\"id\") )",
     "values": [
       {
+        "building_id": 4,
         "clan_id": 1,
         "configuration_id": 1,
         "generation": 5,
         "group_id": 1,
         "id": 1,
-        "mapBuilding_id": 4,
         "map_id": 1,
         "money": 300.0,
         "name_id": 0,

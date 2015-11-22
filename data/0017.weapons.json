@@ -2,7 +2,7 @@
   "Strings": {
     "fks": [
       {
-        "from": "table_id",
+        "from": "object",
         "id": 0,
         "match": "NONE",
         "on_delete": "NO ACTION",
@@ -12,293 +12,293 @@
         "to": "id"
       }
     ],
-    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"table_id\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"table_id\") REFERENCES \"Tables\" (\"id\") )",
+    "sql": "CREATE TABLE \"Strings\" ( \"id\" INTEGER NOT NULL, \"text_id\" TEXT, \"object\" INTEGER, \"ru\" TEXT, \"en\" TEXT, PRIMARY KEY (\"id\"), FOREIGN KEY (\"object\") REFERENCES \"Tables\" (\"id\") )",
     "values": [
       {
         "en": "",
         "id": 1,
         "ru": "\u0418\u043c\u043f\u0443\u043b\u044c\u0441\u043d\u044b\u0439 \u043c\u0435\u0433\u0430\u043b\u0430\u0437\u0435\u0440",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 2,
         "ru": "\u042d\u043c\u0438\u0442\u0442\u0435\u0440 \u043f\u043e\u043b\u0438\u043f\u043e\u0432",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 3,
         "ru": "\u041a\u0438\u0441\u043b\u043e\u0442\u043d\u044b\u0439 \u0445\u043e\u0431\u043e\u0442",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 4,
         "ru": "\u0410\u043d\u043d\u0438\u0433\u0438\u043b\u044f\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 5,
         "ru": "\u0413\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440 \u0445\u0430\u043e\u0441-\u043d\u0430\u043f\u0440\u044f\u0436\u0435\u043d\u0438\u044f",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 6,
         "ru": "\u0414\u0432\u0443\u0441\u0442\u0432\u043e\u043b\u044c\u043d\u0430\u044f \u0430\u0442\u043e\u043c\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 7,
         "ru": "\u0413\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440 \u0441\u0433\u0443\u0441\u0442\u043a\u043e\u0432 \u044d\u043d\u0435\u0440\u0433\u0438\u0438",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 8,
         "ru": "\u0421\u043a\u043e\u0440\u043e\u0441\u0442\u0440\u0435\u043b\u044c\u043d\u0430\u044f \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043c\u0430\u0433\u043d\u0438\u0442\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 9,
         "ru": "\u0414\u0435\u0441\u0442\u0430\u0431\u0438\u043b\u0438\u0437\u0430\u0442\u043e\u0440 \u043f\u043e\u043b\u044f",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 10,
         "ru": "\u0422\u0440\u0451\u0445\u0441\u0442\u0432\u043e\u043b\u044c\u043d\u0430\u044f \u0430\u0442\u043e\u043c\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 11,
         "ru": "\u0427\u0435\u0442\u044b\u0440\u0435\u0445c\u0442\u0432\u043e\u043b\u044c\u043d\u044b\u0438\u0306 \u0438\u043c\u043f\u0443\u043b\u044c\u0441\u043d\u044b\u0438\u0306 \u0438\u0437\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 12,
         "ru": "\u0411\u043e\u043c\u0431\u043e\u043c\u0435\u0442\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 13,
         "ru": "\u041d\u0443\u043b\u044c-\u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 14,
         "ru": "\u042d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0440\u0430\u0437\u0440\u044f\u0434\u043d\u0438\u043a",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 15,
         "ru": "\u042d\u043b\u0435\u043a\u0442\u0440\u043e\u043c\u0430\u0433\u043d\u0438\u0442\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 17,
         "ru": "\u0413\u0430\u043c\u043c\u0430-\u043b\u0430\u0437\u0435\u0440",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 18,
         "ru": "\u0413\u0440\u0430\u0432\u0438\u0442\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 19,
         "ru": "\u0418\u043d\u0444\u0440\u0430\u0430\u0442\u043e\u043c\u043d\u044b\u0439 \u043f\u043b\u0430\u0437\u043c\u043e\u043c\u0451\u0442",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 20,
         "ru": "\u041c\u0435\u0437\u043e\u043d\u043d\u044b\u0439 \u0440\u0430\u0437\u0440\u044f\u0434\u043d\u0438\u043a",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 21,
         "ru": "\u0421\u0412\u0427-\u0438\u0437\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 23,
         "ru": "\u041c\u0443\u043b\u044c\u0442\u0438\u0432\u043e\u043b\u043d\u043e\u0432\u044b\u0439 \u0438\u0437\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 25,
         "ru": "\u041f\u043b\u0430\u0437\u043c\u0435\u043d\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 26,
         "ru": "\u041f\u043b\u0430\u0437\u043c\u0435\u043d\u043d\u044b\u0439 \u0437\u0430\u0432\u0438\u0445\u0440\u0438\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 27,
         "ru": "\u041f\u043e\u0437\u0438\u0442\u0440\u043e\u043d\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 28,
         "ru": "\u0418\u043c\u043f\u0443\u043b\u044c\u0441\u043d\u044b\u0439 \u043b\u0430\u0437\u0435\u0440 \u0442\u0438\u043f I",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 29,
         "ru": "\u0418\u043c\u043f\u0443\u043b\u044c\u0441\u043d\u044b\u0439 \u043b\u0430\u0437\u0435\u0440 \u0442\u0438\u043f II",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 30,
         "ru": "\u041a\u0432\u0430\u0440\u043a\u043e\u0432\u044b\u0439 \u0443\u0441\u043a\u043e\u0440\u0438\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 31,
         "ru": "\u0411\u0435\u0437\u043e\u0442\u043a\u0430\u0442\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 32,
         "ru": "\u041b\u0443\u0447\u0435\u0432\u043e\u0439 \u043b\u0430\u0437\u0435\u0440 \u0442\u0438\u043f I",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 33,
         "ru": "\u041b\u0443\u0447\u0435\u0432\u043e\u0439 \u043b\u0430\u0437\u0435\u0440 \u0442\u0438\u043f II",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 34,
         "ru": "\u0420\u0430\u043a\u0435\u0442\u043d\u0430\u044f \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 35,
         "ru": "\u0421\u0442\u0430\u0437\u0438\u0441-\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 36,
         "ru": "\u0422\u0430\u0445\u0438\u043e\u043d\u043d\u044b\u0439 \u043d\u0430\u0433\u0440\u0435\u0432\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 37,
         "ru": "\u0423\u0441\u043a\u043e\u0440\u0438\u0442\u0435\u043b\u044c X-\u0447\u0430\u0441\u0442\u0438\u0446",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 38,
         "ru": "\u0413\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440 X-\u0441\u0433\u0443\u0441\u0442\u043a\u043e\u0432",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 39,
         "ru": "\u0425\u0430\u043e\u0441-\u0438\u0437\u043b\u0443\u0447\u0430\u0442\u0435\u043b\u044c",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 40,
         "ru": "\u0410\u0442\u043e\u043c\u043d\u0430\u044f \u043f\u0443\u0448\u043a\u0430",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 41,
         "ru": "\u041b\u0435\u0442\u0430\u044e\u0449\u0430\u044f \u0442\u0443\u0440\u0435\u043b\u044c: \u043f\u0440\u0435\u0434\u0443\u043f\u0440\u0435\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043e\u0440\u0443\u0436\u0438\u0435",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 42,
         "ru": "\u041b\u0435\u0442\u0430\u044e\u0449\u0430\u044f \u0442\u0443\u0440\u0435\u043b\u044c: \u043a\u0430\u0440\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043e\u0440\u0443\u0436\u0438\u0435",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 43,
         "ru": "\u0421\u0442\u0430\u0442\u0438\u0447\u043d\u0430\u044f \u0442\u0443\u0440\u0435\u043b\u044c: \u043f\u0440\u0435\u0434\u0443\u043f\u0440\u0435\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043e\u0440\u0443\u0436\u0438\u0435",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       },
       {
         "en": "",
         "id": 44,
         "ru": "\u0421\u0442\u0430\u0442\u0438\u0447\u043d\u0430\u044f \u0442\u0443\u0440\u0435\u043b\u044c: \u043a\u0430\u0440\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043e\u0440\u0443\u0436\u0438\u0435",
-        "table_id": 48,
+        "object": 48,
         "text_id": ""
       }
     ]
